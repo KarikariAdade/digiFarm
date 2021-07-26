@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Business\DashboardController;
+use App\Http\Controllers\Business\LoginController;
 use App\Http\Controllers\Business\RegisterController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,4 +29,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::prefix('business/auth')->group(function (){
     Route::get('register', [RegisterController::class, 'index'])->name('business.auth.register');
     Route::post('registerBusiness', [RegisterController::class, 'registerBusiness'])->name('business.auth.register.business');
+    Route::get('login', [LoginController::class, 'index'])->name('business.auth.login');
+    Route::post('loginBusiness', [LoginController::class, 'login'])->name('business.auth.login.business');
+    Route::any('logoutBusiness', [LoginController::class, 'logout'])->name('business.auth.logout');
+});
+
+Route::prefix('business')->group(function(){
+   Route::middleware('auth:business')->group(function (){
+       Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('business.dashboard');
+   });
 });

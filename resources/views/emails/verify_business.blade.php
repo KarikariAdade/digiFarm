@@ -5,6 +5,6 @@
     </title>
 </head>
 <body>
-Verify professional Email
+Verify business Email
 </body>
 </html>

@@ -25,6 +25,10 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
                 return redirect(RouteServiceProvider::HOME);
             }
+
+            if (Auth::guard('business')->check()) {
+                return redirect()->route('business.dashboard');
+            }
         }
 
         return $next($request);

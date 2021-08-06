@@ -54,7 +54,7 @@ body{
         </div>
     </div>
 </div>
-<div class=" farm-features text-center">
+<div class="farm-features text-center">
     <div class="container">
     <div class="row">
         <div class="col-md-5">
@@ -66,15 +66,48 @@ body{
         </div>
         <div class="col-md-7">
             <figure>
-                <img src="{{ asset('assets/main/img/market.svg') }}">
+                <img src="{{ asset('assets/main/img/green_farm.png') }}" class="img-fluid">
             </figure>
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6"></div>
-        <div class="col-md-6"></div>
+        <div class="col-md-7">
+            <figure>
+                <img src="{{ asset('assets/main/img/market.svg') }}">
+            </figure>
+        </div>
+       <div class="col-md-5">
+            <h2>Meet Companies Interested in your Produce</h2>
+            <h5>
+                Real people are using momo to quickly and effectively run their online business. With our full suite of marketing, sales, and creation solutions, you can focus on what matters to you most: creating content, sharing your story, and making sales.
+            </h5><br>
+            <a href="" class="btn btn-primary header-btn">Join Our Companies</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+            <h2>Quality Farm Produce</h2>
+            <h5>
+                Real people are using momo to quickly and effectively run their online business. With our full suite of marketing, sales, and creation solutions, you can focus on what matters to you most: creating content, sharing your story, and making sales.
+            </h5><br>
+            <a href="" class="btn btn-primary header-btn">Visit Market</a>
+        </div>
+        <div class="col-md-7">
+            <figure>
+                <img src="{{ asset('assets/main/img/intro-2.png') }}" class="img-fluid">
+            </figure>
+        </div>
     </div>
 </div>
+</div>
+<div class="forum-section">
+    <div class="container">
+        <div class="text-center pt-5 pb-5">
+            <h2>Farm Related Questions Answered!</h2>
+            <p>Real people are using momo to quickly and effectively run their online business. With our full suite of marketing, sales, and creation.</p>
+            <a href="" class="btn btn-primary header-btn">Visit Our Forum</a>
+        </div>
+    </div>
 </div>
 @endsection
 

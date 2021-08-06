@@ -96,6 +96,85 @@
     </div><!--mobile-menu end-->
     @yield('content')
 
+    <footer>
+            <div class="top-footer no-bg">
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 col-sm-6">
+                                <div class="widget widget-logo">
+                                    <img src="images/ft-logo.png" alt="">
+                                    <p>Lorem ipsum dolor amet consectetur adip- ielit sed eiusm tempor incididunt ut labore dolore magna aliqua enim ad minim veniam quis....</p>
+                                </div><!--widget-about end-->
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6">
+                                <div class="widget widget-links">
+                                    <h3 class="widget-title">QUICK LINKS</h3>
+                                    <ul class="lnks-list">
+                                        <li><a href="#" title="">How It Works</a></li>
+                                        <li><a href="#" title="">Guarantee</a></li>
+                                        <li><a href="#" title="">Report Bug</a></li>
+                                        <li><a href="#" title="">Pricing</a></li>
+                                    </ul>
+                                </div><!--widget-links end-->
+                            </div>
+                            <div class="col-lg-2 col-md-4 col-sm-6">
+                                <div class="widget widget-contact">
+                                    <h3 class="widget-title">Contact Us</h3>
+                                    <ul class="lnks-list">
+                                        <li>Street Number &amp; Name Postal Code 2034 UCC</li>
+                                        <li>+233548876922</li>
+                                        <li><a href="mailto:example@example.com" title="">www.digifarm.com</a></li>
+                                    </ul>
+                                </div><!--widget-links end-->
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-6">
+                                <div class="widget widget-about">
+                                    <h3 class="widget-title">ABOUT</h3>
+                                    <ul class="lnks-list">
+                                        <li><a href="#" title="">About Singleton</a></li>
+                                        <li><a href="#" title="">Team</a></li>
+                                        <li><a href="#" title="">Testimonials</a></li>
+                                        <li><a href="#" title="">Blog</a></li>
+                                    </ul>
+                                </div><!--widget-links end-->
+                            </div>
+                            <div class="col-lg-3 col-md-5">
+                                <div class="widget widget-app">
+                                    <h3 class="widget-title">Download the App</h3>
+                                    <ul class="download-btns">
+                                        <li><a href="#" title=""><img src="images/btn1.png" alt=""></a></li>
+                                        <li><a href="#" title=""><img src="images/btn2.png" alt=""></a></li>
+                                    </ul>
+                                    <h3>Follow Us Now</h3>
+                                    <ul class="social-links">
+                                        <li><a href="#" title=""><i class="fab fa-facebook"></i></a></li>
+                                        <li><a href="#" title=""><i class="fab fa-twitter"></i></a></li>
+                                        <li><a href="#" title=""><i class="fab fa-skype"></i></a></li>
+                                        <li><a href="#" title=""><i class="fab fa-linkedin"></i></a></li>
+                                    </ul>
+                                </div><!--widget-links end-->
+                            </div>
+                        </div>
+                    </div><!--footer-content end-->
+                </div>
+            </div><!--top-footer end-->
+            <div class="bottom-strip">
+                <div class="container">
+                    <div class="copyright-text">
+                        <p><a href="">DigiFarm</a></p>
+                        <ul class="ft-links">
+                            <li><a href="#" title="">Privacy</a></li>
+                            <li><a href="#" title="">FAQs</a></li>
+                            <li><a href="#" title="">Account</a></li>
+                        </ul><!--ft-links end-->
+                        <div class="clearfix"></div>
+                    </div><!--copyright-text end-->
+                </div>
+                <a href="#" title="" class="scrollTop"><i class="fa fa-arrow-up"></i></a>
+            </div><!--bottom-strip end-->
+        </footer>
+
     <script src="{{ asset('assets/main/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/main/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/main/js/all.min.js') }}"></script>

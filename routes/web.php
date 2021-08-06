@@ -3,6 +3,7 @@
 use App\Http\Controllers\Business\DashboardController;
 use App\Http\Controllers\Business\LoginController;
 use App\Http\Controllers\Business\RegisterController;
+use App\Http\Controllers\MainWebsiteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +21,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('website.index');
 });
+
+Route::get('about', [MainWebsiteController::class, 'about'])->name('website.about');
+
+
 
 Auth::routes();
 

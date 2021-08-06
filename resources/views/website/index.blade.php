@@ -1,11 +1,4 @@
 @extends('layouts.main')
-@push('extra-css')
-<style type="text/css">
-body{
-    height: 210vh;
-}
-</style>
-@endpush
 @section('content')
 <div class="farm-intro">
     <div class="container">

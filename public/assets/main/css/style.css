@@ -991,3 +991,80 @@ header.ab {
 .widget-app .social-links li a:hover {
     color: #ff7e00;
 }
+
+
+
+
+
+/*================= ABOUT PAGE ===============*/
+.about-intro{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    position: relative;
+    height: 70vh;
+    background: url('../img/h2-slide1.jpg');
+    background-position: bottom;
+}
+
+.about-intro::after{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+}
+.about-intro h2{
+    padding-top: 13%;
+    color: #fff;
+    font-size: 40px;
+
+}
+.about-intro figure img{
+    position: absolute;
+    bottom: 2px;
+}
+.pages-list {
+    padding-top: 15%;
+    float: right;
+    background-color: #fff;
+    padding: 0 50px;
+    border-radius: 50px;
+    height: 60px;
+    line-height: 60px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.24);
+}
+.pages-list li {
+    display: inline-block;
+    position: relative;
+    padding: 0 13px;
+}
+.pages-list li:first-child {
+    padding-left: 0;
+}
+.pages-list li:before {
+    content: '\f35a';
+    position: absolute;
+    top: 0;
+    right: -7px;
+    color: #222222;
+    font-size: 18px;
+    font-family: fontawesome;
+}
+.pages-list li:last-child {
+    padding-right: 0;
+}
+.pages-list li:last-child:before {
+    display: none;
+}
+.pages-list li a,
+.pages-list li span {
+    display: inline-block;
+    color: #222222;
+    font-size: 18px;
+    font-weight: 700;
+}
+.pages-list li.active span {
+    color: #228B22;
+}

@@ -5,7 +5,6 @@
     </title>
 </head>
 <body>
-</div>
 <form method="POST" action="{{ route('business.auth.login.business') }}">
     @csrf
     @method('POST')

@@ -38,8 +38,6 @@ class LoginController extends Controller
 
     public function logout()
     {
-        $business = auth()->guard('business')->user();
-
         auth()->guard('business')->logout();
 
         return redirect()->route('business.auth.login');

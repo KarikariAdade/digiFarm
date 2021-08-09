@@ -69,6 +69,9 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
 }
+p{
+    color: #222222 !important;
+}
 * {
     margin:0;
     padding: 0;
@@ -116,7 +119,6 @@ img {
 p {
     font-size: 16px;
     line-height: 30px;
-    color: #777777;
 }
 h1,
 h2,
@@ -1067,4 +1069,78 @@ header.ab {
 }
 .pages-list li.active span {
     color: #228B22;
+}
+
+.about-section {
+    margin-top: 10%;
+    margin-bottom: 5%;
+}
+.about-section .container .row .col-md-8{
+    padding-bottom: 5%;
+}
+.about-section .container .row .col-md-8 h1{
+    color: #222;
+    padding-bottom: 4%;
+}
+
+.about-section .container .row .col-md-8 p{
+    font-size: 17px;
+    font-weight: bold;
+    color:  #222222;
+}
+.about-section .container .row .col-md-5 figure img{
+    border-radius: 10px;
+    height: 300px;
+    width: 100%;
+    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, .2);
+}
+.about-vision {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+.about-vision .row{
+    padding: 10px 1%;
+}
+.about-vision .row .col-md-6{
+    color: #222222;
+}
+.about-vision .row .col-md-6 .container{
+    padding: 5% 5%;
+    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, .2);
+    border-radius: 15px;
+}
+.about-vision .row .col-md-6 .container p{
+    font-weight: 500;
+}
+.about-vision .row .col-md-6 .container h4{
+    font-size: 25px;
+}
+.about-boxes{
+    padding: 20px;
+    margin-bottom: 5%;
+}
+
+.about-boxes .row{
+    padding: 0;
+}
+.about-boxes .row .col-md-4{
+    padding: 0;
+}
+.about-boxes .row .col-md-4 .text-data{
+    padding: 15% 10px;
+    text-align: center;
+    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, .2);
+}
+.about-boxes .row .col-md-4 .text-data h4,
+.about-boxes .row .col-md-4 .text-data p{
+    color: #222222;
+}
+
+
+.about-boxes .row:last-child .col-md-4:nth-child(2){
+    margin-top: 2px;
+}
+
+.about-boxes .row .col-md-4 .text-data p{
+    padding-bottom: 5px;
 }

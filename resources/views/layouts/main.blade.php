@@ -28,7 +28,7 @@
                         <li><a href="{{ route('website.market') }}" title="">Market</a></li>
                         <li><a href="{{ route('website.forum') }}" title="">Forum</a></li>
                         <li><a href="">Companies</a></li>
-                        </li>
+{{--                        </li>--}}
                         {{-- <li><a href="#" title="">Pages</a>
                             <ul>
                                 <li><a href="shop.html" title="">Shop</a>
@@ -58,7 +58,7 @@
                 <div class="contact">
                     <img src="images/user_icon.png" alt="">
                     <div class="contact-info">
-                       <a href="" class="btn btn-primary header-btn">Accounts</a>
+                       <a href="{{ route('login') }}" class="btn btn-primary header-btn">Accounts</a>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -179,5 +179,6 @@
     <script src="{{ asset('assets/main/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/main/js/all.min.js') }}"></script>
     <script src="{{ asset('assets/main/js/scripts.js') }}"></script>
+@stack('extra-js')
 </body>
 </html>

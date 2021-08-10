@@ -3,6 +3,7 @@
 use App\Http\Controllers\Business\DashboardController;
 use App\Http\Controllers\Business\LoginController;
 use App\Http\Controllers\Business\RegisterController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainWebsiteController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -31,7 +32,7 @@ Route::get('forum', [MainWebsiteController::class, 'forum'])->name('website.foru
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 
 Route::prefix('business/auth')->group(function (){
@@ -46,4 +47,9 @@ Route::prefix('business')->group(function(){
    Route::middleware('auth:business')->group(function (){
        Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('business.dashboard');
    });
+});
+
+
+Route::prefix('farmers')->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 });

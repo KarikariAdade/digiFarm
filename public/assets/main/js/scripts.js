@@ -22,4 +22,6 @@ $(document).ready(function (){
    $(".mobile-menu .menu-bar").on("click", function() {
       $("header .menu-bar").removeClass("active");
   });
+
+    $('.select2').select2();
 })

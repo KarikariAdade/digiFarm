@@ -10,4 +10,19 @@ class MainWebsiteController extends Controller
     {
         return view('website.about.index');
     }
+
+    public function farmers()
+    {
+        return view('website.farmers.index');
+    }
+
+    public function market()
+    {
+        return view('website.market.index');
+    }
+
+    public function forum()
+    {
+        return view('website.forum.index');
+    }
 }

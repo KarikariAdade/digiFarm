@@ -1008,6 +1008,28 @@ header.ab {
     background-position: bottom;
 }
 
+.about-intro.farmers{
+    background: url('../img/farming.jpg');
+    background-position: center top;
+}
+
+.about-intro.farmers h2,
+.about-intro.farmers .pages-list{
+    position: relative;
+    z-index: 1;
+}
+
+.about-intro.farmers .container::after{
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, .6);
+}
+
+
 .about-intro::after{
     position: absolute;
     content: '';
@@ -1143,4 +1165,112 @@ header.ab {
 
 .about-boxes .row .col-md-4 .text-data p{
     padding-bottom: 5px;
+}
+
+
+
+/*================= ABOUT PAGE ===============*/
+.farmer-intro{
+    text-align: center;
+    padding: 2% 10%;
+    color: #222222;
+    margin-bottom: 5%;
+}
+
+.farmer-intro p{
+    font-weight: bold;
+    color:  #7777;
+}
+.lnk-default {
+    display: inline-block;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: #228B22;
+    padding: 0 77px 0 30px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.20);
+    position: relative;
+    margin-top: 7px;
+}
+.lnk-default:hover {
+    color: #fff;
+    background-color: #d08f31;
+}
+.lnk-default:hover .next-btn {
+    color: #fff;
+    background-color: #d08f31;
+    border-color: #d08f31;
+} 
+.next-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    color: #228B22;
+    font-size: 18px;
+    border:2px solid #228B22;
+    background-color: #fff;
+}
+
+.facts-sec {
+    /*background-image: url(../img/aboutbg.jpg);*/
+    background-repeat: no-repeat;
+    padding: 47px 0 0;
+    margin-bottom: 5%;
+}
+.facts-sec .sec-title {
+    margin-bottom: 110px;
+}
+.fact-col {
+    background-color: #fff;
+    padding: 30px 0 22px;
+    min-width: 260px;
+    text-align: center;
+    box-shadow: 0 10px 30px 0 rgba(0,0,0,0.1);
+    float: left;
+    position: relative;
+    margin-right: 30px;
+    border-radius:5px;
+}
+.fact-col > h3 {
+    color: #222222;
+    font-size: 24px;
+    margin-bottom: 9px;
+} 
+.fact-col > h2 {
+    color: #228B22;
+    font-size: 48px;
+    display: inline-block;
+}
+.fact-col > h2 span {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 400;
+}
+.fact-col > h2 small {
+    font-size: 24px;
+    font-weight: 400;
+}
+.fact-col:nth-child(2) {
+    top: -40px;
+}
+.fact-col:nth-child(3) {
+    top: -80px;
+}
+.fact-col:nth-child(4) {
+    top: -140px;
+}
+.fact-col > span {
+    display: inline-block;
+    color: #228B22;
+    font-size: 48px;
+    font-weight: 700;
+    margin-left: 9px;
 }

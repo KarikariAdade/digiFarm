@@ -20,9 +20,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('website.index');
-});
+})->name('website.home');
 
 Route::get('about', [MainWebsiteController::class, 'about'])->name('website.about');
+Route::get('market', [MainWebsiteController::class, 'market'])->name('website.market');
+Route::get('farmer', [MainWebsiteController::class, 'farmers'])->name('website.farmers');
+Route::get('forum', [MainWebsiteController::class, 'forum'])->name('website.forum');
 
 
 

@@ -24,77 +24,120 @@
 @extends('layouts.main')
 @push('extra-css')
     <link rel="stylesheet" href="{{ asset('assets/main/css/select2.min.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 @endpush
 @section('content')
-<div class="container auth-section">
-    <div class="row">
-        <div class="col-md-7 mt-5">
-            <h1>Register as a Company</h1>
-            <form class="row">
-                <div class="col-md-6 form-group">
-                    <label class="custom-label">Company Name</label>
-                    <input type="text" class="form-control" name="first_name">
-                </div>
-                <div class="col-md-6">
-                    <label class="custom-label">Email</label>
-                    <input type="text" class="form-control" name="last_name">
-                </div>
-                <div class="col-md-6">
-                    <label class="custom-label">Phone</label>
-                    <input type="text" class="form-control" name="phone">
-                </div>
-                <div class="col-md-6">
-                    <label class="custom-label">Country</label>
-                    <select class="form-control select2">
-                        <option>Country</option>
-                    </select>
-                </div>
-                <div class="col-md-6">
-                    <label class="custom-label">Region / State</label>
-                    <input type="text" class="form-control" name="phone">
-                </div>
-                <div class="col-md-6">
-                    <label class="custom-label">City</label>
-                    <input type="text" class="form-control" name="phone">
-                </div>
-                <div class="col-md-6">
-                    <label class="custom-label">Password</label>
-                    <input type="text" class="form-control" name="password">
-                </div>
-                <div class="col-md-6">
-                    <label class="custom-label">Confirm Password</label>
-                    <input type="text" class="form-control" name="password_confirmation">
-                </div>
-                <div class="col-md-12">
-                    <button class="btn btn-primary" style="width: 100%;">Register</button>
-                </div>
+    <div class="container auth-section">
+        <div class="row">
+            <div class="col-md-7 mt-5">
+                <h1>Register as a Company</h1>
+                <form class="row">
+                    <div class="col-md-6 form-group">
+                        <label class="custom-label">Company Name</label>
+                        <input type="text" class="form-control" name="first_name">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="custom-label">Email</label>
+                        <input type="text" class="form-control" name="last_name">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="custom-label">Phone</label>
+                        <input type="text" class="form-control" name="phone">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="custom-label">Country</label>
+                        <select class="form-control select2" id="country">
+                            @foreach($countries as $country)
+                                <option
+                                    value="{{ $country->id }}" {{ old('country') == $country->id ? 'selected' : null }}>{{ $country->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="custom-label">Region / State</label>
+                        <select class="form-control select2" id="region">
+                            <option></option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="custom-label">City</label>
+                        <input type="text" class="form-control" name="phone">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="custom-label">Password</label>
+                        <input type="text" class="form-control" name="password">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="custom-label">Confirm Password</label>
+                        <input type="text" class="form-control" name="password_confirmation">
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn btn-primary" style="width: 100%;">Register</button>
+                    </div>
 
-            </form>
-        </div>
-        <div class="col-md-5">
-            <div align="right">
-                <a href="#" title="" class="lnk-default mb-5">I am a Farmer<span class="next-btn"><i class="fa fa-arrow-right"></i></span></a>
-            </div>
-            <div class="login-section">
-                <h2 class="pt-3 pb-3">Login as a Company</h2>
-                <form>
-                    <div class="form-group">
-                        <label>Email Address *</label>
-                        <input type="email" class="form-control" name="">
-                    </div>
-                    <div class="form-group">
-                        <label>Password *</label>
-                        <input type="email" class="form-control" name="">
-                    </div>
-                    <div class="login-btn">
-                        <button class="btn btn-primary">Login</button>
-                    </div>
                 </form>
+            </div>
+            <div class="col-md-5">
+                <div align="right">
+                    <a href="#" title="" class="lnk-default mb-5">I am a Farmer<span class="next-btn"><i
+                                class="fa fa-arrow-right"></i></span></a>
+                </div>
+                <div class="login-section">
+                    <h2 class="pt-3 pb-3">Login as a Company</h2>
+                    <form>
+                        <div class="form-group">
+                            <label>Email Address *</label>
+                            <input type="email" class="form-control" name="">
+                        </div>
+                        <div class="form-group">
+                            <label>Password *</label>
+                            <input type="email" class="form-control" name="">
+                        </div>
+                        <div class="login-btn">
+                            <button class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
 @push('extra-js')
     <script src="{{ asset('assets/main/js/select2.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            let url = '',
+                region = $('#region'),
+                country = $('#country'),
+                data;
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            let selectChange = country.change(function () {
+                loadRegions();
+            });
+
+            if (selectChange == true) {
+
+                loadRegions();
+            }
+
+
+            function loadRegions() {
+
+                url = `{{ route('request.get.region') }}`;
+
+                data = country.val();
+
+                $.post(url, {'country': data}, function (response) {
+                    console.log(response)
+                    region.html(response.msg);
+                })
+            }
+        })
+    </script>
 @endpush

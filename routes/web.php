@@ -3,8 +3,10 @@
 use App\Http\Controllers\Business\DashboardController;
 use App\Http\Controllers\Business\LoginController;
 use App\Http\Controllers\Business\RegisterController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainWebsiteController;
+use App\Http\Controllers\RequestsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +29,10 @@ Route::get('about', [MainWebsiteController::class, 'about'])->name('website.abou
 Route::get('market', [MainWebsiteController::class, 'market'])->name('website.market');
 Route::get('farmer', [MainWebsiteController::class, 'farmers'])->name('website.farmers');
 Route::get('forum', [MainWebsiteController::class, 'forum'])->name('website.forum');
+
+Route::prefix('request')->group(function (){
+    Route::any('get/region', [RequestsController::class, 'getRegion'])->name('request.get.region');
+});
 
 
 

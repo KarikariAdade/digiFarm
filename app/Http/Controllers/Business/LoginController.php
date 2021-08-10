@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Business;
 
 use App\Http\Controllers\Controller;
+use App\Models\Country;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class LoginController extends Controller
 {
@@ -19,7 +21,9 @@ class LoginController extends Controller
 
     public function index()
     {
-        return view('business.auth.login');
+        $countries = DB::table('countries')->orderBy('name', 'asc')-> get();
+
+        return view('business.auth.login', compact('countries'));
     }
 
     public function login(Request $request)

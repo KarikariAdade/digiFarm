@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Business;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LoginRequest;
 use App\Models\Country;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -26,17 +27,15 @@ class LoginController extends Controller
         return view('business.auth.login', compact('countries'));
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         $data = $request->only('email', 'password');
 
-        $this->loginValidate($data);
-
         if (Auth::guard('business')->attempt(['email' => $data['email'], 'password' => $data['password']])){
-            return 'User logged in';
+            return redirect()->route('business.dashboard');
         }
 
-        return 'User not logged in';
+        return back()->with('error');
     }
 
 

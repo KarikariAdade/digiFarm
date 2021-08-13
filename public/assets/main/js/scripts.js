@@ -1,6 +1,10 @@
 $(document).ready(function (){
+    let url,
+        errorMsg = $('.errorMsg');
+
+
    $(window).on("scroll", function() {
-    var scroll = $(window).scrollTop();
+    let scroll = $(window).scrollTop();
     if (scroll > 30) {
         $("header").addClass("fixed animated slideInDown");
     }
@@ -24,4 +28,16 @@ $(document).ready(function (){
   });
 
     $('.select2').select2();
+
+
+    $('.businessReg').submit(function (e) {
+        e.preventDefault();
+        url = $(this).prop('action');
+        $.ajax({
+            url: url,
+            method: 'POST',
+        }).done((response)=>{
+            console.log(response)
+        });
+    });
 })

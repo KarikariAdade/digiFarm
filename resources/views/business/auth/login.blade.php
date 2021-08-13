@@ -1,26 +1,3 @@
-{{-- <html>
-<head>
-    <title>
-
-    </title>
-</head>
-<body>
-<form method="POST" action="{{ route('business.auth.login.business') }}">
-    @csrf
-    @method('POST') --}}
-{{--    @include('layouts.errors')--}}
-{{--     <div class="form-group form-focus">
-        <input type="email" class="form-control floating" name="email">
-        <label class="focus-label">Email</label>
-    </div>
-    <div class="form-group form-focus">
-        <input type="password" class="form-control floating" name="password">
-        <label class="focus-label">Password</label>
-    </div>
-    <button type="submit">Submit</button>
-</form>
-</body>
-</html> --}}
 @extends('layouts.main')
 @push('extra-css')
     <link rel="stylesheet" href="{{ asset('assets/main/css/select2.min.css') }}">
@@ -31,14 +8,17 @@
         <div class="row">
             <div class="col-md-7 mt-5">
                 <h1>Register as a Company</h1>
-                <form class="row">
+                <div class="errorMsg"></div>
+                <form class="row businessReg" action="{{ route('business.auth.register.business') }}">
+                    @method('POST')
+                    @csrf
                     <div class="col-md-6 form-group">
                         <label class="custom-label">Company Name</label>
-                        <input type="text" class="form-control" name="first_name">
+                        <input type="text" class="form-control" name="company_name">
                     </div>
                     <div class="col-md-6">
                         <label class="custom-label">Email</label>
-                        <input type="text" class="form-control" name="last_name">
+                        <input type="text" class="form-control" name="company_email">
                     </div>
                     <div class="col-md-6">
                         <label class="custom-label">Phone</label>
@@ -46,7 +26,7 @@
                     </div>
                     <div class="col-md-6">
                         <label class="custom-label">Country</label>
-                        <select class="form-control select2" id="country">
+                        <select class="form-control select2" id="country" name="country">
                             @foreach($countries as $country)
                                 <option
                                     value="{{ $country->id }}" {{ old('country') == $country->id ? 'selected' : null }}>{{ $country->name }}</option>
@@ -55,13 +35,13 @@
                     </div>
                     <div class="col-md-6">
                         <label class="custom-label">Region / State</label>
-                        <select class="form-control select2" id="region">
+                        <select class="form-control select2" id="region" name="region">
                             <option></option>
                         </select>
                     </div>
                     <div class="col-md-6">
                         <label class="custom-label">City</label>
-                        <input type="text" class="form-control" name="phone">
+                        <input type="text" class="form-control" name="city">
                     </div>
                     <div class="col-md-6">
                         <label class="custom-label">Password</label>
@@ -72,29 +52,32 @@
                         <input type="text" class="form-control" name="password_confirmation">
                     </div>
                     <div class="col-md-12">
-                        <button class="btn btn-primary" style="width: 100%;">Register</button>
+                        <button class="btn btn-primary" type="submit" style="width: 100%;">Register</button>
                     </div>
 
                 </form>
             </div>
             <div class="col-md-5">
                 <div align="right">
-                    <a href="#" title="" class="lnk-default mb-5">I am a Farmer<span class="next-btn"><i
+                    <a href="{{ route('login') }}" title="" class="lnk-default mb-5">I am a Farmer<span class="next-btn"><i
                                 class="fa fa-arrow-right"></i></span></a>
                 </div>
                 <div class="login-section">
                     <h2 class="pt-3 pb-3">Login as a Company</h2>
-                    <form>
+                    <form action="{{ route('business.auth.login.business') }}" method="POST">
+                        @csrf
+                        @method('POST')
+                        @include('layouts.errors')
                         <div class="form-group">
                             <label>Email Address *</label>
-                            <input type="email" class="form-control" name="">
+                            <input type="email" class="form-control" name="email">
                         </div>
                         <div class="form-group">
                             <label>Password *</label>
-                            <input type="email" class="form-control" name="">
+                            <input type="password" class="form-control" name="password">
                         </div>
                         <div class="login-btn">
-                            <button class="btn btn-primary">Login</button>
+                            <button class="btn btn-primary" type="submit">Login</button>
                         </div>
                     </form>
                 </div>

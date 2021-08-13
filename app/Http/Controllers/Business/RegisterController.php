@@ -23,9 +23,13 @@ class RegisterController extends Controller
         $data = $request->all();
 
         $validate = Validator::make($data, [
-            'name' => ['required', 'string'],
-            'email' => ['required', 'email', 'max:255', 'unique:businesses,email'],
+            'company_name' => ['required', 'string', 'unique:businesses,name'],
+            'company_email' => ['required', 'email', 'max:255', 'unique:businesses,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'min:10', 'max: 20'],
+            'region' => ['required'],
+            'city' => ['nullable'],
+            'country' => ['required'],
         ]);
 
         $data['token'] = sha1(time());

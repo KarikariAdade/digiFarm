@@ -47,6 +47,9 @@ Route::prefix('business/auth')->group(function (){
     Route::get('login', [LoginController::class, 'index'])->name('business.auth.login');
     Route::post('loginBusiness', [LoginController::class, 'login'])->name('business.auth.login.business');
     Route::any('logoutBusiness', [LoginController::class, 'logout'])->name('business.auth.logout');
+    Route::get('verify/business/{token}/{name}', [LoginController::class, 'verifyBusiness'])->name('business.auth.verify.business');
+    Route::get('business/token/expire/{token}/{name}', [LoginController::class, 'expiredToken'])->name('business.auth.token.expire');
+    Route::post('business/token/resend', [LoginController::class, 'resendToken'])->name('business.auth.token.resend');
 });
 
 Route::prefix('business')->group(function(){

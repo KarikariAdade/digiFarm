@@ -45,11 +45,11 @@
                     </div>
                     <div class="col-md-6">
                         <label class="custom-label">Password</label>
-                        <input type="text" class="form-control" name="password">
+                        <input type="password" class="form-control" name="password">
                     </div>
                     <div class="col-md-6">
                         <label class="custom-label">Confirm Password</label>
-                        <input type="text" class="form-control" name="password_confirmation">
+                        <input type="password" class="form-control" name="password_confirmation">
                     </div>
                     <div class="col-md-12">
                         <button class="btn btn-primary" type="submit" style="width: 100%;">Register</button>

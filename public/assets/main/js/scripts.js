@@ -36,8 +36,10 @@ $(document).ready(function (){
         $.ajax({
             url: url,
             method: 'POST',
+            data: $(this).serialize()
         }).done((response)=>{
             console.log(response)
+            errorMsg.html('<p class="alert alert-danger"><span class="fa fa-exclamation-circle"></span> '+ response.msg +' </p>');
         });
     });
 })

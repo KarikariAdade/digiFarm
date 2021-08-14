@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Business;
 
 use App\Http\Controllers\Controller;
+use App\Mail\BusinessAccountVerifyEmail;
 use App\Models\Business;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -37,19 +39,34 @@ class RegisterController extends Controller
         $data['token_expire'] = Carbon::now()->addHour();
 
         if ($validate->fails()){
-            return back()->withErrors($validate->errors()->first())->withInput();
+            return $this->getFailedResponse($validate->errors()->first());
         }
 
         $data['password'] = Hash::make($data['password']);
 
-        $business = Business::query()->create($data);
+        $business = Business::query()->create($this->regData($data));
+
+        Mail::to($business['email'])->send(new BusinessAccountVerifyEmail($business));
 
         return back()->with('success', 'Account created successfully');
 
-
-
     }
 
+
+    public function regData($data)
+    {
+        return [
+            'name' => $data['company_name'],
+            'email' => $data['company_email'],
+            'password' => $data['password'],
+            'phone' => $data['phone'],
+            'region' => $data['region'],
+            'city' => $data['city'],
+            'country' => $data['country'],
+            'token' => $data['token'],
+            'token_expire' => $data['token_expire']
+        ];
+    }
 
 
 }

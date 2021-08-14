@@ -17,7 +17,7 @@ class RequestsController extends Controller
         $output = '';
 
         foreach ($regions as $region){
-            $output .= '<option value="'.$region->name.'">'.$region->name.'</option>';
+            $output .= '<option value="'.$region->id.'">'.$region->name.'</option>';
         }
 
         return $this->getSuccessResponse($output);

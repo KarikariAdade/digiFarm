@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Business\DashboardController;
 use App\Http\Controllers\Business\LoginController;
+use App\Http\Controllers\Business\ProfileController;
 use App\Http\Controllers\Business\RegisterController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\HomeController;
@@ -54,7 +55,20 @@ Route::prefix('business/auth')->group(function (){
 
 Route::prefix('business')->group(function(){
    Route::middleware('auth:business')->group(function (){
+
+       #------------------------------------------ BUSINESS HOMEPAGE START --------------------------------------------#
+
        Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('business.dashboard');
+
+       #------------------------------------------ BUSINESS PROFILE START ---------------------------------------------#
+
+       Route::prefix('dashboard/profile')->group(function (){
+           Route::get('/', [ProfileController::class, 'index'])->name('business.dashboard.profile.index');
+           Route::get('edit', [ProfileController::class, 'edit'])->name('business.dashboard.profile.edit');
+       });
+
+       #------------------------------------------ BUSINESS HOMEPAGE END ----------------------------------------------#
+
    });
 });
 

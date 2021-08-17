@@ -19,7 +19,7 @@ class ProfileController extends Controller
     }
 
 
-    public function update(Request $request)
+    public function update(Request $request, $status)
     {
         return $request->all();
     }

@@ -65,6 +65,7 @@ Route::prefix('business')->group(function(){
        Route::prefix('dashboard/profile')->group(function (){
            Route::get('/', [ProfileController::class, 'index'])->name('business.dashboard.profile.index');
            Route::get('edit', [ProfileController::class, 'edit'])->name('business.dashboard.profile.edit');
+           Route::post('/update/{status}', [ProfileController::class, 'update'])->name('business.dashboard.profile.update');
        });
 
        #------------------------------------------ BUSINESS HOMEPAGE END ----------------------------------------------#

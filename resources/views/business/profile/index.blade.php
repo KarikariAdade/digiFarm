@@ -49,7 +49,7 @@
                        </div>
                    </div>
                    <div class="col-md-6" align="right">
-                       <a href="" class="btn btn-success btn-success-disabled">Update Business Profile</a>
+                       <a href="{{ route('business.dashboard.profile.edit') }}" class="btn btn-success btn-success-disabled">Update Business Profile</a>
                        <a href="" class="btn btn-warning">View Request Proposals</a>
                    </div>
                </div>
@@ -119,8 +119,8 @@
                                                     </div>
                                                     <div class="col-md-1 col-sm-1">
                                                         <div class="mng-company-action">
-                                                            <a href="#" data-toggle="tooltip" title="" data-original-title="Edit"><i class="fa fa-edit"></i></a>
-                                                            <a href="#" data-toggle="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>
+                                                            <a href="#" class="text-success" data-toggle="tooltip" title="" data-original-title="View Request Details"><i class="fa fa-eye"></i></a>
+{{--                                                            <a href="#" data-toggle="tooltip" title="" data-original-title="Delete"><i class="fa fa-trash-o"></i></a>--}}
                                                         </div>
                                                     </div>
                                                 </div>

@@ -1,3 +1,6 @@
+a {
+    text-decoration: none !important;
+}
 .manage-cndt {
     background: #fff;
     border-radius: 10px;
@@ -142,4 +145,101 @@
 }
 .mng-company .mng-company-action i.fa-trash-o {
     color: #ff9800;
+}
+
+.detail-pic {
+    display: block;
+    width: 140px;
+    background: #fff;
+    border: 1px solid #11b719;
+    height: 140px;
+    border-radius: 50%;
+    padding: 9px;
+    margin: 0 auto;
+    position: relative;
+    -webkit-transform: translateY(-50px);
+    -o-transform: translateY(-50px);
+    transform: translateY(-50px);
+}
+.detail-pic img {
+    width: 120px;
+    height: 120px;
+    margin: auto;
+    border-radius: 50%;
+}
+
+.js .inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.inputfile + label {
+    width: 120px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+    height: 120px;
+    background: #228B22;
+    border-radius: 50%;
+}
+.inputfile + label i {
+    line-height: 100px;
+    text-align: center;
+    font-size: 55px;
+    color: #fff;
+    display: block;
+    background: 0 0;
+    border-radius: 50%;
+}
+.inputfile.has-focus + label,
+.inputfile:focus + label {
+    outline: 0;
+}
+.inputupload-pic + label {
+    color: #d3394c;
+    border: 1px solid #d3394c;
+    background-color: #f1e5e6;
+    padding: 0;
+}
+.inputupload-pic + label:hover,
+.inputupload-pic.has-focus + label,
+.inputupload-pic:focus + label {
+    border-color: #228B22;
+}
+.inputupload-pic + label span,
+.inputupload-pic + label strong {
+    padding: 0.625rem 1.25rem;
+}
+.inputupload-pic + label span {
+    width: 200px;
+    min-height: 2em;
+    display: inline-block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: top;
+}
+.inputupload-pic + label strong {
+    height: 100%;
+    color: #f1e5e6;
+    background-color: #d3394c;
+    display: inline-block;
+}
+.inputupload-pic + label:hover strong,
+.inputupload-pic.has-focus + label strong,
+.inputupload-pic:focus + label strong {
+    background-color: #228B22;
+}
+
+.form-row{
+    border-top: 1px solid #ccc;
+    padding: 3% 0;
 }

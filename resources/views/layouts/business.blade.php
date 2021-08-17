@@ -12,6 +12,8 @@
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="{{ asset('assets/account/css/custom.css') }}">
 
+    <link rel="stylesheet" href="{{ asset('assets/main/css/select2.min.css') }}">
+
     @stack('custom-css')
 </head>
 
@@ -135,9 +137,8 @@
         <div class="main-sidebar sidebar-style-2">
             <aside id="sidebar-wrapper">
                 <div class="sidebar-brand">
-                    <a href="{{ route('business.dashboard') }}"> <img alt="image" src="assets/img/logo.png"
-                                                                      class="header-logo"/> <span
-                            class="logo-name">Otika</span>
+                    <a href="{{ route('business.dashboard') }}">
+                        <img alt="{{ auth()->user()->name.' logo' }}" src="{{ asset('assets/account/img/logo.png') }}" class="header-logo"/>
                     </a>
                 </div>
                 <ul class="sidebar-menu">
@@ -199,7 +200,7 @@
 <script src="{{ asset('assets/account/js/app.min.js') }}"></script>
 <script src="{{ asset('assets/account/js/scripts.js') }}"></script>
 <script src="{{ asset('assets/account/js/custom.js') }}"></script>
-
+<script src="{{ asset('assets/main/js/select2.min.js') }}"></script>
 @stack('custom-js')
 </body>
 </html>

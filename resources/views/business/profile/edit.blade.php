@@ -1,12 +1,12 @@
 @extends('layouts.business')
 @push('custom-css')
-    <script type="text/javascript" src="{{ asset('assets/ckeditor/ckeditor.js') }}"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 @endpush
 @section('content')
     <section>
         <div class="card">
             <div class="card-body">
-                <form method="POST" action="">
+                <form method="POST" action="{{ route('business.dashboard.profile.update') }}">
                     @csrf
                     @method('POST')
                     <div class="text-center">
@@ -42,14 +42,16 @@
                     <div class="row form-row">
                         <div class="col-md-3 form-group">
                             <label>Country</label>
-                            <select class="form-control select2">
-                                <option>Ghana</option>
+                            <select class="form-control select2" id="country" name="country">
+                                @foreach($countries as $country)
+                                    <option
+                                        value="{{ $country->id }}" {{ old('country') == $country->id ? 'selected' : null }}>{{ $country->name }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-md-3 form-group">
                             <label>Region</label>
-                            <select class="form-control select2">
-                                <option>Ghana</option>
+                            <select class="form-control select2" name="region" id="region">
                             </select>
                         </div>
                         <div class="col-md-3 form-group">
@@ -70,13 +72,13 @@
                         </div>
                         <div class="col-md-4">
                             <label>Business Size</label>
-                            <select class="form-control select2">
+                            <select class="form-control select2" name="business_size">
                                 <option>Ghana</option>
                             </select>
                         </div>
                         <div class="col-md-4 form-group">
                             <label>Tax Number</label>
-                            <input type="text" class="form-control">
+                            <input type="text" name="tax_number" class="form-control">
                         </div>
                         <div class="col-md-12 form-group">
                             <label>Description</label>
@@ -96,11 +98,47 @@
     </section>
 @endsection
 @push('custom-js')
-
+    <script type="text/javascript" src="{{ asset('assets/ckeditor/ckeditor.js') }}"></script>
     <script>
+        $(document).ready(function () {
+            let url = '',
+                region = $('#region'),
+                country = $('#country'),
+                data;
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            let selectChange = country.change(function () {
+                loadRegions();
+            });
+
+            if (selectChange == true) {
+
+                loadRegions();
+            }
+
+
+            function loadRegions() {
+
+                url = `{{ route('request.get.region') }}`;
+
+                data = country.val();
+
+                $.post(url, {'country': data}, function (response) {
+                    console.log(response)
+                    region.html(response.msg);
+                })
+            }
+
             CKEDITOR.replace('description', {
-            language: 'en',
-            height: '300'
-        });
+                language: 'en',
+                height: '300'
+            });
+        })
+
     </script>
 @endpush

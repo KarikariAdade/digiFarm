@@ -1,4 +1,145 @@
+.manage-cndt {
+    background: #fff;
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 50px 0 rgba(0,0,0,.1);
+}
+.manage-cndt .cndt-status {
+    padding: 4px 25px;
+    display: inline-block;
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    text-align: left;
+    border-radius: 4px;
+    font-weight: 500;
+    text-transform: capitalize;
+    font-family: Montserrat, sans-serif;
+}
+.manage-cndt .cndt-status.pending {
+    background: rgba(255, 144, 7, 0.2);
+    color: #ffc107;
+}
+.manage-cndt .cndt-status.available {
+    background: rgba(7, 177, 7, 0.2);
+    color: #11b719;
+}
+.manage-cndt .cndt-pic {
+    display: block;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 15px auto;
+}
+.manage-cndt .cndt-caption {
+    text-align: center;
+    padding: 15px;
+}
+.manage-cndt .cndt-caption h4 {
+    text-transform: capitalize;
+    color: #35434e;
+    margin-bottom: 5px;
+}
+.manage-cndt .cndt-caption span {
+    font-family: Montserrat, sans-serif;
+    text-transform: uppercase;
+    color: #11b719;
+}
+.manage-cndt .cndt-caption p {
+    color: #5f707d;
+    margin-bottom: 2.5em;
+    font-size: 15px;
+    margin-top: 10px;
+    font-family: Raleway, sans-serif;
+}
+.employee-caption h4,
+.employee-caption span.designation,
+.manage-cndt .cndt-profile-btn,
+.mng-company h4 {
+    font-family: Montserrat, sans-serif;
+}
+.manage-cndt .cndt-profile-btn {
+    padding: 15px 0;
+    display: block;
+    border-top: 1px solid #eef5fb;
+    text-align: center;
+    font-size: 16px;
+    text-transform: capitalize;
+    font-weight: 500;
+    color: #7d8e9c;
+}
+.manage-cndt .cndt-profile-btn:focus,
+.manage-cndt .cndt-profile-btn:hover,
+.manage-cndt:focus .cndt-profile-btn,
+.manage-cndt:hover .cndt-profile-btn {
+    background: #228B22;
+    color: #fff;
+    text-decoration: none;
+}
 
-/*# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3VzdG9tLmNzcyIsInNvdXJjZXMiOlsiY3VzdG9tLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiJ9 */
 
-/*# sourceMappingURL=custom.css.map */
+.mng-company {
+    padding: 15px;
+    border-radius: 4px;
+    border-left: 3px solid #fff;
+    margin-bottom: 30px;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.05);
+}
+.mng-company:focus,
+.mng-company:hover {
+    border-color: #11b719;
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.05);
+}
+.mng-company-action,
+.mng-company-location,
+.mng-company-name {
+    margin-top: 1.4em;
+}
+.mng-company .mng-company-pic {
+    display: table;
+    position: relative;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    margin: 1px;
+}
+.mng-company .mng-company-pic img {
+    margin: 0 auto;
+    display: table;
+    max-width: 85px;
+}
+.mng-company h4 {
+    margin-bottom: 5px;
+    font-weight: 400;
+    color: #35434e;
+    font-size: 22px;
+    margin-top: 0;
+}
+.mng-company .mng-company-location p,
+.mng-company span.cmp-time {
+    color: #636d75;
+    font-family: Montserrat, sans-serif;
+}
+.mng-company .mng-company-location p {
+    margin-bottom: 5px;
+    font-weight: 400;
+    font-size: 16px;
+}
+.mng-company .mng-company-location i,
+.mng-resume h4 {
+    font-size: 20px;
+}
+.mng-company .mng-company-action i {
+    font-size: 20px;
+    padding: 0 5px;
+}
+.mng-company .mng-company-action i.fa-edit {
+    color: #11b719;
+}
+.mng-company .mng-company-action i.fa-trash-o {
+    color: #ff9800;
+}

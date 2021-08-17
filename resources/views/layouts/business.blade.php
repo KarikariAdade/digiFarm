@@ -91,7 +91,7 @@
                     <i class="fas fa-bell"></i>
                 </span>
                 <span class="dropdown-item-desc">
-                   Welcome to Otika template! <span class="time">Yesterday</span>
+                   Welcome  <span class="time">Yesterday</span>
                </span>
            </a>
        </div>

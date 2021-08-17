@@ -15,6 +15,12 @@ class CreateBusinessSocialsTable extends Migration
     {
         Schema::create('business_socials', function (Blueprint $table) {
             $table->id();
+            $table->integer('business_id')->unsigned();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('website')->nullable();
             $table->timestamps();
         });
     }

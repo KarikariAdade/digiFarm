@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class BusinessSocials extends Model
+class BusinessProfile extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
 
     public function getBusiness()
     {

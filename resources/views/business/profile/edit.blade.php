@@ -31,21 +31,20 @@
                             <input type="email" name="secondary_mail" class="form-control">
                         </div>
                         <div class="col-md-4 form-group">
-                            <label>Primary Phone</label>
-                            <input type="email" name="secondary_mail" class="form-control">
+                            <label>Primary Phone <span class="text-danger">*</span></label>
+                            <input type="email" name="primary_phone" class="form-control">
                         </div>
                         <div class="col-md-4 form-group">
-                            <label>Scondary Phone</label>
-                            <input type="email" name="secondary_mail" class="form-control">
+                            <label>Secondary Phone</label>
+                            <input type="email" name="secondary_phone" class="form-control">
                         </div>
                     </div>
                     <div class="row form-row">
                         <div class="col-md-3 form-group">
-                            <label>Country</label>
+                            <label>Country <span class="text-danger">*</span></label>
                             <select class="form-control select2" id="country" name="country">
                                 @foreach($countries as $country)
-                                    <option
-                                        value="{{ $country->id }}" {{ old('country') == $country->id ? 'selected' : null }}>{{ $country->name }}</option>
+                                    <option value="{{ $country->id }}" {{ old('country') == $country->id || $country->id == auth()->user()->country ? 'selected' : null }}>{{ $country->name }}</option>
                                 @endforeach
                             </select>
                         </div>

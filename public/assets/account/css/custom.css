@@ -252,3 +252,35 @@ a {
     width: 100px;
     border-radius: 50%;
 }
+
+.navbar .nav-link.nav-link-user .user-img-radious-style {
+    border-radius: 6px;
+    box-shadow: 4px 3px 6px 0 rgb(0 0 0 / 20%);
+    margin-top: 4%;
+}
+
+.main-sidebar .sidebar-brand{
+    padding-top: 15%;
+}
+.author-box-name{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.f-bold{
+    font-weight: bold !important;
+}
+.navbar .nav-link.nav-link-user img {
+    width: 40px;
+    height: 40px;
+}
+.sidebar-brand-name{
+    font-weight: bold;
+    font-size: 18px;
+    padding: 3% 10px;
+}
+
+.author-box-picture{
+    width: 150px;
+    height: 150px;
+}

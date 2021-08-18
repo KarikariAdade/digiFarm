@@ -19,7 +19,9 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        return view('business.profile.index');
+        $socials = BusinessSocials::query()->where('business_id', auth('business')->user()->id)->first();
+
+        return view('business.profile.index', compact('socials'));
     }
 
 

@@ -59,7 +59,7 @@
                         <div class="dropdown-list-content dropdown-list-message">
                             <a href="#" class="dropdown-item">
                                 <span class="dropdown-item-avatar text-white">
-                                    <img alt="image" src="assets/img/users/user-2.png" class="rounded-circle">
+                                    <img alt="image" src="{{ asset(auth()->user()->business_logo) }}" class="rounded-circle">
                                 </span>
                                 <span class="dropdown-item-desc"> <span class="message-user">Sarah
                                 Smith</span>
@@ -110,7 +110,7 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                        <img alt="image" src="assets/img/user.png" class="user-img-radious-style">
+                        <img alt="image" src="{{ asset(auth()->user()->business_logo) }}" class="user-img-radious-style">
                         <span class="d-sm-none d-lg-inline-block"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right pullDown">
@@ -138,8 +138,11 @@
             <aside id="sidebar-wrapper">
                 <div class="sidebar-brand">
                     <a href="{{ route('business.dashboard') }}">
-                        <img alt="{{ auth()->user()->name.' logo' }}" src="{{ asset(auth()->user()->business_logo) }}" class="header-logo"/>
+                        <img alt="{{ auth()->user()->name.' logo' }}" src="{{ asset(auth()->user()->business_logo) }}" class="header-logo user-img-radious-style"/>
                     </a>
+                    <p class="sidebar-brand-name">{{ auth()->user()->name }} <br>
+                        <small>{{ auth()->user()->getBusinessType->name }}</small>
+                    </p>
                 </div>
                 <ul class="sidebar-menu">
                     <li class="menu-header">Main</li>

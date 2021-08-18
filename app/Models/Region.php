@@ -10,7 +10,7 @@ class Region extends Model
 {
     use HasFactory;
 
-    protected $table = ['regions'];
+    protected $table = 'regions';
 
     protected $guarded = ['id'];
 

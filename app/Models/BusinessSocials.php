@@ -11,8 +11,8 @@ class BusinessSocials extends Model
 
     protected $guarded = ['id'];
 
-    public function getBusiness()
-    {
-        return $this->belongsTo(Business::class, 'business_id');
-    }
+//    public function getBusiness()
+//    {
+//        return $this->belongsTo(Business::class, 'business_id');
+//    }
 }

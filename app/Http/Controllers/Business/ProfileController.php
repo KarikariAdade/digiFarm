@@ -59,7 +59,7 @@ class ProfileController extends Controller
             $data['business_certificate'] = $this->performUpload($request->file('business_certificate'), 'document');
         }
 
-        DB::transaction(function () use ($data, $user){
+        DB::transaction(function () use ($data, $user, $request){
 
             $socials = BusinessSocials::query()->where('business_id', $user->id)->first();
 
@@ -67,6 +67,14 @@ class ProfileController extends Controller
                 $socials->update($this->preparedSocials($data));
             }else{
                 BusinessSocials::query()->create($this->preparedSocials($data));
+            }
+
+            if (!empty($request->file('business_certificate'))){
+                $user->update(['business_document' => $data['business_certificate']]);
+            }
+
+            if (!empty($request->file('business_logo'))){
+                $user->update(['business_logo' => $data['business_logo']]);
             }
 
             $user->update($this->preparedData($data));
@@ -101,8 +109,7 @@ class ProfileController extends Controller
             'region' => $data['region'],
             'address' => $data['office_address'],
             'business_size' => $data['business_size'],
-            'business_document' => $data['business_certificate'] ?? null,
-            'business_logo' => $data['business_logo'] ?? null,
+
             'type_id' => $data['business_type'],
             'tax_number' => $data['tax_number'],
             'description' => $data['description'],

@@ -246,3 +246,9 @@ a {
     color: #444;
     line-height: 42px !important;
 }
+
+.main-sidebar .sidebar-brand a .header-logo {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+}

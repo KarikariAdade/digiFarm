@@ -84,7 +84,7 @@
                             <select class="form-control select2" name="business_size">
                                 <option></option>
                                 @foreach($business_sizes as $business_size)
-                                    <option value="{{ $business_size->id }}" {{ old('business_size') == $business_size->id || $business_size->id == $business->$business_size ? 'selected' : null }}>{{ $business_size->size }}</option>
+                                    <option value="{{ $business_size->id }}" {{ old('business_size') == $business_size->id || $business_size->id == $business->business_size ? 'selected' : null }}>{{ $business_size->size }}</option>
                                 @endforeach
                             </select>
                         </div>

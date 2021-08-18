@@ -138,7 +138,7 @@
             <aside id="sidebar-wrapper">
                 <div class="sidebar-brand">
                     <a href="{{ route('business.dashboard') }}">
-                        <img alt="{{ auth()->user()->name.' logo' }}" src="{{ asset('assets/account/img/logo.png') }}" class="header-logo"/>
+                        <img alt="{{ auth()->user()->name.' logo' }}" src="{{ asset(auth()->user()->business_logo) }}" class="header-logo"/>
                     </a>
                 </div>
                 <ul class="sidebar-menu">

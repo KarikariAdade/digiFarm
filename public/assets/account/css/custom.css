@@ -157,8 +157,6 @@ a {
     padding: 9px;
     margin: 0 auto;
     position: relative;
-    -webkit-transform: translateY(-50px);
-    -o-transform: translateY(-50px);
     transform: translateY(-50px);
 }
 .detail-pic img {

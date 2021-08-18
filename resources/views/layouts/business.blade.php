@@ -170,7 +170,7 @@
         </div>
         <!-- Main Content -->
         <div class="main-content">
-            @if(!str_contains(url()->current(), 'profile') && auth()->user()->is_approved != true)
+            @if(!str_contains(url()->current(), 'profile') && auth()->user()->is_setup_complete != true)
                 <div class="alert alert-danger alert-has-icon card">
                     <div class=""></div>
                     <div class="alert-body">
@@ -201,6 +201,7 @@
 <script src="{{ asset('assets/account/js/scripts.js') }}"></script>
 <script src="{{ asset('assets/account/js/custom.js') }}"></script>
 <script src="{{ asset('assets/main/js/select2.min.js') }}"></script>
+@include('sweetalert::alert')
 @stack('custom-js')
 </body>
 </html>

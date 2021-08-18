@@ -9,6 +9,8 @@ class BusinessSocials extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
+
     public function getBusiness()
     {
         return $this->belongsTo(Business::class, 'business_id');

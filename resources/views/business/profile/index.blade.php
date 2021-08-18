@@ -19,17 +19,49 @@
              </div>
          </div>
          <div class="row mt-5 mb-5">
-             <div class="col-md-4 text-center">
-                 <h1>493</h1>
-                 <h4>Total Clients</h4>
+             <div class="col-md-3 text-center">
+                 <div class="card l-bg-cyan">
+                     <div class="card-statistic-3">
+                         <div class="card-icon card-icon-large"><i class="fa fa-briefcase"></i></div>
+                         <div class="card-content">
+                             <h4 class="card-title">New Booking</h4>
+                             <span>1,258</span>
+                         </div>
+                     </div>
+                 </div>
              </div>
-             <div class="col-md-4 text-center">
-                 <h1>493</h1>
-                 <h4>Total Clients</h4>
+             <div class="col-md-3 text-center">
+                 <div class="card l-bg-cyan">
+                     <div class="card-statistic-3">
+                         <div class="card-icon card-icon-large"><i class="fa fa-briefcase"></i></div>
+                         <div class="card-content">
+                             <h4 class="card-title">New Booking</h4>
+                             <span>1,258</span>
+                         </div>
+                     </div>
+                 </div>
              </div>
-             <div class="col-md-4 text-center">
-                 <h1>493</h1>
-                 <h4>Total Clients</h4>
+             <div class="col-md-3 text-center">
+                 <div class="card l-bg-cyan">
+                     <div class="card-statistic-3">
+                         <div class="card-icon card-icon-large"><i class="fa fa-briefcase"></i></div>
+                         <div class="card-content">
+                             <h4 class="card-title">New Booking</h4>
+                             <span>1,258</span>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-md-3 text-center">
+                 <div class="card l-bg-cyan">
+                     <div class="card-statistic-3">
+                         <div class="card-icon card-icon-large"><i class="fa fa-briefcase"></i></div>
+                         <div class="card-content">
+                             <h4 class="card-title">New Booking</h4>
+                             <span>1,258</span>
+                         </div>
+                     </div>
+                 </div>
              </div>
          </div>
          <hr>
@@ -154,10 +186,23 @@
                                      <div class="col-md-4">
                                          <p class="f-bold">Tax Number <br><span class="text-muted">{{ auth()->user()->tax_number }}</span></p>
                                      </div>
-
+                                     <div class="col-md-6 mt-3">
+                                         <a class="btn btn-warning text-white" href="">Download Business Certificate</a>
+                                     </div>
+                                     <div class="col-md-6 mt-3">
+                                         <a href="" class="btn btn-success">Download Business Certificate</a>
+                                     </div>
                                  </div>
                              </div>
                       </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div>
+                                        <h3>Description</h3>
+                                    </div>
+                                    {!! auth()->user()->description !!}
+                                </div>
+                            </div>
                   </div>
                   <div class="tab-pane fade" id="profile3" role="tabpanel" aria-labelledby="profile-tab3">
                     <div class="row">

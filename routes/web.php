@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Business\DashboardController;
 use App\Http\Controllers\Business\LoginController;
+use App\Http\Controllers\Business\MarketRequestsController;
 use App\Http\Controllers\Business\ProfileController;
 use App\Http\Controllers\Business\RegisterController;
 use App\Http\Controllers\Controller;
@@ -56,6 +57,10 @@ Route::prefix('business/auth')->group(function (){
 Route::prefix('business')->group(function(){
    Route::middleware('auth:business')->group(function (){
 
+       #------------------------------------------ APPROVED ERROR PAGE ------------------------------------------------#
+
+       Route::get('not/approved', [DashboardController::class, 'notApproved'])->name('business.dashboard.not.approved');
+
        #------------------------------------------ BUSINESS HOMEPAGE START --------------------------------------------#
 
        Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('business.dashboard');
@@ -66,6 +71,16 @@ Route::prefix('business')->group(function(){
            Route::get('/', [ProfileController::class, 'index'])->name('business.dashboard.profile.index');
            Route::get('edit', [ProfileController::class, 'edit'])->name('business.dashboard.profile.edit');
            Route::post('update', [ProfileController::class, 'update'])->name('business.dashboard.profile.update');
+       });
+
+
+       Route::group(['middleware' => 'approved', 'prefix' => 'dashboard/business/requests'], function () {
+           Route::get('/', [MarketRequestsController::class, 'index'])->name('business.dashboard.request.index');
+           Route::get('create', [MarketRequestsController::class, 'create'])->name('business.dashboard.request.create');
+           Route::post('store', [MarketRequestsController::class, 'store'])->name('business.dashboard.request.store');
+           Route::get('edit', [MarketRequestsController::class, 'edit'])->name('business.dashboard.request.edit');
+           Route::post('update', [MarketRequestsController::class, 'update'])->name('business.dashboard.request.update');
+           Route::get('details', [MarketRequestsController::class, 'show'])->name('business.dashboard.request.show');
        });
 
        #------------------------------------------ BUSINESS HOMEPAGE END ----------------------------------------------#

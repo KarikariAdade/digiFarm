@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Requests\BusinessMarketRequest;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -48,6 +49,11 @@ class Business extends Authenticatable implements MustVerifyEmail
     public function getRegion()
     {
         return $this->belongsTo(Region::class, 'region');
+    }
+
+    public function getMarketRequests()
+    {
+        return $this->hasMany(BusinessMarketRequest::class, 'business_id');
     }
 
 }

@@ -155,8 +155,8 @@
                                 data-feather="user"></i><span>Profile</span></a>
                     </li>
                     <li class="">
-                        <a href="{{ route('business.dashboard.profile.index') }}" class="nav-link"><i
-                                data-feather="user"></i><span>Requests</span></a>
+                        <a href="{{ route('business.dashboard.request.index') }}" class="nav-link"><i
+                                data-feather="briefcase"></i><span>Requests</span></a>
                     </li>
                     <li class="">
                         <a href="{{ route('business.dashboard.profile.index') }}" class="nav-link"><i

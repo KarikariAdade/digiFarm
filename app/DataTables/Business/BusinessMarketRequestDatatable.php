@@ -2,7 +2,9 @@
 
 namespace App\DataTables\Business;
 
-use App\Models\Business/BusinessMarketRequestDatatable;
+use App\Models\MarketRequests;
+use Illuminate\Database\Eloquent\Builder;
+use Yajra\DataTables\DataTableAbstract;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -15,22 +17,29 @@ class BusinessMarketRequestDatatable extends DataTable
      * Build DataTable class.
      *
      * @param mixed $query Results from query() method.
-     * @return \Yajra\DataTables\DataTableAbstract
+     * @return DataTableAbstract
      */
-    public function dataTable($query)
+    public function dataTable($query): DataTableAbstract
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'business/businessmarketrequestdatatable.action');
+            ->addColumn('action', function ($query) {
+                return '<div class="btn" style="display: inline-flex;">
+                        <a href="" title="Request Details" class="btn table-btn btn-icon btn-success btn-sm shadow p-0 mr-2"><i class="fa mt-2 fa-eye"></i></a>
+                        <a href="" title="Edit Request" class="btn table-btn btn-icon btn-primary btn-sm shadow p-0 mr-2"><i class="fa mt-2 fa-edit"></i></a>
+                        <a href="" title="Approve Request" class="btn table-btn btn-icon btn-info btn-sm shadow p-0 mr-2" target="_blank"><i class="fa mt-2 fa-stamp"></i></a>
+                        <a href="" title="Delete Request" class="btn table-btn shadow btn-warning p-0"><i class="fa mt-2 fa-trash"></i></a>
+                        </div>';
+            })->blacklist(['action']);
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Business/BusinessMarketRequestDatatable $model
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param MarketRequests $model
+     * @return Builder
      */
-    public function query(Business/BusinessMarketRequestDatatable $model)
+    public function query(MarketRequests $model)
     {
         return $model->newQuery();
     }
@@ -43,18 +52,18 @@ class BusinessMarketRequestDatatable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('business/businessmarketrequestdatatable-table')
+                    ->setTableId('dataTable')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->buttons(
-                        Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    );
+                    ->orderBy(1);
+//                    ->buttons(
+//                        Button::make('create'),
+//                        Button::make('export'),
+//                        Button::make('print'),
+//                        Button::make('reset'),
+//                        Button::make('reload')
+//                    );
     }
 
     /**
@@ -65,15 +74,19 @@ class BusinessMarketRequestDatatable extends DataTable
     protected function getColumns()
     {
         return [
+            Column::make('title'),
+            Column::make('request_type'),
+            Column::make('product_type'),
+            Column::make('quantity'),
+            Column::make('amount'),
+            Column::make('due_date'),
+            Column::make('is_approved')->title('Status'),
+            Column::make('created_at')->title('Date Created'),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
-            Column::make('created_at'),
-            Column::make('updated_at'),
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 
@@ -84,6 +97,6 @@ class BusinessMarketRequestDatatable extends DataTable
      */
     protected function filename()
     {
-        return 'Business/BusinessMarketRequest_' . date('YmdHis');
+        return 'Market_Requests' . date('YmdHis');
     }
 }

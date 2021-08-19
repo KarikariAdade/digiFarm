@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{{ asset('assets/account/css/custom.css') }}">
 
     <link rel="stylesheet" href="{{ asset('assets/main/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/DataTables/datatables.min.css') }}">
 
     @stack('custom-css')
 </head>
@@ -204,6 +205,7 @@
 <script src="{{ asset('assets/account/js/scripts.js') }}"></script>
 <script src="{{ asset('assets/account/js/custom.js') }}"></script>
 <script src="{{ asset('assets/main/js/select2.min.js') }}"></script>
+<script src="{{ asset('vendor/DataTables/datatables.min.js') }}"></script>
 @include('sweetalert::alert')
 @stack('custom-js')
 </body>

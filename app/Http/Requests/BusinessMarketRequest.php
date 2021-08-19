@@ -24,7 +24,13 @@ class BusinessMarketRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|min:5',
+            'due_date' => 'required',
+            'request_type' => 'required',
+            'product_type' => 'required',
+            'quantity' => 'required',
+            'amount' => 'required',
+            'description' => 'nullable'
         ];
     }
 }

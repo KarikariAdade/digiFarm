@@ -284,3 +284,15 @@ a {
     width: 150px;
     height: 150px;
 }
+.btn-round {
+    border-radius: 30px;
+    padding-left: 24px;
+    font-weight: bold;
+    padding-right: 24px;
+}
+
+.table-btn{
+    width: 30px;
+    height: 30px;
+    padding: 0;
+}

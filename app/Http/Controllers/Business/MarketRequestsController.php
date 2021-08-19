@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Business;
 
+use App\DataTables\Business\BusinessMarketRequestDatatable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BusinessMarketRequest;
+use App\Models\MarketRequests;
 use Illuminate\Http\Request;
 
 class MarketRequestsController extends Controller
@@ -13,9 +15,9 @@ class MarketRequestsController extends Controller
         $this->middleware('auth:business');
     }
 
-    public function index()
+    public function index(BusinessMarketRequestDatatable $datatable)
     {
-        return view('business.request.index');
+        return $datatable->render('business.request.index');
     }
 
     public function create()
@@ -25,7 +27,20 @@ class MarketRequestsController extends Controller
 
     public function store(BusinessMarketRequest $request)
     {
-        return $request->all();
+        $data = $request->all();
+
+        $data['business_id'] = auth('business')->user()->id;
+
+        MarketRequests::query()->create($data);
+
+        toast('Request successfully created', 'success');
+
+        if ($data['save'] === 'save'){
+            return back();
+        }
+
+        return redirect()->route('business.dashboard.request.index');
+
     }
 
 

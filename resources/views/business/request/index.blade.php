@@ -30,7 +30,15 @@
                         <button class="btn btn-success mt-1">Generate Entries</button>
                     </div>
                 </form>
+                <div class="row">
+                    <div class="col-md-12 table-responsive-lg p-3">
+                        {!! $dataTable->table(['class' => 'table table-hover table-striped']) !!}
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 @endsection
+@push('custom-js')
+    {!! $dataTable->scripts() !!}
+@endpush

@@ -20,6 +20,15 @@ class MarketRequestsController extends Controller
         return $datatable->render('business.request.index');
     }
 
+
+    public function cardView()
+    {
+        $requests = MarketRequests::query()->where('business_id', auth('business')->user()->id)
+            ->orderBy('is_approved', 'asc')->paginate(10);
+
+        return view('business.request.card', compact('requests'));
+    }
+
     public function create()
     {
         return view('business.request.create');
@@ -44,22 +53,62 @@ class MarketRequestsController extends Controller
     }
 
 
-    public function show()
+    public function show(MarketRequests $request)
     {
-        return view('business.request.details');
+        // TODO:: Add Request Proposal by clients here
+
+        return view('business.request.details', compact('request'));
     }
 
 
-    public function edit()
+    public function edit(MarketRequests $request)
     {
-        return view('business.request.edit');
+        return view('business.request.edit', compact('request'));
     }
 
 
 
-    public function update(BusinessMarketRequest $request, $id)
+    public function update(BusinessMarketRequest $request, MarketRequests $id)
     {
-        return $request->all();
+        $data = $request->all();
+
+        $data['business_id'] = auth('business')->user()->id;
+
+        if ($data['status'] === 'approve'){
+            $data['is_approved'] = true;
+        }else{
+            $data['is_approved'] = false;
+        }
+
+        $id->update($data);
+
+        toast('Request successfully updated', 'success');
+
+        if ($data['save'] === 'save'){
+            return back();
+        }
+
+        return redirect()->route('business.dashboard.request.index');
+    }
+
+
+    public function approveRequest(MarketRequests $request)
+    {
+        $request->update(['is_approved' => true]);
+
+        toast('Request Approved Successfully', 'success');
+
+        return back();
+    }
+
+
+    public function deleteRequest(MarketRequests $request)
+    {
+        $request->delete();
+
+        toast('Request Deleted Successfully', 'success');
+
+        return redirect()->route('business.dashboard.request.index');
     }
 
 

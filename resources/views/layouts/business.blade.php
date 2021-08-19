@@ -115,16 +115,13 @@
                         <span class="d-sm-none d-lg-inline-block"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right pullDown">
-                        <div class="dropdown-title">Hello Sarah Smith</div>
-                        <a href="profile.html" class="dropdown-item has-icon">
+                        <div class="dropdown-title">Hello {{ auth('business')->user()->name }}</div>
+                        <a href="{{ route('business.dashboard.profile.index') }}" class="dropdown-item has-icon">
                             <i class="far fa-user"></i> Profile
                         </a>
-                        <a href="timeline.html" class="dropdown-item has-icon">
-                            <i class="fas fa-bolt"></i>
-                            Activities
-                        </a>
-                        <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
-                            Settings
+                        <a href="{{ route('business.dashboard.request.index') }}" class="dropdown-item has-icon">
+                            <i class="fas fa-briefcase"></i>
+                            Requests
                         </a>
                         <div class="dropdown-divider"></div>
                         <a href="{{ route('business.auth.logout') }}" class="dropdown-item has-icon text-danger"> <i

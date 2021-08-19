@@ -3,6 +3,7 @@
 namespace App\DataTables\Business;
 
 use App\Models\MarketRequests;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Yajra\DataTables\DataTableAbstract;
 use Yajra\DataTables\Html\Button;
@@ -23,14 +24,34 @@ class BusinessMarketRequestDatatable extends DataTable
     {
         return datatables()
             ->eloquent($query)
+            ->editColumn('is_approved', function ($query) {
+                if ($query->is_approved != false){
+                    return '<span class="badge shadow badge-success">Approved</span>';
+                }
+                return '<span class="badge shadow-warning badge-warning">Pending</span>';
+            })
+            ->editColumn('request_type', function ($query) {
+                return ucwords(str_replace('_', ' ', $query->request_type));
+            })
+            ->editColumn('due_date', function ($query){
+                return Carbon::parse($query->due_date)->format('l M d, Y');
+            })
+            ->editColumn('created_at', function ($query) {
+                return Carbon::parse($query->created_at)->format('l M d, Y');
+            })
             ->addColumn('action', function ($query) {
-                return '<div class="btn" style="display: inline-flex;">
-                        <a href="" title="Request Details" class="btn table-btn btn-icon btn-success btn-sm shadow p-0 mr-2"><i class="fa mt-2 fa-eye"></i></a>
-                        <a href="" title="Edit Request" class="btn table-btn btn-icon btn-primary btn-sm shadow p-0 mr-2"><i class="fa mt-2 fa-edit"></i></a>
-                        <a href="" title="Approve Request" class="btn table-btn btn-icon btn-info btn-sm shadow p-0 mr-2" target="_blank"><i class="fa mt-2 fa-stamp"></i></a>
-                        <a href="" title="Delete Request" class="btn table-btn shadow btn-warning p-0"><i class="fa mt-2 fa-trash"></i></a>
+                $output = '<div class="btn" style="display: inline-flex;">
+                        <a href="'.route('business.dashboard.request.show', $query->id).'" title="Request Details" class="btn table-btn btn-icon btn-primary btn-sm shadow-primary p-0 mr-2"><i class="fa mt-2 fa-eye"></i></a>
+                        <a href="'.route('business.dashboard.request.edit', $query->id).'" title="Edit Request" class="btn table-btn btn-icon btn-warning btn-sm shadow-warning p-0 mr-2"><i class="fa mt-2 fa-edit"></i></a>
+                        ';
+                if ($query->is_approved != true){
+                    $output .= '<a href="'.route('business.dashboard.request.approve', $query->id).'" title="Approve Request" class="btn text-white table-btn btn-icon btn-success btn-sm shadow-success p-0 mr-2" target="_blank"><i class="fa mt-2 fa-stamp"></i></a>';
+                }
+                        $output .= '<a href="'. route('business.dashboard.request.delete', $query->id) .'" title="Delete Request" class="btn table-btn shadow-danger btn-danger p-0"><i class="fa mt-2 fa-trash"></i></a>
                         </div>';
-            })->blacklist(['action']);
+
+                return $output;
+            })->rawColumns(['action', 'is_approved']);
     }
 
     /**
@@ -41,7 +62,38 @@ class BusinessMarketRequestDatatable extends DataTable
      */
     public function query(MarketRequests $model)
     {
-        return $model->newQuery();
+        $business = auth()->guard('business')->user()->id;
+
+        $now = date('Y-m-d');
+
+        $query = $model->newQuery()->where('business_id', $business);
+
+        $start_date = $this->request()->get('from');
+        $end_date = $this->request()->get('to');
+        $status = $this->request()->get('status');
+
+        if (!empty($start_date) && !empty($end_date) && !empty($status)) {
+            if ($status === 'approved'){
+                return $query->where('is_approved', true)->whereBetween('created_at', [$start_date, $end_date]);
+            }
+
+            return $query->where('is_approved', false)->whereBetween('created_at', [$start_date, $end_date]);
+        }
+
+        if(empty($status) && !empty($start_date) && !empty($end_date)) {
+            return $query->whereBetween('created_at', [$start_date, $end_date]);
+        }
+
+        if(!empty($status) && empty($start_date) && empty($end_date)) {
+            if ($status === 'approved'){
+                return $query->where('is_approved', true);
+            }
+
+            return $query->where('is_approved', false);
+        }
+
+        return $query;
+
     }
 
     /**
@@ -57,13 +109,6 @@ class BusinessMarketRequestDatatable extends DataTable
                     ->minifiedAjax()
                     ->dom('Bfrtip')
                     ->orderBy(1);
-//                    ->buttons(
-//                        Button::make('create'),
-//                        Button::make('export'),
-//                        Button::make('print'),
-//                        Button::make('reset'),
-//                        Button::make('reload')
-//                    );
     }
 
     /**
@@ -79,7 +124,7 @@ class BusinessMarketRequestDatatable extends DataTable
             Column::make('product_type'),
             Column::make('quantity'),
             Column::make('amount'),
-            Column::make('due_date'),
+            Column::make('due_date')->width(100),
             Column::make('is_approved')->title('Status'),
             Column::make('created_at')->title('Date Created'),
             Column::computed('action')

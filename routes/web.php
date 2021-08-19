@@ -78,9 +78,12 @@ Route::prefix('business')->group(function(){
            Route::get('/', [MarketRequestsController::class, 'index'])->name('business.dashboard.request.index');
            Route::get('create', [MarketRequestsController::class, 'create'])->name('business.dashboard.request.create');
            Route::post('store', [MarketRequestsController::class, 'store'])->name('business.dashboard.request.store');
-           Route::get('edit', [MarketRequestsController::class, 'edit'])->name('business.dashboard.request.edit');
-           Route::post('update', [MarketRequestsController::class, 'update'])->name('business.dashboard.request.update');
-           Route::get('details', [MarketRequestsController::class, 'show'])->name('business.dashboard.request.show');
+           Route::get('edit/{request}', [MarketRequestsController::class, 'edit'])->name('business.dashboard.request.edit');
+           Route::patch('update/{id}', [MarketRequestsController::class, 'update'])->name('business.dashboard.request.update');
+           Route::get('details/{request}', [MarketRequestsController::class, 'show'])->name('business.dashboard.request.show');
+           Route::get('card/view', [MarketRequestsController::class, 'cardView'])->name('business.dashboard.request.card.view');
+           Route::get('approve/{request}', [MarketRequestsController::class, 'approveRequest'])->name('business.dashboard.request.approve');
+           Route::get('delete/{request}', [MarketRequestsController::class, 'deleteRequest'])->name('business.dashboard.request.delete');
        });
 
        #------------------------------------------ BUSINESS HOMEPAGE END ----------------------------------------------#

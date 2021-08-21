@@ -64,8 +64,6 @@ class BusinessMarketRequestDatatable extends DataTable
     {
         $business = auth()->guard('business')->user()->id;
 
-        $now = date('Y-m-d');
-
         $query = $model->newQuery()->where('business_id', $business);
 
         $start_date = $this->request()->get('from');

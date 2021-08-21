@@ -1368,3 +1368,11 @@ header.ab {
     background: #fff;
     color: #000;
 }
+
+a{
+    text-decoration: none !important;
+}
+
+.f-bold{
+    font-weight: bold;
+}

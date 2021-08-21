@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainWebsiteController;
 use App\Http\Controllers\RequestsController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Farmer\ProfileController as FarmerProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,7 +30,7 @@ Route::get('/', function () {
 
 Route::get('about', [MainWebsiteController::class, 'about'])->name('website.about');
 Route::get('market', [MainWebsiteController::class, 'market'])->name('website.market');
-Route::get('farmer', [MainWebsiteController::class, 'farmers'])->name('website.farmers');
+Route::get('farmers', [MainWebsiteController::class, 'farmers'])->name('website.farmers');
 Route::get('forum', [MainWebsiteController::class, 'forum'])->name('website.forum');
 
 Route::prefix('request')->group(function (){
@@ -38,7 +39,7 @@ Route::prefix('request')->group(function (){
 
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 
 
@@ -92,6 +93,18 @@ Route::prefix('business')->group(function(){
 });
 
 
-Route::prefix('farmers')->group(function () {
+//Route::prefix('farmer')->group(function () {
+//    Route::get('/', [HomeController::class, 'index'])->name('home');
+//});
+
+Route::group(['middleware' => 'verified', 'prefix' => 'farmer'], function (){
+    #----------------------------------------------- FARMER DASHBOARD -------------------------------------------------#
+
     Route::get('/', [HomeController::class, 'index'])->name('home');
+
+    Route::prefix('profile')->group(function (){
+        Route::get('/', [FarmerProfileController::class, 'index'])->name('farmer.dashboard.profile.index');
+        Route::get('edit', [FarmerProfileController::class, 'edit'])->name('farmer.dashboard.profile.edit');
+        Route::get('update', [FarmerProfileController::class, 'update'])->name('farmer.dashboard.profile.update');
+    });
 });

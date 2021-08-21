@@ -369,3 +369,10 @@ a {
     text-align: right;
     color: #11b719;
 }
+.select2{
+    width: 100% !important;
+}
+textarea{
+    resize: none;
+    height: 150px !important;
+}

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
     <title>{{ auth()->user()->name}} | Dashboard</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- General CSS Files -->
     <link rel="stylesheet" href="{{ asset('assets/account/css/app.min.css') }}">
     <!-- Template CSS -->
@@ -14,6 +15,7 @@
 
     <link rel="stylesheet" href="{{ asset('assets/main/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/DataTables/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/account/bundles/bootstrap-social/bootstrap-social.css') }}">
 
     @stack('custom-css')
 </head>
@@ -110,11 +112,6 @@
                         <a href="{{ route('logout') }}" class="dropdown-item has-icon text-danger" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> <i
                                 class="fas fa-sign-out-alt"></i>
                             Logout
-                        </a>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                           onclick="event.preventDefault();
-                                       document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
                         </a>
 
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

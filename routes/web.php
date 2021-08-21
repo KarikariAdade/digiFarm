@@ -105,6 +105,6 @@ Route::group(['middleware' => 'verified', 'prefix' => 'farmer'], function (){
     Route::prefix('profile')->group(function (){
         Route::get('/', [FarmerProfileController::class, 'index'])->name('farmer.dashboard.profile.index');
         Route::get('edit', [FarmerProfileController::class, 'edit'])->name('farmer.dashboard.profile.edit');
-        Route::get('update', [FarmerProfileController::class, 'update'])->name('farmer.dashboard.profile.update');
+        Route::post('update', [FarmerProfileController::class, 'update'])->name('farmer.dashboard.profile.update');
     });
 });

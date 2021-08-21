@@ -41,4 +41,20 @@ class Controller extends BaseController
             'msg' => $msg
         ]);
     }
+
+
+    public function getAbbreviation($str, $as_space = array('-')): string
+    {
+        $str = str_replace($as_space, ' ', trim($str));
+
+        $ret = '';
+
+        foreach (explode(' ', $str) as $word) {
+
+            $ret .= strtoupper($word[0]);
+
+        }
+
+        return $ret;
+    }
 }

@@ -111,7 +111,6 @@ class ProfileController extends Controller
             'region' => $data['region'],
             'address' => $data['office_address'],
             'business_size' => $data['business_size'],
-
             'type_id' => $data['business_type'],
             'tax_number' => $data['tax_number'],
             'description' => $data['description'],
@@ -119,21 +118,6 @@ class ProfileController extends Controller
         ];
     }
 
-
-    public function getAbbreviation($str, $as_space = array('-')): string
-    {
-        $str = str_replace($as_space, ' ', trim($str));
-
-        $ret = '';
-
-        foreach (explode(' ', $str) as $word) {
-
-            $ret .= strtoupper($word[0]);
-
-        }
-
-        return $ret;
-    }
 
 
     public function performUpload($file, $type)

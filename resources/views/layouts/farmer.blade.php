@@ -96,7 +96,7 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                        <img alt="image" src="" class="user-img-radious-style">
+                        <img alt="image" src="{{ asset(auth()->user()->avatar) }}" class="user-img-radious-style">
                         <span class="d-sm-none d-lg-inline-block"></span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right pullDown">
@@ -124,11 +124,13 @@
         <div class="main-sidebar sidebar-style-2">
             <aside id="sidebar-wrapper">
                 <div class="sidebar-brand">
+                    @if(auth()->user()->name)
                     <a href="{{ route('business.dashboard') }}">
-                        <img alt="{{ auth()->user()->name.' logo' }}" src="sss" class="header-logo user-img-radious-style"/>
+                        <img alt="{{ auth()->user()->name.' logo' }}" src="{{ asset(auth()->user()->avatar) }}" class="header-logo user-img-radious-style"/>
                     </a>
+                    @endif
                     <p class="sidebar-brand-name">{{ auth()->user()->name }} <br>
-                        <small>adfasdf</small>
+                        <small>{{ auth()->user()->name }}</small>
                     </p>
                 </div>
                 <ul class="sidebar-menu">
@@ -140,6 +142,11 @@
                     <li class="">
                         <a href="{{ route('farmer.dashboard.profile.index') }}" class="nav-link"><i
                                 data-feather="user"></i><span>Profile</span></a>
+                    </li>
+                    <li class="">
+                        <a href="{{ route('farmer.dashboard.farm.index') }}" class="nav-link">
+                            <i data-feather="truck"></i><span>Farms</span>
+                        </a>
                     </li>
                     <li class="">
                         <a href="" class="nav-link"><i

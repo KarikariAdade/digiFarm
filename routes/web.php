@@ -6,6 +6,7 @@ use App\Http\Controllers\Business\MarketRequestsController;
 use App\Http\Controllers\Business\ProfileController;
 use App\Http\Controllers\Business\RegisterController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Farmer\FarmController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainWebsiteController;
 use App\Http\Controllers\RequestsController;
@@ -106,5 +107,15 @@ Route::group(['middleware' => 'verified', 'prefix' => 'farmer'], function (){
         Route::get('/', [FarmerProfileController::class, 'index'])->name('farmer.dashboard.profile.index');
         Route::get('edit', [FarmerProfileController::class, 'edit'])->name('farmer.dashboard.profile.edit');
         Route::post('update', [FarmerProfileController::class, 'update'])->name('farmer.dashboard.profile.update');
+    });
+
+    Route::prefix('farms')->group(function (){
+        Route::get('/', [FarmController::class, 'index'])->name('farmer.dashboard.farm.index');
+        Route::get('create', [FarmController::class, 'create'])->name('farmer.dashboard.farm.create');
+        Route::post('store', [FarmController::class, 'store'])->name('farmer.dashboard.farm.store');
+        Route::get('edit/{id}', [FarmController::class, 'edit'])->name('farmer.dashboard.farm.edit');
+        Route::get('show/{id}', [FarmController::class, 'show'])->name('farmer.dashboard.farm.show');
+        Route::patch('update/{id}', [FarmController::class, 'update'])->name('farmer.dashboard.farm.update');
+        Route::get('delete/{id}', [FarmController::class, 'delete'])->name('farmer.dashboard.farm.delete');
     });
 });

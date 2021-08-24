@@ -7,11 +7,19 @@ $(document).ready(function () {
     });
 
     function scrollToTop() {
-        window.scrollTo(0, 0);
+        window.scroll({
+            top: 0,
+            behavior:'smooth'
+        });
+    }
+
+    function refresh() {
+        window.location = '';
     }
 
     let url,
         formData,
+        pwdError,
         errorMsg = $('.errorMsg');
 
     $('.select2').select2();
@@ -29,11 +37,13 @@ $(document).ready(function () {
             processData: false,
         }).done((response)=>{
             if (response.code == '200'){
-                console.log(response)
+                errorMsg.html('');
+                refresh();
             }else{
                 scrollToTop();
-                errorMsg.html('<p><span class="fa fa-exclamation-circle"></span> '+response.msg+'</p>')
+                errorMsg.html('<p class="alert alert-danger text-white"><span class="fa fa-exclamation-circle"></span> '+response.msg+'</p>')
             }
         })
-    })
+    });
+
 });

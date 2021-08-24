@@ -17,11 +17,7 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $guarded = ['id'];
 
     /**
      * The attributes that should be hidden for arrays.
@@ -29,7 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password',
+//        'password',
         'remember_token',
     ];
 
@@ -44,6 +40,16 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getSocials()
     {
-        return $this->belongsTo(FarmerSocials::class, 'user_id');
+        return $this->hasOne(FarmerSocials::class, 'user_id');
+    }
+
+    public function getCountry()
+    {
+        return $this->belongsTo(Country::class, 'country');
+    }
+
+    public function getRegion()
+    {
+        return $this->belongsTo(Region::class, 'region');
     }
 }

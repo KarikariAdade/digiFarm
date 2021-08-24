@@ -10,4 +10,9 @@ class FarmerSocials extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function getFarmer()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

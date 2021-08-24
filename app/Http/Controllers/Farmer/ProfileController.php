@@ -8,6 +8,7 @@ use App\Models\FarmerSocials;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
@@ -70,8 +71,6 @@ class ProfileController extends Controller
             $user->update($this->preparedData($data));
 
             if (!empty($request->file('avatar'))){
-                $data['avatar'] = $this->performUpload($request->file('avatar'));
-
                 $user->update(['avatar' => $data['avatar']]);
             }
 
@@ -83,6 +82,7 @@ class ProfileController extends Controller
 
 
     }
+
 
     public function performUpload($file)
     {
@@ -142,15 +142,15 @@ class ProfileController extends Controller
             'website' => $data['website_url'] ?? null,
         ];
 
-        if ($data['facebook_url'] || $data['instagram'] || $data['twitter_url'] || $data['linkedin_url'] || $data['website_url']){
+        if ($data['facebook_url'] || $data['instagram_url'] || $data['twitter_url'] || $data['linkedin_url'] || $data['website_url']){
             if ($socials){
-                $socials->update($dump);
-            }else{
-                FarmerSocials::query()->create($dump);
+                return $socials->update($dump);
             }
+
+            return FarmerSocials::query()->create($dump);
         }
 
-        return null;
+//        return null;
 
     }
 }

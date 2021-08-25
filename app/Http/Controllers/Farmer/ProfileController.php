@@ -86,28 +86,18 @@ class ProfileController extends Controller
 
     public function performUpload($file)
     {
-
-        # Add random string to filename
         $file_name = Str::random(4) . '' . $file->getClientOriginalName();
-
-        # Set file path
 
         $path = "farmer/".auth()->user()->id."/";
 
-
-        # Get absolute path for file storage
         $abs_path = storage_path("app/public/$path");
 
-        # Fetch user account
         $profile = User::query()->where('id', auth()->user()->id)->first();
-
-        # Delete old profile picture
 
         if ($profile && File::exists($profile->avatar)) {
             File::delete($profile->avatar);
         }
 
-        # Move file to absolute path
         $file->move($abs_path, $file_name);
 
         return "storage/$path" . $file_name;

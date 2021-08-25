@@ -46,4 +46,35 @@ $(document).ready(function () {
         })
     });
 
+
+    $('.farm_form').submit(function (e) {
+        e.preventDefault();
+        url = $(this).prop('action');
+        formData = new FormData(this);
+        $.ajax({
+            url: url,
+            method: 'POST',
+            data: formData,
+            cache:false,
+            contentType: false,
+            processData: false,
+        }).done((response) => {
+            console.log(response)
+        })
+
+    })
+
+
+    function displayItems(type){
+        if (type === 'is_crop'){
+            $('.animal_number').hide();
+            $('.crop_info').show()
+        }else{
+            $('.crop_info').hide();
+            $('.animal_number').show()
+        }
+    }
+
+
+
 });

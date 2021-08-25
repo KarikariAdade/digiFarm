@@ -36,6 +36,7 @@ Route::get('forum', [MainWebsiteController::class, 'forum'])->name('website.foru
 
 Route::prefix('request')->group(function (){
     Route::any('get/region', [RequestsController::class, 'getRegion'])->name('request.get.region');
+    Route::any('get/farm/subcategory', [RequestsController::class, 'getFarmSubCategory'])->name('request.get.farm.subcategory');
 });
 
 

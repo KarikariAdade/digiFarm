@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Farmer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FarmRequest;
 use App\Models\Farm;
+use App\Models\FarmCategory;
 use App\Models\FarmSubCategory;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,9 @@ class FarmController extends Controller
 
     public function create()
     {
-        return view('farmer.farm.create');
+        $farm_categories = FarmCategory::query()->get();
+
+        return view('farmer.farm.create', compact('farm_categories'));
     }
 
 

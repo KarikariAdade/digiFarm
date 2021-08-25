@@ -16,6 +16,7 @@ class CreateFarmsTable extends Migration
         Schema::create('farms', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->unsigned();
+            $table->string('name')->nullable();
             $table->integer('farm_category_id')->unsigned();
             $table->integer('farm_sub_category_id')->unsigned();
             $table->string('land_size')->nullable();

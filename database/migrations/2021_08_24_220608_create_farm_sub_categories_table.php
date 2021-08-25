@@ -15,6 +15,8 @@ class CreateFarmSubCategoriesTable extends Migration
     {
         Schema::create('farm_sub_categories', function (Blueprint $table) {
             $table->id();
+            $table->integer('farm_category_id')->unsigned();
+            $table->string('name');
             $table->timestamps();
         });
     }

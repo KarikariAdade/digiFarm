@@ -15,6 +15,8 @@ class CreateFarmCategoriesTable extends Migration
     {
         Schema::create('farm_categories', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->boolean('is_crop')->default(false);
             $table->timestamps();
         });
     }

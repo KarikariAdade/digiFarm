@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Farmer;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FarmRequest;
 use App\Models\Farm;
+use App\Models\FarmSubCategory;
 use Illuminate\Http\Request;
 
 class FarmController extends Controller

@@ -115,7 +115,7 @@ Route::group(['middleware' => 'verified', 'prefix' => 'farmer'], function (){
         Route::get('create', [FarmController::class, 'create'])->name('farmer.dashboard.farm.create');
         Route::post('store', [FarmController::class, 'store'])->name('farmer.dashboard.farm.store');
         Route::get('edit/{id}', [FarmController::class, 'edit'])->name('farmer.dashboard.farm.edit');
-        Route::get('show/{id}', [FarmController::class, 'show'])->name('farmer.dashboard.farm.show');
+        Route::get('details/{id}', [FarmController::class, 'show'])->name('farmer.dashboard.farm.show');
         Route::patch('update/{id}', [FarmController::class, 'update'])->name('farmer.dashboard.farm.update');
         Route::get('delete/{id}', [FarmController::class, 'delete'])->name('farmer.dashboard.farm.delete');
     });

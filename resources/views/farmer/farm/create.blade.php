@@ -10,7 +10,7 @@
                         <button class="btn btn-success btn-round" type="submit" name="save" value="save_and_apply"> Create Farm </button>
                     </div>
                     <div class="form-row"></div>
-                @include('layouts.errors')
+                    <div class="errorMsg"></div>
                     <div class="row">
                         <div class="form-group col-md-4">
                             <label>Farm Name <span class="text-danger">*</span></label>

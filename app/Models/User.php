@@ -52,4 +52,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsTo(Region::class, 'region');
     }
+
+    public function getFarms()
+    {
+        return $this->hasMany(Farm::class, 'user_id');
+    }
 }

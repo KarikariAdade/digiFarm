@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Farmer;
 
+use App\DataTables\Farmer\FarmDatatable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\FarmRequest;
 use App\Models\Farm;
 use App\Models\FarmCategory;
+use App\Models\FarmImage;
 use App\Models\FarmSubCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -18,9 +21,9 @@ class FarmController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(FarmDatatable $datatable)
     {
-        return view('farmer.farm.index');
+        return $datatable->render('farmer.farm.index');
     }
 
 
@@ -61,12 +64,21 @@ class FarmController extends Controller
             return $this->getFailedResponse('Animal Number is required when farm type is animal');
         }
 
-        foreach($request->file('farm_images') as $file){
-            $this->performFileUpload($file, 1);
-        }
+        DB::transaction(function () use ($request, $data) {
+            $farm = Farm::query()->create($this->prepareData($data))->id;
 
+            foreach($request->file('farm_images') as $file){
+                FarmImage::query()->create([
+                    'farm_id' => $farm,
+                    'path' => $this->performFileUpload($file, $farm)
+                ]);
+            }
 
-        return $data;
+        });
+
+        toast('Farm Added Successfully', 'success');
+
+        return $this->getSuccessResponse('Farm Added successfully');
     }
 
 
@@ -107,6 +119,23 @@ class FarmController extends Controller
         $file->move($abs_path, $file_name);
 
         return "storage/$path" . $file_name;
+    }
+
+
+    public function prepareData($data)
+    {
+        return [
+            'name' => $data['farm_name'],
+            'user_id' => auth()->user()->id,
+            'farm_category_id' => $data['farm_category'],
+            'farm_sub_category_id' => $data['farm_type'],
+            'land_size' => $data['land_size'],
+            'crop_number' => $data['crop_number'],
+            'animal_number' => $data['animal_number'],
+            'average_production' => $data['average_production'],
+            'address' => $data['farm_address'],
+            'description' => $data['description']
+        ];
     }
 
 }

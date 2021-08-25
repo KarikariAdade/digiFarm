@@ -59,7 +59,11 @@ $(document).ready(function () {
             contentType: false,
             processData: false,
         }).done((response) => {
-            console.log(response)
+            if (response.code == '200'){
+                refresh();
+            }else{
+                errorMsg.html('<p class="alert alert-danger text-white"><span class="fa fa-exclamation-circle"></span> '+response.msg+'</p>')
+            }
         })
 
     })

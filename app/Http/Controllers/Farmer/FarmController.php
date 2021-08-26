@@ -11,6 +11,7 @@ use App\Models\FarmImage;
 use App\Models\FarmSubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -82,9 +83,9 @@ class FarmController extends Controller
     }
 
 
-    public function show(Farm $id)
+    public function show(Farm $farm)
     {
-        return $id;
+        return view('farmer.farm.show', compact('farm'));
     }
 
 
@@ -102,7 +103,24 @@ class FarmController extends Controller
     }
 
 
-    public function delete(FarmRequest $id)
+    public function deleteImage(Request $request)
+    {
+        $image = $request->get('image');
+
+        $image = FarmImage::query()->where('id', $image)->first();
+
+        if ($image && File::exists($image->path)){
+
+            File::delete($image->path);
+
+            $image->delete();
+        }
+
+        return $this->getSuccessResponse('Image deleted successfully');
+    }
+
+
+    public function delete(Request $request)
     {
         return $id;
     }

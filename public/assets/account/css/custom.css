@@ -376,3 +376,11 @@ textarea{
     resize: none;
     height: 150px !important;
 }
+.img_del_btn{
+    text-align: center;
+    height: 30px;
+    width: 30px;
+    position: absolute;
+    right: 5%;
+    top: 5px;
+}

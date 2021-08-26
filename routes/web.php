@@ -114,9 +114,10 @@ Route::group(['middleware' => 'verified', 'prefix' => 'farmer'], function (){
         Route::get('/', [FarmController::class, 'index'])->name('farmer.dashboard.farm.index');
         Route::get('create', [FarmController::class, 'create'])->name('farmer.dashboard.farm.create');
         Route::post('store', [FarmController::class, 'store'])->name('farmer.dashboard.farm.store');
-        Route::get('edit/{id}', [FarmController::class, 'edit'])->name('farmer.dashboard.farm.edit');
-        Route::get('details/{id}', [FarmController::class, 'show'])->name('farmer.dashboard.farm.show');
-        Route::patch('update/{id}', [FarmController::class, 'update'])->name('farmer.dashboard.farm.update');
-        Route::get('delete/{id}', [FarmController::class, 'delete'])->name('farmer.dashboard.farm.delete');
+        Route::get('edit/{farm}', [FarmController::class, 'edit'])->name('farmer.dashboard.farm.edit');
+        Route::get('details/{farm}', [FarmController::class, 'show'])->name('farmer.dashboard.farm.show');
+        Route::patch('update/{farm}', [FarmController::class, 'update'])->name('farmer.dashboard.farm.update');
+        Route::get('delete/{farm}', [FarmController::class, 'delete'])->name('farmer.dashboard.farm.delete');
+        Route::post('delete/image', [FarmController::class, 'deleteImage'])->name('farmer.dashboard.farm.delete.image');
     });
 });

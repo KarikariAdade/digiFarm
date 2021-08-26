@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Farmer;
 
 use App\DataTables\Farmer\FarmDatatable;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\FarmRequest;
 use App\Models\Farm;
 use App\Models\FarmCategory;
 use App\Models\FarmImage;
@@ -86,7 +85,7 @@ class FarmController extends Controller
     }
 
 
-    public function update(Request $request)
+    public function update(Request $request, Farm $farm)
     {
         $data = $request->all();
 
@@ -107,11 +106,13 @@ class FarmController extends Controller
         DB::transaction(function () use ($request, $data, $farm) {
             $farm->update($this->prepareData($data));
 
-            foreach($request->file('farm_images') as $file){
-                FarmImage::query()->create([
-                    'farm_id' => $farm->id,
-                    'path' => $this->performFileUpload($file, $farm->id)
-                ]);
+            if (!empty($request->file('farm_images'))){
+                foreach($request->file('farm_images') as $file){
+                    FarmImage::query()->create([
+                        'farm_id' => $farm->id,
+                        'path' => $this->performFileUpload($file, $farm->id)
+                    ]);
+                }
             }
 
         });
@@ -163,6 +164,7 @@ class FarmController extends Controller
         foreach ($farm_images as $farm_image){
             if (File::exists($farm_image->path)){
                 File::delete($farm_image->path);
+                $farm_image->delete();
             }
         }
 
@@ -176,7 +178,7 @@ class FarmController extends Controller
 
     public function performFileUpload($file, $farm)
     {
-        $file_name = Str::random(4) . '' . $file->getClientOriginalName();
+        $file_name = Str::random(9);
 
         $path = "farm/".$farm."/";
 

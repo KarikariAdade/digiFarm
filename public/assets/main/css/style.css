@@ -734,7 +734,7 @@ header.ab {
     color: #fff;
 }
 .feature-col:hover p {
-    color: #fff;
+    color: #fff !important;
 }
 .feature-col:hover .rm-btn {
     background-color: #fff;

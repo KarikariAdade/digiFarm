@@ -40,18 +40,7 @@ class FarmController extends Controller
     {
         $data = $request->all();
 
-        $validate = Validator::make($data, [
-            'farm_name' => 'required|min:5',
-            'farm_category' => 'required',
-            'farm_type' => 'required',
-            'land_size' => 'nullable',
-            'crop_number' => 'nullable',
-            'animal_number' => 'nullable',
-            'average_production' => 'required',
-            'description' => 'nullable',
-            'farm_address' => 'required',
-            'farm_images.*' => ['nullable', 'mimes:jpeg,jpg,png', 'max:2048'],
-        ]);
+        $validate = Validator::make($data, $this->validationRules());
 
         if ($validate->fails()){
             return $this->getFailedResponse($validate->errors()->first());
@@ -89,17 +78,64 @@ class FarmController extends Controller
     }
 
 
-    public function edit(Farm $id)
+    public function edit(Farm $farm)
     {
-        return $id;
+        $farm_categories = FarmCategory::query()->get();
+
+        return view('farmer.farm.edit', compact('farm', 'farm_categories'));
     }
 
 
-    public function update(FarmRequest $request)
+    public function update(Request $request)
     {
         $data = $request->all();
 
-        return $data;
+        $validator = Validator::make($data, $this->validationRules());
+
+        if ($validator->fails()){
+            return $this->getSuccessResponse($validator->errors()->first());
+        }
+
+        if (empty($data['land_size']) && ($data['farm_category'] == 2 || $data['farm_category'] == 4 || $data['farm_category'] == 5|| $data['farm_category'] == 6)){
+            return $this->getFailedResponse('Land Size is required when farm type is crop');
+        }
+
+        if (empty($data['animal_number']) && ($data['farm_category'] == 1 || $data['farm_category'] == 3 || $data['farm_category'] == 7)){
+            return $this->getFailedResponse('Animal Number is required when farm type is animal');
+        }
+
+        DB::transaction(function () use ($request, $data, $farm) {
+            $farm->update($this->prepareData($data));
+
+            foreach($request->file('farm_images') as $file){
+                FarmImage::query()->create([
+                    'farm_id' => $farm->id,
+                    'path' => $this->performFileUpload($file, $farm->id)
+                ]);
+            }
+
+        });
+
+        toast('Farm Updated Successfully', 'success');
+
+        return $this->getSuccessResponse('Farm Updated successfully');
+    }
+
+
+    public function validationRules()
+    {
+        return [
+            'farm_name' => 'required|min:5',
+            'farm_category' => 'required',
+            'farm_type' => 'required',
+            'land_size' => 'nullable',
+            'crop_number' => 'nullable',
+            'animal_number' => 'nullable',
+            'average_production' => 'required',
+            'description' => 'nullable',
+            'farm_address' => 'required',
+            'farm_images.*' => ['nullable', 'mimes:jpeg,jpg,png', 'max:2048'],
+        ];
     }
 
 
@@ -120,9 +156,21 @@ class FarmController extends Controller
     }
 
 
-    public function delete(Request $request)
+    public function delete(Farm $farm)
     {
-        return $id;
+        $farm_images = FarmImage::query()->where('farm_id', $farm->id)->get();
+
+        foreach ($farm_images as $farm_image){
+            if (File::exists($farm_image->path)){
+                File::delete($farm_image->path);
+            }
+        }
+
+        $farm->delete();
+
+        toast('Farm deleted successfully', 'success');
+
+        return redirect()->route('farmer.dashboard.farm.index');
     }
 
 

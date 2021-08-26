@@ -46,7 +46,6 @@ $(document).ready(function () {
         })
     });
 
-
     $('.farm_form').submit(function (e) {
         e.preventDefault();
         url = $(this).prop('action');
@@ -60,7 +59,8 @@ $(document).ready(function () {
             processData: false,
         }).done((response) => {
             if (response.code == '200'){
-                refresh();
+                // refresh();
+                console.log(response)
             }else{
                 errorMsg.html('<p class="alert alert-danger text-white"><span class="fa fa-exclamation-circle"></span> '+response.msg+'</p>')
             }

@@ -32,6 +32,14 @@
                         <tr><td style="width: 200px;"><b>FARM DESCRIPTION</b></td><td class="f-bold">{{ $farm->description }}</td></tr>
                     </table>
                         @endif
+                    <div class="text-right pb-4">
+                        <a href="{{ route('farmer.dashboard.farm.edit', $farm->id) }}" class="btn btn-warning text-white shadow-warning">
+                            <span class="fa fa-edit"></span> Update Farm
+                        </a>
+                        <a href="{{ route('farmer.dashboard.farm.delete', $farm->id) }}" class="btn btn-danger text-white shadow-danger">
+                            <span class="fa fa-trash"></span> Delete Farm
+                        </a>
+                    </div>
                 </div>
             </div>
             </div>

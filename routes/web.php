@@ -30,9 +30,16 @@ Route::get('/', function () {
 })->name('website.home');
 
 Route::get('about', [MainWebsiteController::class, 'about'])->name('website.about');
-Route::get('market', [MainWebsiteController::class, 'market'])->name('website.market');
 Route::get('farmers', [MainWebsiteController::class, 'farmers'])->name('website.farmers');
 Route::get('forum', [MainWebsiteController::class, 'forum'])->name('website.forum');
+
+
+#----------------------------------------------- WEBSITE MARKET PAGES -------------------------------------------------#
+Route::prefix('market')->group(function() {
+    Route::get('/', [MainWebsiteController::class, 'market'])->name('website.market');
+    Route::get('details/{request}', [MainWebsiteController::class, 'marketDetail'])->name('website.market.details');
+});
+
 
 Route::prefix('request')->group(function (){
     Route::any('get/region', [RequestsController::class, 'getRegion'])->name('request.get.region');

@@ -11,6 +11,9 @@ class BusinessType extends Model
 
     protected $guarded = [];
 
-
+    public function getBusiness()
+    {
+        return $this->hasManyThrough(MarketRequests::class, Business::class, 'type_id', 'business_id');
+    }
 
 }

@@ -24,4 +24,14 @@ class MarketRequests extends Model
         return Str::of($this->description)->limit(self::LIMIT, '...');
     }
 
+    public function requestUrl()
+    {
+        return route('website.market.details', [$this->id, Str::random(10), Str::slug($this->title)]);
+    }
+
+    public function submitProposalLink()
+    {
+        return route('website.market.proposal.submit', [$this->id, Str::slug($this->title)]);
+    }
+
 }

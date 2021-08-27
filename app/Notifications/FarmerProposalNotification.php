@@ -2,25 +2,26 @@
 
 namespace App\Notifications;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class CompanyCompleteProfileNotification extends Notification implements ShouldQueue
+class FarmerProposalNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    private $business;
+    private $details;
 
     /**
      * Create a new notification instance.
      *
-     * @param $business
+     * @return void
      */
-    public function __construct($business)
+    public function __construct($details)
     {
-        $this->business = $business;
+        $this->details = $details;
     }
 
     /**
@@ -38,29 +39,32 @@ class CompanyCompleteProfileNotification extends Notification implements ShouldQ
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return MailMessage
+     * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
     {
-        $first_message = $this->business['name'];
+
+        $farmer = User::query()->where('id', $this->details['user_id'])->first();
+
         return (new MailMessage)
-                    ->subject('No-Reply: Profile Setup Complete')
-                    ->line($first_message. ', Your account profile set up is complete')
-                    ->line('You can now add and approve requests directly from you dashboard')
-                    ->line('Kindly click the button to visit your Dashboard')
-                    ->action('Dashboard', route('business.dashboard'))
-                    ->line('Thank you for using digiFarm!');
+            ->subject('No-Reply: New Proposal from '.$farmer->name)
+            ->line($farmer->name.' has submitted a new proposal to your request')
+            ->line('Kindly click the button to visit your Dashboard to view the proposal')
+            ->action('Dashboard', route('business.dashboard.proposal.index'))
+            ->line('Thank you for using digiFarm!');
     }
 
 
     public function toDatabase($notifiable)
     {
         return [
-            'title' => 'Profile Setup Complete',
-            'data' => 'Profile Setup Complete',
-            'message' => 'This is the message'
+            'title' => 'New Proposal Request',
+            'data' => 'New Proposal Request',
+            'message' => 'New Proposal Request'
         ];
     }
+
+
 
     /**
      * Get the array representation of the notification.

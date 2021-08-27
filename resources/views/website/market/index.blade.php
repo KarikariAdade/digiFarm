@@ -103,7 +103,7 @@
 							{{--                                <div>{!! $popular_request->limit() !!}</div>--}}
 						</div>
 					</div>
-					<a href="{{ route('website.market.details', $popular_request->id) }}" class="btn btn-popular-jobs bt-1">View Detail</a>
+					<a href="{{ $popular_request->requestUrl() }}" class="btn btn-popular-jobs bt-1">View Detail</a>
 				</div>
 			</div>
 			@endforeach

@@ -7,6 +7,8 @@ use App\Http\Controllers\Business\ProfileController;
 use App\Http\Controllers\Business\RegisterController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Farmer\FarmController;
+use App\Http\Controllers\Farmer\ProposalController;
+use App\Http\Controllers\Business\ProposalController as BusinessProposalController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MainWebsiteController;
 use App\Http\Controllers\RequestsController;
@@ -37,7 +39,10 @@ Route::get('forum', [MainWebsiteController::class, 'forum'])->name('website.foru
 #----------------------------------------------- WEBSITE MARKET PAGES -------------------------------------------------#
 Route::prefix('market')->group(function() {
     Route::get('/', [MainWebsiteController::class, 'market'])->name('website.market');
-    Route::get('details/{request}', [MainWebsiteController::class, 'marketDetail'])->name('website.market.details');
+    Route::get('details/{request}/{hash}/{slug}', [MainWebsiteController::class, 'marketDetail'])->name('website.market.details');
+
+    #------------------------------------------- SUBMIT PROPOSAL ------------------------------------------------------#
+    Route::post('{market_request}/{slug}/proposal/submit', [ProposalController::class, 'submitProposal'])->name('website.market.proposal.submit');
 });
 
 
@@ -83,18 +88,38 @@ Route::prefix('business')->group(function(){
            Route::post('update', [ProfileController::class, 'update'])->name('business.dashboard.profile.update');
        });
 
+       Route::group(['middleware' => 'approved'], function () {
 
-       Route::group(['middleware' => 'approved', 'prefix' => 'dashboard/business/requests'], function () {
-           Route::get('/', [MarketRequestsController::class, 'index'])->name('business.dashboard.request.index');
-           Route::get('create', [MarketRequestsController::class, 'create'])->name('business.dashboard.request.create');
-           Route::post('store', [MarketRequestsController::class, 'store'])->name('business.dashboard.request.store');
-           Route::get('edit/{request}', [MarketRequestsController::class, 'edit'])->name('business.dashboard.request.edit');
-           Route::patch('update/{id}', [MarketRequestsController::class, 'update'])->name('business.dashboard.request.update');
-           Route::get('details/{request}', [MarketRequestsController::class, 'show'])->name('business.dashboard.request.show');
-           Route::get('card/view', [MarketRequestsController::class, 'cardView'])->name('business.dashboard.request.card.view');
-           Route::get('approve/{request}', [MarketRequestsController::class, 'approveRequest'])->name('business.dashboard.request.approve');
-           Route::get('delete/{request}', [MarketRequestsController::class, 'deleteRequest'])->name('business.dashboard.request.delete');
+           #-------------------------------------- BUSINESS REQUESTS START --------------------------------------------#
+
+           Route::prefix('dashboard/business/requests')->group(function (){
+               Route::get('/', [MarketRequestsController::class, 'index'])->name('business.dashboard.request.index');
+               Route::get('create', [MarketRequestsController::class, 'create'])->name('business.dashboard.request.create');
+               Route::post('store', [MarketRequestsController::class, 'store'])->name('business.dashboard.request.store');
+               Route::get('edit/{request}', [MarketRequestsController::class, 'edit'])->name('business.dashboard.request.edit');
+               Route::patch('update/{id}', [MarketRequestsController::class, 'update'])->name('business.dashboard.request.update');
+               Route::get('details/{request}', [MarketRequestsController::class, 'show'])->name('business.dashboard.request.show');
+               Route::get('card/view', [MarketRequestsController::class, 'cardView'])->name('business.dashboard.request.card.view');
+               Route::get('approve/{request}', [MarketRequestsController::class, 'approveRequest'])->name('business.dashboard.request.approve');
+               Route::get('delete/{request}', [MarketRequestsController::class, 'deleteRequest'])->name('business.dashboard.request.delete');
+           });
+
+           #-------------------------------------- BUSINESS REQUESTS END ----------------------------------------------#
+
+
+           #-------------------------------------- BUSINESS PROPOSAL START --------------------------------------------#
+
+           Route::prefix('dashboard/business/proposals')->group(function (){
+               Route::get('/', [BusinessProposalController::class, 'index'])->name('business.dashboard.proposal.index');
+               Route::get('details', [BusinessProposalController::class, 'show'])->name('business.dashboard.proposal.show');
+               Route::get('approve', [BusinessProposalController::class, 'approve'])->name('business.dashboard.proposal.approve');
+               Route::get('declined', [BusinessProposalController::class, 'decline'])->name('business.dashboard.proposal.decline');
+           });
+
        });
+
+//       Route::group(['middleware' => 'approved', 'prefix' => 'dashboard/business/requests'], function () {
+//           });
 
        #------------------------------------------ BUSINESS HOMEPAGE END ----------------------------------------------#
 
@@ -111,11 +136,18 @@ Route::group(['middleware' => 'verified', 'prefix' => 'farmer'], function (){
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
+    #----------------------------------------------- FARMER PROFILE ---------------------------------------------------#
+
     Route::prefix('profile')->group(function (){
         Route::get('/', [FarmerProfileController::class, 'index'])->name('farmer.dashboard.profile.index');
         Route::get('edit', [FarmerProfileController::class, 'edit'])->name('farmer.dashboard.profile.edit');
         Route::post('update', [FarmerProfileController::class, 'update'])->name('farmer.dashboard.profile.update');
     });
+
+    #----------------------------------------------- FARMER PROFILE END -----------------------------------------------#
+
+
+    #----------------------------------------------- FARMER FARMS START -----------------------------------------------#
 
     Route::prefix('farms')->group(function (){
         Route::get('/', [FarmController::class, 'index'])->name('farmer.dashboard.farm.index');
@@ -126,5 +158,13 @@ Route::group(['middleware' => 'verified', 'prefix' => 'farmer'], function (){
         Route::patch('update/{farm}', [FarmController::class, 'update'])->name('farmer.dashboard.farm.update');
         Route::get('delete/{farm}', [FarmController::class, 'delete'])->name('farmer.dashboard.farm.delete');
         Route::post('delete/image', [FarmController::class, 'deleteImage'])->name('farmer.dashboard.farm.delete.image');
+    });
+
+    #----------------------------------------------- FARMER FARMS END -------------------------------------------------#
+
+
+    Route::prefix('proposals')->group(function () {
+        Route::get('/', [ProposalController::class, 'index'])->name('farmer.dashboard.proposal.index');
+        Route::get('details', [ProposalController::class, 'show'])->name('farmer.dashboard.proposal.show');
     });
 });

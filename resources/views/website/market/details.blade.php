@@ -5,7 +5,17 @@
             <div class="row">
             <div class="col-md-8">
                 <div class="left-side-container">
-                    <div class="freelance-image"><a href=""><img src="{{ asset($request->getBusiness->business_logo) }}" class="img-responsive" alt=""></a></div>
+                    <div class="freelance-image">
+                        @if(!empty($popular_request->getBusiness->business_logo))
+                        <a href="">
+                            <img src="{{ asset($request->getBusiness->business_logo) }}" class="img-responsive" alt="">
+                        </a>
+                        @else
+                            <a href="">
+                                <img src="{{ asset('assets/account/img/dummy_icon.jpeg') }}" class="img-responsive" alt="">
+                            </a>
+                        @endif
+                    </div>
                     <div class="header-details">
                         <h4>{{ $request->title }}</h4>
                         <p>{{ $request->getBusiness->name }} <span class="fa fa-check-circle text-success"></span></p>
@@ -27,6 +37,53 @@
                     </ul>
                 </div>
             </div>
+            </div>
+        </div>
+    </section>
+    <section class="container mt-lg-5 mb-lg-5">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="container-detail-box">
+
+                    <div class="apply-job-header">
+                        <h4>{{ $request->title }}</h4>
+                        <span><i class="fa fa-map-marker-alt"></i> {{ $request->getBusiness->city.', '.$request->getBusiness->getRegion->name.', '. $request->getBusiness->getCountry->name }}</span>
+                    </div>
+                    <div class="apply-job-detail">
+                        {!! $request->description !!}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 container-detail-box">
+                <div class="text-center mb-3">
+                    <h3>Submit Proposal</h3>
+                </div>
+                @if(auth()->user() !== null)
+                <form class="" method="POST" action="{{ $request->submitProposalLink() }}">
+                    @csrf
+                    @method('POST')
+                    @include('layouts.errors')
+                    <div class="form-group">
+                        <label>Email <span class="text-danger">*</span></label>
+                        <input type="email" class="form-control mt-2" name="email" value="{{ auth()->user()->email }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone <span class="text-danger">*</span></label>
+                        <input type="tel" class="form-control mt-2" name="phone" value="{{ auth()->user()->phone }}">
+                    </div>
+                    <div class="form-group">
+                        <label>Message <span class="text-danger">*</span></label>
+                        <textarea class="form-control mt-2" rows="5" name="message"></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn header-btn">Submit Proposal</button>
+                    </div>
+                </form>
+                @else
+                <div class="bg-amber">
+                    <h5>Please <a href="{{ route('login') }}" target="_blank" class="text-success">create account or login</a> to submit your proposal</h5>
+                </div>
+                @endif
             </div>
         </div>
     </section>

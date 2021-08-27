@@ -36,7 +36,7 @@ class MainWebsiteController extends Controller
     }
 
 
-    public function marketDetail(MarketRequests $request)
+    public function marketDetail(MarketRequests $request, $hash, $slug)
     {
         return view('website.market.details', compact('request'));
     }
@@ -45,4 +45,7 @@ class MainWebsiteController extends Controller
     {
         return view('website.forum.index');
     }
+
+
+
 }

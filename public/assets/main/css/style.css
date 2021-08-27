@@ -117,6 +117,8 @@ input {
 }
 textarea {
     outline: none;
+    resize: none;
+    height: inherit !important;
 }
 section {
     position: relative;
@@ -1690,5 +1692,36 @@ span.available-status {
     margin-bottom: 40px;
 }
 .apply-job-header h4 {
+    font-size: 22px;
+}
+.container-detail-box,
+.sidebar-wrapper {
+    border-radius: 6px;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+}
+.container-detail-box {
+    padding: 30px;
+    margin-bottom: 30px;
+    border: 1px solid #eaeff5;
+}
+.apply-request-detail {
+    margin-bottom: 30px;
+}
+.apply-request-detail h5 {
+    font-size: 18px;
+}
+.apply-request-header a {
+    margin-right: 15px;
+}
+.apply-request-header a i,
+.apply-request-header span i {
+    margin-right: 5px;
+}
+.apply-request-header {
+    margin-bottom: 40px;
+}
+.apply-request-header h4 {
     font-size: 22px;
 }

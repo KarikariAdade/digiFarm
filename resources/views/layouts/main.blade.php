@@ -179,6 +179,7 @@
     <script src="{{ asset('assets/main/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/main/js/all.min.js') }}"></script>
     <script src="{{ asset('assets/main/js/scripts.js') }}"></script>
+    @include('sweetalert::alert')
 @stack('extra-js')
 </body>
 </html>

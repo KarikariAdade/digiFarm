@@ -19,6 +19,11 @@ class MarketRequests extends Model
         return $this->belongsTo(Business::class, 'business_id');
     }
 
+    public function getProposals()
+    {
+        return $this->hasMany(RequestProposal::class, 'request_id');
+    }
+
     public function limit()
     {
         return Str::of($this->description)->limit(self::LIMIT, '...');

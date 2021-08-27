@@ -19,11 +19,23 @@ class MainWebsiteController extends Controller
         return view('website.farmers.index');
     }
 
+
+    public function listMarket()
+    {
+        $markets = MarketRequests::query()->where('is_approved', false)->orderBy('id', 'desc')->paginate(20);
+
+        return view('website.market.all_requests', compact('markets'));
+    }
+
     public function market()
     {
         $business_type = BusinessType::query()->take(8)->get();
 
-        $popular_requests = MarketRequests::query()->where('is_approved', false)->take(3)->get();
+        $popular_requests = MarketRequests::query()->where('is_approved', false)
+            ->withCount('getProposals')->orderByDesc('id')
+            ->take(3)->get();
+
+//        $popular_requests = MarketRequests::query()->where('is_approved', false)->take(3)->get();
 
         $market_request = MarketRequests::query()->where('is_approved', false)->orderBy('id', 'desc')->get();
 //

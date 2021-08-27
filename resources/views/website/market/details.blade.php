@@ -20,7 +20,7 @@
                         <h4>{{ $request->title }}</h4>
                         <p>{{ $request->getBusiness->name }} <span class="fa fa-check-circle text-success"></span></p>
                         <ul>
-                            <li><a href="#"><i class="fa fa-user"></i> 7 Applications</a></li>
+                            <li><a href="#"><i class="fa fa-user"></i> {{ $request->getProposals->count() }} Proposals</a></li>
                             <li> {{ $request->getBusiness->city.', '.$request->getBusiness->getRegion->name.', '. $request->getBusiness->getCountry->name }}</li>
                         </ul>
                     </div>
@@ -34,6 +34,7 @@
                         <li><span class="detail-info">Request Type</span>{{ ucwords(str_replace('_', ' ', $request->request_type)) }}</li>
                         <li><span class="detail-info">Quantity</span>{{ $request->quantity }}</li>
                         <li><span class="detail-info">Amount</span> {{ 'GHS '. number_format($request->amount, 2) }}</li>
+                        <li><span class="detail-info">Due Date</span> {{ date('l M d, Y', strtotime($request->due_date)) }}</li>
                     </ul>
                 </div>
             </div>
@@ -46,7 +47,7 @@
                 <div class="container-detail-box">
 
                     <div class="apply-job-header">
-                        <h4>{{ $request->title }}</h4>
+                        <h4 class="mb-4">{{ $request->title }}</h4>
                         <span><i class="fa fa-map-marker-alt"></i> {{ $request->getBusiness->city.', '.$request->getBusiness->getRegion->name.', '. $request->getBusiness->getCountry->name }}</span>
                     </div>
                     <div class="apply-job-detail">
@@ -85,6 +86,9 @@
                 </div>
                 @endif
             </div>
+        </div>
+        <div class="text-center">
+            <a href="{{ route('website.market.list') }}" class="header-btn btn">View All Requests</a>
         </div>
     </section>
 @endsection

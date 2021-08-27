@@ -77,7 +77,7 @@
         <ul>
             <li><a href="{{ route('home') }}" title="">Home</a></li>
             <li><a href="{{ route('website.about') }}" title="">Our Farmers</a></li>
-            <li><a href="services.html" title="">Market</a></li>
+            <li><a href="{{ route('website.market.list') }}" title="">Market</a></li>
             <li><a href="team.html" title="">Forum</a></li>
             <li><a href="">Companies</li>
             {{-- <li><a href="#" title="">Pages</a>
@@ -96,7 +96,7 @@
     </div><!--mobile-menu end-->
     @yield('content')
 
-    <footer>
+    <footer class="mt-5">
             <div class="top-footer no-bg">
                 <div class="container">
                     <div class="footer-content">
@@ -141,11 +141,6 @@
                             </div>
                             <div class="col-lg-3 col-md-5">
                                 <div class="widget widget-app">
-                                    <h3 class="widget-title">Download the App</h3>
-                                    <ul class="download-btns">
-                                        <li><a href="#" title=""><img src="images/btn1.png" alt=""></a></li>
-                                        <li><a href="#" title=""><img src="images/btn2.png" alt=""></a></li>
-                                    </ul>
                                     <h3>Follow Us Now</h3>
                                     <ul class="social-links">
                                         <li><a href="#" title=""><i class="fab fa-facebook"></i></a></li>

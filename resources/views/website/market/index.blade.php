@@ -82,7 +82,7 @@
 			<div class="col-md-4 col-sm-4">
 				<div class="popular-jobs-container shadow">
 					<div class="popular-jobs-box">
-						<span class="popular-jobs-status shadow">10 Proposals</span>
+						<span class="popular-jobs-status shadow">{{ $popular_request->getProposals()->count() }} Proposals</span>
 						<h4 class="flc-rate mt-3">Ghc {{ number_format($popular_request->amount, 2) }}</h4>
 						<div class="popular-jobs-box">
 							@if(!empty($popular_request->getBusiness->business_logo))
@@ -109,7 +109,7 @@
 			@endforeach
 		</div>
 		<div class="text-center mt-lg-5">
-			<a href="" class="btn btn-primary header-btn">View All Market Requests</a>
+			<a href="{{ route('website.market.list') }}" class="btn btn-primary header-btn">View All Market Requests</a>
 		</div>
 	</div>
 </section>

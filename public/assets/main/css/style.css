@@ -728,6 +728,18 @@ header.ab {
 #middle-col:before{
     background: #d08f31 !important;
 }
+
+.pagination{
+    display: inherit !important;
+}
+
+.page-link{
+    color: #228B22;
+}
+.page-link:hover{
+    box-shadow: 0 10px 90px 0 rgba(0,0,0,.2);
+    color: #228B22;
+}
 .feature-col:hover:before, #middle-col:hover:before {
     opacity: 1;
     visibility: visible;
@@ -863,6 +875,7 @@ header.ab {
     background-image: url(../img/footer-bg.png);
     background-repeat: no-repeat;
     background-position: center 140%;
+    margin-top: 10%;
 }
 .widget-logo > p {
     font-size: 14px;

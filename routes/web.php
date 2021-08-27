@@ -38,6 +38,7 @@ Route::get('forum', [MainWebsiteController::class, 'forum'])->name('website.foru
 
 #----------------------------------------------- WEBSITE MARKET PAGES -------------------------------------------------#
 Route::prefix('market')->group(function() {
+    Route::get('list', [MainWebsiteController::class, 'listMarket'])->name('website.market.list');
     Route::get('/', [MainWebsiteController::class, 'market'])->name('website.market');
     Route::get('details/{request}/{hash}/{slug}', [MainWebsiteController::class, 'marketDetail'])->name('website.market.details');
 

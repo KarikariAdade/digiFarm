@@ -161,7 +161,7 @@
                                 data-feather="user"></i><span>Clients</span></a>
                     </li>
                     <li class="">
-                        <a href="{{ route('business.dashboard.profile.index') }}" class="nav-link"><i
+                        <a href="{{ route('business.dashboard.proposal.index') }}" class="nav-link"><i
                                 data-feather="user"></i><span>Proposals</span></a>
                     </li>
 

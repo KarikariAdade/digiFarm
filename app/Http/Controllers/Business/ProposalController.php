@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Business;
 
+use App\DataTables\Business\ProposalsListDataTable;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ProposalController extends Controller
 {
-    public function index()
+    public function index(ProposalsListDataTable $dataTable)
     {
-        return view('business.proposals.index');
+        return $dataTable->render('business.proposals.index');
     }
 
     public function show()

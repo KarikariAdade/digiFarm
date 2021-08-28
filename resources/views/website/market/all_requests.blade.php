@@ -2,7 +2,7 @@
 @section('content')
     <section class="inner-header-page mb-5">
         <div class="container">
-            <h2>2,472 Requests Found</h2>
+            <h2>{{ $count_market }} Requests Found</h2>
             <p>Some random text can be put here</p>
         </div>
     </section>

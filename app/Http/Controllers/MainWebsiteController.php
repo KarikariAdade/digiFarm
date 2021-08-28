@@ -22,9 +22,11 @@ class MainWebsiteController extends Controller
 
     public function listMarket()
     {
+        $count_market = MarketRequests::query()->where('is_approved', false)->count();
+
         $markets = MarketRequests::query()->where('is_approved', false)->orderBy('id', 'desc')->paginate(20);
 
-        return view('website.market.all_requests', compact('markets'));
+        return view('website.market.all_requests', compact('markets', 'count_market'));
     }
 
     public function market()

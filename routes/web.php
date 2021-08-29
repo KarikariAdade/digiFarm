@@ -112,9 +112,9 @@ Route::prefix('business')->group(function(){
 
            Route::prefix('dashboard/business/proposals')->group(function (){
                Route::get('/', [BusinessProposalController::class, 'index'])->name('business.dashboard.proposal.index');
-               Route::get('details', [BusinessProposalController::class, 'show'])->name('business.dashboard.proposal.show');
-               Route::get('approve', [BusinessProposalController::class, 'approve'])->name('business.dashboard.proposal.approve');
-               Route::get('declined', [BusinessProposalController::class, 'decline'])->name('business.dashboard.proposal.decline');
+               Route::get('details/{proposal}/{hash}', [BusinessProposalController::class, 'show'])->name('business.dashboard.proposal.show');
+               Route::get('approve/{proposal}', [BusinessProposalController::class, 'approve'])->name('business.dashboard.proposal.approve');
+               Route::get('declined/{proposal}', [BusinessProposalController::class, 'decline'])->name('business.dashboard.proposal.decline');
            });
 
        });

@@ -4,10 +4,9 @@
         <div class="card">
             <div class="card-body">
                 <div>
-                    <h3>Requests</h3>
+                    <h3>Received Proposals</h3>
                     <div style="float: right; margin-top: -40px;">
-                        <a href="{{ route('business.dashboard.request.create') }}" class="btn btn-success"><span class="fa fa-plus-circle"></span> Make New Request</a>
-                        <a href="{{ route('business.dashboard.request.card.view') }}" class="btn btn-warning"><span class="fa fa-bars"></span> Switch View</a>
+                        <a href="{{ route('business.dashboard.request.card.view') }}" class="btn btn-warning"><span class="fa fa-bars"></span> Group By Requests</a>
                     </div>
                 </div>
                 <form class="row mt-4">
@@ -23,7 +22,7 @@
                         <label>Status</label>
                         <select name="status" class="form-control select2" id="status">
                             <option value="approved">Approved</option>
-                            <option value="pending">Pending</option>
+                            <option value="declined">Declined</option>
                         </select>
                     </div>
                     <div class="col-md-3 pt-4">

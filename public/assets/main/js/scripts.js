@@ -38,8 +38,11 @@ $(document).ready(function (){
             method: 'POST',
             data: $(this).serialize()
         }).done((response)=>{
-            console.log(response)
-            errorMsg.html('<p class="alert alert-danger"><span class="fa fa-exclamation-circle"></span> '+ response.msg +' </p>');
+            if(response.code == '200'){
+                errorMsg.html('<p class="alert alert-success"><span class="fa fa-exclamation-circle"></span> '+ response.msg +' </p>');
+            }else {
+                errorMsg.html('<p class="alert alert-danger"><span class="fa fa-exclamation-circle"></span> '+ response.msg +' </p>');
+            }
         });
     });
 })

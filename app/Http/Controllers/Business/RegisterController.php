@@ -48,7 +48,7 @@ class RegisterController extends Controller
 
         Mail::to($business['email'])->send(new BusinessAccountVerifyEmail($business));
 
-        return back()->with('success', 'Account created successfully');
+        return $this->getSuccessResponse('Business Account created successfully. Please verify your email.');
 
     }
 

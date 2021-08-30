@@ -15,7 +15,7 @@
                  <div class="author-box-name">
                      <p class="f-bold pt-3">{{ auth()->user()->name }} {!! auth()->user()->is_approved != false ? '<span class="fa fa-check-circle text-success"></span>' : null !!}</p>
                  </div>
-                 <div class="f-bold">{{ auth()->user()->getBusinessType->name }}</div>
+                 <div class="f-bold">{{ auth()->user()->getBusinessType->name ?? null }}</div>
              </div>
          </div>
          <div class="row mt-5 mb-5">
@@ -73,17 +73,17 @@
                          <i class="fab fa-instagram"></i>
                      </a>
                      @endif
-                     @if($socials->twitter)
+                     @if(!empty($socials->twitter))
                      <a href="{{ $socials->twitter }}" class="btn btn-social-icon mr-1 btn-twitter">
                          <i class="fab fa-twitter"></i>
                      </a>
                      @endif
-                     @if($socials->linkedin)
+                     @if(!empty($socials->linkedin))
                      <a href="{{ $socials->linkedin }}" class="btn btn-social-icon mr-1 btn-linkedin">
                          <i class="fab fa-linkedin-in"></i>
                      </a>
                      @endif
-                     @if($socials->facebook)
+                     @if(!empty($socials->facebook))
                      <a href="{{ $socials->facebook }}" class="btn btn-social-icon mr-1 btn-facebook">
                          <i class="fab fa-facebook-f"></i>
                      </a>
@@ -171,30 +171,43 @@
                                      <div class="col-md-4">
                                          <p class="f-bold">Primary Email <br><span class="text-muted">{{ auth()->user()->email }}</span></p>
                                      </div>
+                                     @if(auth('business')->user()->secondary_email)
                                      <div class="col-md-4">
                                          <p class="f-bold">Secondary Email <br><span class="text-muted">{{ auth()->user()->secondary_email }}</span></p>
                                      </div>
+                                     @endif
+                                     @if(auth('business')->user()->primary_phone)
                                      <div class="col-md-4">
                                          <p class="f-bold">Primary Phone <br><span class="text-muted">{{ auth()->user()->primary_phone }}</span></p>
                                      </div>
+                                     @endif
+                                     @if(auth('business')->user()->secondary_phone)
                                      <div class="col-md-4">
                                          <p class="f-bold">Secondary Phone <br><span class="text-muted">{{ auth()->user()->secondary_phone }}</span></p>
                                      </div>
+                                     @endif
+                                     @if(auth()->user()->getBusinessSize)
                                      <div class="col-md-4">
-                                         <p class="f-bold">Business Size <br><span class="text-muted">{{ auth()->user()->getBusinessSize->size }}</span></p>
+                                         <p class="f-bold">Business Size <br><span class="text-muted">{{ auth()->user()->getBusinessSize->size ?? null }}</span></p>
                                      </div>
+                                     @endif
+                                     @if(auth('business')->user()->tax_number)
                                      <div class="col-md-4">
                                          <p class="f-bold">Tax Number <br><span class="text-muted">{{ auth()->user()->tax_number }}</span></p>
                                      </div>
+                                     @endif
+                                     @if(auth()->user()->business_document)
                                      <div class="col-md-6 mt-3">
-                                         <a class="btn btn-warning text-white" href="">Download Business Certificate</a>
+                                         <a class="btn btn-warning text-white" href="">View Business Certificate</a>
                                      </div>
                                      <div class="col-md-6 mt-3">
                                          <a href="" class="btn btn-success">Download Business Certificate</a>
                                      </div>
+                                     @endif
                                  </div>
                              </div>
                       </div>
+                            @if(auth('business')->user()->description)
                             <div class="row">
                                 <div class="col-md-12">
                                     <div>
@@ -203,6 +216,7 @@
                                     {!! auth()->user()->description !!}
                                 </div>
                             </div>
+                            @endif
                   </div>
                   <div class="tab-pane fade" id="profile3" role="tabpanel" aria-labelledby="profile-tab3">
                     <div class="row">

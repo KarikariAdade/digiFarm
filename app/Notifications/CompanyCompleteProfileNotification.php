@@ -46,7 +46,7 @@ class CompanyCompleteProfileNotification extends Notification implements ShouldQ
         return (new MailMessage)
                     ->subject('No-Reply: Profile Setup Complete')
                     ->line($first_message. ', Your account profile set up is complete')
-                    ->line('You can now add and approve requests directly from you dashboard')
+                    ->line('You will receive an email when your account is verified by digiFarm')
                     ->line('Kindly click the button to visit your Dashboard')
                     ->action('Dashboard', route('business.dashboard'))
                     ->line('Thank you for using digiFarm!');

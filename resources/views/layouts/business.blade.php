@@ -139,7 +139,7 @@
                         <img alt="{{ auth()->user()->name.' logo' }}" src="{{ asset(auth()->user()->business_logo) }}" class="header-logo user-img-radious-style"/>
                     </a>
                     <p class="sidebar-brand-name">{{ auth()->user()->name }} <br>
-                        <small>{{ auth()->user()->getBusinessType->name }}</small>
+                        <small>{{ auth()->user()->getBusinessType->name ?? null }}</small>
                     </p>
                 </div>
                 <ul class="sidebar-menu">

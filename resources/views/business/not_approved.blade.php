@@ -20,7 +20,7 @@
                     <h1>404</h1>
                     <div class="page-description">
                         The page you were looking for could not be found. Please make sure your account has been approved before <br>
-                        accessing the requested page. If your account is approved. Please contact the administrator here
+                        accessing the requested page. If your account is approved. Please contact the administrator.
                     </div>
                     <div class="page-search">
                         <div class="mt-3">

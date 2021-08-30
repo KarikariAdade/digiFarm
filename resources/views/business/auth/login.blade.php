@@ -27,9 +27,9 @@
                     <div class="col-md-6">
                         <label class="custom-label">Country</label>
                         <select class="form-control select2" id="country" name="country">
+                            <option></option>
                             @foreach($countries as $country)
-                                <option
-                                    value="{{ $country->id }}" {{ old('country') == $country->id ? 'selected' : null }}>{{ $country->name }}</option>
+                                <option value="{{ $country->id }}" {{ old('country') == $country->id ? 'selected' : null }}>{{ $country->name }}</option>
                             @endforeach
                         </select>
                     </div>

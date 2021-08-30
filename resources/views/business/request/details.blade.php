@@ -12,7 +12,7 @@
                             <table class="table table-hover table-bordered">
                                 <tr><td style="width: 200px;"><b>TITLE / NAME</b></td><td class="f-bold">{{ $request->title }}</td></tr>
                                 <tr><td style="width: 200px;"><b>REQUEST TYPE</b></td><td class="f-bold">{{ ucwords(str_replace('_', ' ', $request->request_type)) }}</td></tr>
-                                <tr><td style="width: 200px;"><b>PRODUCT TYPE</b></td><td class="f-bold">{{ $request->product_type }}</td></tr>
+                                <tr><td style="width: 200px;"><b>PRODUCT TYPE</b></td><td class="f-bold">{{ ucwords(str_replace('_', ' ', $request->product_type)) }}</td></tr>
                                 <tr><td style="width: 200px;"><b>QUANTITY</b></td><td class="f-bold">{{ $request->quantity }}</td></tr>
                             </table>
                         </div>

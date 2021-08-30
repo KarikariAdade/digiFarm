@@ -30,7 +30,7 @@
             <div class="col-md-4 bl-1 br-gary">
                 <div class="right-side-detail">
                     <ul>
-                        <li><span class="detail-info">Product Type</span>{{ ucwords($request->product_type)  }}</li>
+                        <li><span class="detail-info">Product Type</span>{{ ucwords(str_replace('_', ' ', $request->product_type))  }}</li>
                         <li><span class="detail-info">Request Type</span>{{ ucwords(str_replace('_', ' ', $request->request_type)) }}</li>
                         <li><span class="detail-info">Quantity</span>{{ $request->quantity }}</li>
                         <li><span class="detail-info">Amount</span> {{ 'GHS '. number_format($request->amount, 2) }}</li>

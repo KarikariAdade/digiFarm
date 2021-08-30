@@ -6,7 +6,7 @@
                 <div>
                     <h3>Farms</h3>
                     <div style="float: right; margin-top: -40px;">
-                        <a href="{{ route('business.dashboard.request.create') }}" class="btn btn-success"><span class="fa fa-plus-circle"></span> Add New Farm</a>
+                        <a href="{{ route('farmer.dashboard.farm.create') }}" class="btn btn-success"><span class="fa fa-plus-circle"></span> Add New Farm</a>
                     </div>
                 </div>
                 <div class="row">

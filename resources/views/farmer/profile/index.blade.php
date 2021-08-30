@@ -96,6 +96,7 @@
                               </span>
                                 </p>
                             @endif
+                            @if(auth()->user()->phone)
                           <p class="clearfix">
                             <span class="float-left">
                               Phone
@@ -104,6 +105,8 @@
                               {{ auth()->user()->phone }}
                           </span>
                       </p>
+                                @endif
+
                       <p class="clearfix">
                         <span class="float-left">
                           Mail
@@ -112,6 +115,7 @@
                           {{ auth()->user()->email }}
                       </span>
                   </p>
+                                @if(auth()->user()->getCountry)
                   <p class="clearfix">
                     <span class="float-left">
                       Country
@@ -120,6 +124,8 @@
                       <a href="#">{{ auth()->user()->getCountry->name}}</a>
                   </span>
               </p>
+                                @endif
+                                @if(auth()->user()->getRegion)
               <p class="clearfix">
                 <span class="float-left">
                   Region
@@ -128,6 +134,8 @@
                   <a href="#">{{ auth()->user()->getRegion->name }}</a>
               </span>
           </p>
+                                @endif
+                                @if(auth()->user()->city)
                                 <p class="clearfix">
                 <span class="float-left">
                   City
@@ -136,6 +144,8 @@
                   <a href="#">{{ auth()->user()->city }}</a>
               </span>
                                 </p>
+                                @endif
+                                @if(auth()->user()->address)
                                 <p class="clearfix">
                 <span class="float-left">
                   Address
@@ -144,6 +154,7 @@
                   <a href="#">{{ auth()->user()->address }}</a>
               </span>
                                 </p>
+                                    @endif
       </div>
   </div>
 </div>

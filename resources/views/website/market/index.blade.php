@@ -72,6 +72,7 @@
 		@endforeach
 	</div>
 </section>
+@if($popular_requests->count() > 0)
 <section class="mb-5 mt-5" style="margin-bottom: 8% !important;">
 	<div class="container">
 		<div class="text-center mb-lg-5 mt-5">
@@ -97,7 +98,7 @@
 						</div>
 						<div class="popular-jobs-box-extra">
 							<ul>
-								<li>{{ ucwords($popular_request->product_type) }}</li>
+								<li>{{ ucwords(str_replace('_', ' ', $popular_request->product_type)) }}</li>
 								<li>{{ ucwords(str_replace('_', ' ', $popular_request->request_type)) }}</li>
 							</ul>
 							{{--                                <div>{!! $popular_request->limit() !!}</div>--}}
@@ -113,6 +114,7 @@
 		</div>
 	</div>
 </section>
+@endif
 <div class="forum-section">
     <div class="container">
         <div class="text-center pt-5 pb-5">

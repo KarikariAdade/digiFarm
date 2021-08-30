@@ -104,7 +104,7 @@
                         <a href="{{ route('business.dashboard.profile.index') }}" class="dropdown-item has-icon">
                             <i class="far fa-user"></i> Profile
                         </a>
-                        <a href="{{ route('business.dashboard.request.index') }}" class="dropdown-item has-icon">
+                        <a href="{{ route('farmer.dashboard.proposal.index') }}" class="dropdown-item has-icon">
                             <i class="fas fa-briefcase"></i>
                             Proposals
                         </a>
@@ -157,7 +157,7 @@
                                 data-feather="user"></i><span>Clients</span></a>
                     </li>
                     <li class="">
-                        <a href="" class="nav-link"><i
+                        <a href="{{ route('farmer.dashboard.proposal.index') }}" class="nav-link"><i
                                 data-feather="user"></i><span>Proposals</span></a>
                     </li>
 

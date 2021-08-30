@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class RequestProposal extends Model
 {
@@ -24,5 +25,10 @@ class RequestProposal extends Model
     public function getUser()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getBusinessDashboardUrl()
+    {
+        return route('business.dashboard.proposal.show', [$this->id, Str::slug($this->getRequest->title)]);
     }
 }

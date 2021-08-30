@@ -58,7 +58,7 @@ class LoginController extends Controller
                 }
             }
 
-                return redirect()->intended();
+                return redirect()->intended(route('business.dashboard'));
             }
 
         return back()->with('error', 'Invalid Email Address or Password');

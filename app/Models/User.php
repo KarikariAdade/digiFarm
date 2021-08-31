@@ -58,4 +58,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Farm::class, 'user_id');
     }
 
+    public function getClients()
+    {
+        return $this->hasMany(Clients::class, 'user_id');
+    }
+
 }

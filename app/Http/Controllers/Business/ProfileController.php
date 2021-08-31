@@ -17,6 +17,12 @@ use Illuminate\Support\Str;
 
 class ProfileController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:business');
+    }
+
     public function index()
     {
         $socials = BusinessSocials::query()->where('business_id', auth('business')->user()->id)->first();

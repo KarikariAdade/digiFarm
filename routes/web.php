@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Business\ClientsController as BusinessClientsController;
 use App\Http\Controllers\Business\DashboardController;
 use App\Http\Controllers\Business\LoginController;
 use App\Http\Controllers\Business\MarketRequestsController;
@@ -110,11 +111,22 @@ Route::prefix('business')->group(function(){
 
            #-------------------------------------- BUSINESS PROPOSAL START --------------------------------------------#
 
-           Route::prefix('dashboard/business/proposals')->group(function (){
+           Route::prefix('dashboard/proposals')->group(function (){
                Route::get('/', [BusinessProposalController::class, 'index'])->name('business.dashboard.proposal.index');
                Route::get('details/{proposal}/{hash}', [BusinessProposalController::class, 'show'])->name('business.dashboard.proposal.show');
                Route::get('approve/{proposal}', [BusinessProposalController::class, 'approve'])->name('business.dashboard.proposal.approve');
                Route::get('declined/{proposal}', [BusinessProposalController::class, 'decline'])->name('business.dashboard.proposal.decline');
+               Route::get('view/farm/{farm}', [BusinessProposalController::class, 'viewFarm'])->name('business.dashboard.proposal.view.farm');
+           });
+
+           #------------------------------------- BUSINESS PROPOSAL END -----------------------------------------------#
+
+
+           #------------------------------------- BUSINESS CLIENTS START ----------------------------------------------#
+
+           Route::prefix('dashboard/clients')->group(function () {
+               Route::get('/', [BusinessClientsController::class, 'index'])->name('business.dashboard.client.index');
+               Route::get('details/{client}', [BusinessClientsController::class, 'details'])->name('business.dashboard.client.detail');
            });
 
        });

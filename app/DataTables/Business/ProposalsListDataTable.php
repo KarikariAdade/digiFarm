@@ -39,7 +39,7 @@ class ProposalsListDataTable extends DataTable
                 if ($query->status === 'approved'){
                     return '<span class="badge shadow badge-success">Approved</span>';
                 }
-                if ($query->status === 'Declined'){
+                if ($query->status === 'declined'){
                     return '<span class="badge shadow-warning badge-danger">Declined</span>';
                 }
                 return '<span class="badge shadow-info badge-info">Pending</span>';
@@ -52,10 +52,10 @@ class ProposalsListDataTable extends DataTable
                 $output = '<div class="btn" style="display: inline-flex;">
                         <a href="'.$query->getBusinessDashboardUrl().'" title="Proposal Details" class="btn table-btn btn-icon btn-primary btn-sm shadow-primary p-0 mr-2"><i class="fa mt-2 fa-eye"></i></a>
                         ';
-                if (empty($query->status)){
-                    $output .= '<a href="'.route('business.dashboard.proposal.approve', $query->id).'" title="Approve Proposal" class="btn text-white table-btn btn-icon btn-success btn-sm shadow-success p-0 mr-2" target="_blank"><i class="fa mt-2 fa-stamp"></i></a>';
+                if ($query->status === 'pending'){
+                    $output .= '<a href="'.route('business.dashboard.proposal.approve', $query->id).'" title="Approve Proposal" class="btn text-white table-btn btn-icon btn-success btn-sm shadow-success p-0 mr-2"><i class="fa mt-2 fa-stamp"></i></a>';
                 }
-                if (empty($query->status)){
+                if ($query->status === 'pending'){
                     $output .= '<a href="'. route('business.dashboard.proposal.decline', $query->id) .'" title="Decline Proposal" class="btn table-btn shadow-danger btn-danger p-0"><i class="fa mt-2 fa-times-circle"></i></a>
                        ';
                 }
@@ -73,7 +73,42 @@ class ProposalsListDataTable extends DataTable
      */
     public function query(RequestProposal $model)
     {
-        return $model->newQuery()->where('business_id', auth('business')->user()->id)->orderByDesc('id');
+        $query = $model->newQuery()->where('business_id', auth('business')->user()->id)->orderByDesc('id');
+        $start_date = $this->request()->get('from');
+        $end_date = $this->request()->get('to');
+        $status = $this->request()->get('status');
+
+        if (!empty($start_date) && !empty($end_date) && !empty($status)) {
+            if ($status === 'approved'){
+                return $query->where('status', 'approved')->whereBetween('created_at', [$start_date, $end_date]);
+            }
+
+            if ($status === 'declined'){
+                return $query->where('status', 'declined')->whereBetween('created_at', [$start_date, $end_date]);
+            }
+
+            return $query->where('status', 'pending')->whereBetween('created_at', [$start_date, $end_date]);
+        }
+
+        if(empty($status) && !empty($start_date) && !empty($end_date)) {
+            return $query->whereBetween('created_at', [$start_date, $end_date]);
+        }
+
+        if(!empty($status) && empty($start_date) && empty($end_date)) {
+            if ($status === 'approved'){
+                return $query->where('status', 'approved');
+            }
+
+            if ($status === 'declined'){
+                return $query->where('status', 'declined');
+            }
+
+            if ($status === 'pending'){
+                return $query->where('status', 'pending');
+            }
+        }
+
+        return $query;
     }
 
     /**

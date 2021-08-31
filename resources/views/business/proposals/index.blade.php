@@ -23,6 +23,7 @@
                         <select name="status" class="form-control select2" id="status">
                             <option value="approved">Approved</option>
                             <option value="declined">Declined</option>
+                            <option value="pending">Pending</option>
                         </select>
                     </div>
                     <div class="col-md-3 pt-4">

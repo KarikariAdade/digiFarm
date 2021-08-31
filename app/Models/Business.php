@@ -56,4 +56,9 @@ class Business extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(BusinessMarketRequest::class, 'business_id');
     }
 
+    public function getClients()
+    {
+        return $this->hasMany(Clients::class, 'business_id');
+    }
+
 }

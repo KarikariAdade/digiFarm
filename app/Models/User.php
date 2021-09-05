@@ -63,4 +63,9 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Clients::class, 'user_id');
     }
 
+    public function getProposals()
+    {
+        return $this->hasMany(RequestProposal::class, 'user_id');
+    }
+
 }

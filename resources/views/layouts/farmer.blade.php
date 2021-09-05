@@ -149,18 +149,23 @@
                         </a>
                     </li>
                     <li class="">
-                        <a href="" class="nav-link"><i
-                                data-feather="briefcase"></i><span>Requests</span></a>
-                    </li>
-                    <li class="">
-                        <a href="" class="nav-link"><i
+                        <a href="{{ route('farmer.dashboard.client.index') }}" class="nav-link"><i
                                 data-feather="user"></i><span>Clients</span></a>
                     </li>
                     <li class="">
                         <a href="{{ route('farmer.dashboard.proposal.index') }}" class="nav-link"><i
                                 data-feather="user"></i><span>Proposals</span></a>
                     </li>
+                    <li class="">
+                        <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                            <i data-feather="power"></i>
+                            Logout
+                        </a>
 
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </li>
 
                 </ul>
             </aside>

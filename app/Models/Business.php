@@ -53,12 +53,22 @@ class Business extends Authenticatable implements MustVerifyEmail
 
     public function getMarketRequests()
     {
-        return $this->hasMany(BusinessMarketRequest::class, 'business_id');
+        return $this->hasMany(MarketRequests::class, 'business_id');
     }
 
     public function getClients()
     {
         return $this->hasMany(Clients::class, 'business_id');
+    }
+
+    public function getProposals()
+    {
+        return $this->hasMany(RequestProposal::class, 'business_id');
+    }
+
+    public function getApprovedRequests()
+    {
+        return MarketRequests::query()->where('is_approved', true)->where('business_id', $this->id)->count();
     }
 
 }

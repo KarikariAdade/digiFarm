@@ -14,7 +14,9 @@ class DashboardController extends Controller
 
     public function dashboard()
     {
-        return view('business.dashboard');
+        $user = auth('business')->user();
+
+        return view('business.dashboard', compact('user'));
     }
 
     public function notApproved()

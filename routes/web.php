@@ -7,6 +7,7 @@ use App\Http\Controllers\Business\MarketRequestsController;
 use App\Http\Controllers\Business\ProfileController;
 use App\Http\Controllers\Business\RegisterController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Farmer\ClientController;
 use App\Http\Controllers\Farmer\FarmController;
 use App\Http\Controllers\Farmer\ProposalController;
 use App\Http\Controllers\Business\ProposalController as BusinessProposalController;
@@ -117,6 +118,8 @@ Route::prefix('business')->group(function(){
                Route::get('approve/{proposal}', [BusinessProposalController::class, 'approve'])->name('business.dashboard.proposal.approve');
                Route::get('declined/{proposal}', [BusinessProposalController::class, 'decline'])->name('business.dashboard.proposal.decline');
                Route::get('view/farm/{farm}', [BusinessProposalController::class, 'viewFarm'])->name('business.dashboard.proposal.view.farm');
+               Route::get('group', [BusinessProposalController::class, 'group'])->name('business.dashboard.proposals.group');
+               Route::get('group/{request}/details', [BusinessProposalController::class, 'groupDetail'])->name('business.dashboard.proposals.group.detail');
            });
 
            #------------------------------------- BUSINESS PROPOSAL END -----------------------------------------------#
@@ -175,9 +178,17 @@ Route::group(['middleware' => 'verified', 'prefix' => 'farmer'], function (){
 
     #----------------------------------------------- FARMER FARMS END -------------------------------------------------#
 
+    #------------------------------------------------ FARMER PROPOSAL STARTS ------------------------------------------#
 
     Route::prefix('proposals')->group(function () {
         Route::get('/', [ProposalController::class, 'index'])->name('farmer.dashboard.proposal.index');
         Route::get('details', [ProposalController::class, 'show'])->name('farmer.dashboard.proposal.show');
+    });
+
+    #------------------------------------------------ FARMER PROPOSAL ENDS --------------------------------------------#
+
+    Route::prefix('clients')->group(function () {
+        Route::get('/', [ClientController::class, 'index'])->name('farmer.dashboard.client.index');
+        Route::get('{client}/details', [ClientController::class, 'details'])->name('farmer.dashboard.client.detail');
     });
 });

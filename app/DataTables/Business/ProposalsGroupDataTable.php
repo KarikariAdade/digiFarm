@@ -2,7 +2,10 @@
 
 namespace App\DataTables\Business;
 
-use App\Models\Business/ProposalsGroup;
+use App\Models\MarketRequests;
+use App\Models\RequestProposal;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Yajra\DataTables\Html\Button;
 use Yajra\DataTables\Html\Column;
 use Yajra\DataTables\Html\Editor\Editor;
@@ -21,18 +24,43 @@ class ProposalsGroupDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->addColumn('action', 'business/proposalsgroup.action');
+            ->editColumn('proposals', function ($query){
+                return $this->getProposal($query->id);
+            })
+            ->editColumn('is_approved', function ($query) {
+                if ($query->is_approved != false){
+                    return '<span class="badge shadow badge-success">Approved</span>';
+                }
+                return '<span class="badge shadow-warning badge-warning">Pending</span>';
+            })
+            ->editColumn('request_type', function ($query) {
+                return ucwords(str_replace('_', ' ', $query->request_type));
+            })
+            ->editColumn('due_date', function ($query){
+                return Carbon::parse($query->due_date)->format('l M d, Y');
+            })
+            ->editColumn('created_at', function ($query) {
+                return Carbon::parse($query->created_at)->format('l M d, Y');
+            })
+            ->addColumn('action', function ($query){
+                return '<a href="'.route('business.dashboard.proposals.group.detail', $query->id).'" title="Proposal Details" class="btn table-btn btn-icon btn-primary btn-sm shadow-primary p-0 mr-2"><i class="fa mt-2 fa-eye"></i></a>
+                        ';
+            })->rawColumns(['action', 'is_approved']);
     }
 
     /**
      * Get query source of dataTable.
      *
-     * @param \App\Models\Business/ProposalsGroup $model
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @param MarketRequests $model
+     * @return Builder
      */
-    public function query(Business/ProposalsGroup $model)
+    public function query(MarketRequests $model)
     {
-        return $model->newQuery();
+        $user = auth('business')->user()->id;
+
+        return $model->newQuery()->whereHas('getProposals', function ($query) use ($user){
+            $query->where('business_id', $user);
+        });
     }
 
     /**
@@ -43,18 +71,11 @@ class ProposalsGroupDataTable extends DataTable
     public function html()
     {
         return $this->builder()
-                    ->setTableId('business/proposalsgroup-table')
+                    ->setTableId('dataTable')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     ->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->buttons(
-                        Button::make('create'),
-                        Button::make('export'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    );
+                    ->orderBy(1);
     }
 
     /**
@@ -65,15 +86,18 @@ class ProposalsGroupDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(60)
-                  ->addClass('text-center'),
-            Column::make('id'),
-            Column::make('add your columns'),
+            Column::make('title'),
+            Column::make('request_type'),
+            Column::make('product_type'),
+            Column::make('due_date')->width(100),
+            Column::make('is_approved')->title('Status'),
+            Column::computed('proposals'),
             Column::make('created_at'),
-            Column::make('updated_at'),
+            Column::computed('action')
+                ->exportable(false)
+                ->printable(false)
+                ->width(60)
+                ->addClass('text-center'),
         ];
     }
 
@@ -84,6 +108,12 @@ class ProposalsGroupDataTable extends DataTable
      */
     protected function filename()
     {
-        return 'Business/ProposalsGroup_' . date('YmdHis');
+        return 'ProposalsGroup_' . date('YmdHis');
+    }
+
+    private function getProposal($id){
+        return RequestProposal::query()
+            ->where('business_id', auth('business')->user()->id)
+            ->where('request_id', $id)->count();
     }
 }

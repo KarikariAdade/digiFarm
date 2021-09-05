@@ -93,15 +93,15 @@
     </div>
 </div>
 </div>
-<div class="forum-section">
-    <div class="container">
-        <div class="text-center pt-5 pb-5">
-            <h2>Farm Related Questions Answered!</h2>
-            <p>Real people are using momo to quickly and effectively run their online business. With our full suite of marketing, sales, and creation.</p>
-            <a href="" class="btn btn-primary header-btn">Visit Our Forum</a>
-        </div>
-    </div>
-</div>
+{{--<div class="forum-section">--}}
+{{--    <div class="container">--}}
+{{--        <div class="text-center pt-5 pb-5">--}}
+{{--            <h2>Farm Related Questions Answered!</h2>--}}
+{{--            <p>Real people are using momo to quickly and effectively run their online business. With our full suite of marketing, sales, and creation.</p>--}}
+{{--            <a href="" class="btn btn-primary header-btn">Visit Our Forum</a>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
 @endsection
 
 

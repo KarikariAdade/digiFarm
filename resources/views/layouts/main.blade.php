@@ -26,7 +26,7 @@
                         <li><a href="{{ route('website.about') }}">About</a></li>
                         <li><a href="{{ route('website.farmers') }}" title="">Our Farmers</a></li>
                         <li><a href="{{ route('website.market') }}" title="">Market</a></li>
-                        <li><a href="{{ route('website.forum') }}" title="">Forum</a></li>
+{{--                        <li><a href="{{ route('website.forum') }}" title="">Forum</a></li>--}}
                         <li><a href="">Companies</a></li>
 {{--                        </li>--}}
                         {{-- <li><a href="#" title="">Pages</a>
@@ -78,7 +78,7 @@
             <li><a href="{{ route('home') }}" title="">Home</a></li>
             <li><a href="{{ route('website.about') }}" title="">Our Farmers</a></li>
             <li><a href="{{ route('website.market.list') }}" title="">Market</a></li>
-            <li><a href="team.html" title="">Forum</a></li>
+{{--            <li><a href="team.html" title="">Forum</a></li>--}}
             <li><a href="">Companies</li>
             {{-- <li><a href="#" title="">Pages</a>
                 <ul>

@@ -6,7 +6,7 @@
                 <div>
                     <h3>Received Proposals</h3>
                     <div style="float: right; margin-top: -40px;">
-                        <a href="{{ route('business.dashboard.request.card.view') }}" class="btn btn-warning"><span class="fa fa-bars"></span> Group By Requests</a>
+                        <a href="{{ route('business.dashboard.proposals.group') }}" class="btn btn-warning"><span class="fa fa-bars"></span> Group By Requests</a>
                     </div>
                 </div>
                 <form class="row mt-4">

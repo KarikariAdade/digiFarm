@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Business;
 
+use App\DataTables\Business\ListRequestProposalsDatatable;
 use App\DataTables\Business\ProposalFarmerFarmsDataTable;
+use App\DataTables\Business\ProposalsGroupDataTable;
 use App\DataTables\Business\ProposalsListDataTable;
 use App\Http\Controllers\Controller;
 use App\Jobs\ProposalAcceptJob;
 use App\Models\Clients;
 use App\Models\Farm;
+use App\Models\MarketRequests;
 use App\Models\RequestProposal;
 use App\Models\User;
 use App\Notifications\ProposalAcceptNotification;
@@ -78,5 +81,17 @@ class ProposalController extends Controller
     public function viewFarm(Farm $farm)
     {
         return view('business.proposals.farm', compact('farm'));
+    }
+
+
+    public function group(ProposalsGroupDataTable $dataTable)
+    {
+        return $dataTable->render('business.proposals.group');
+    }
+
+
+    public function groupDetail(MarketRequests $request, ListRequestProposalsDatatable $datatable)
+    {
+        return $datatable->with('id', $request->id)->render('business.proposals.group_detail', compact('request'));
     }
 }

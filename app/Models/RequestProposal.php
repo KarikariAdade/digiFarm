@@ -31,4 +31,6 @@ class RequestProposal extends Model
     {
         return route('business.dashboard.proposal.show', [$this->id, Str::slug($this->getRequest->title)]);
     }
+
+
 }

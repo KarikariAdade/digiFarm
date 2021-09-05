@@ -164,7 +164,10 @@
                         <a href="{{ route('business.dashboard.proposal.index') }}" class="nav-link"><i
                                 data-feather="user"></i><span>Proposals</span></a>
                     </li>
-
+                    <li class="">
+                        <a href="{{ route('business.auth.logout') }}" class="nav-link"><i
+                                data-feather="power"></i><span>Logout</span></a>
+                    </li>
 
                 </ul>
             </aside>

@@ -15,15 +15,16 @@
                 <div class="row">
                     <div class="col-md-4 form-group">
                         <label>Request Title / Name <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="title" placeholder="Request (Name of Item Needed) *">
+                        <input type="text" class="form-control" name="title" placeholder="Request (Name of Item Needed) *" value="{{ old('title') }}">
                     </div>
                     <div class="col-md-4 form-group">
                         <label>Due Date (Expected date for products) <span class="text-danger">*</span></label>
-                        <input type="date" class="form-control" name="due_date">
+                        <input type="date" class="form-control" name="due_date" value="{{ old('due_date') }}">
                     </div>
                     <div class="col-md-4 form-group">
                         <label>Request Type <span class="text-danger">*</span></label>
                         <select class="form-control select2" name="request_type">
+                            <option value="{{ old('request_type') }}">{{ old('request_type') }}</option>
                             <option value="produced_goods">Produced Goods</option>
                             <option value="pending_production">Pending Production</option>
                         </select>
@@ -31,7 +32,7 @@
                     <div class="col-md-4 form-group">
                         <label>Product Type <span class="text-danger">*</span></label>
                         <select class="form-control select2" name="product_type">
-                            <option></option>
+                            <option value="{{ old('product_type') }}">{{ old('product_type') }}</option>
                             <option value="crop_product">Crop Product</option>
                             <option value="animal_product">Animal Product</option>
                             <option value="both">Both</option>
@@ -39,15 +40,15 @@
                     </div>
                     <div class="col-md-4 form-group">
                         <label>Required Quantity <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" name="quantity" placeholder="10 bags / 300 lbs etc">
+                        <input type="text" class="form-control" name="quantity" placeholder="10 bags / 300 lbs etc" value="{{ old('quantity') }}">
                     </div>
-                    <div class="col-md-4 form-group">
-                        <label>Amount (Cash Value) <span class="text-danger">*</span></label>
-                        <input type="number" class="form-control" name="amount">
-                    </div>
+{{--                    <div class="col-md-4 form-group">--}}
+{{--                        <label>Amount (Cash Value) <span class="text-danger">*</span></label>--}}
+{{--                        <input type="number" class="form-control" name="amount">--}}
+{{--                    </div>--}}
                     <div class="col-md-12">
                         <label>Description / Others</label>
-                        <textarea name="description" class="form-control" id="description"></textarea>
+                        <textarea name="description" class="form-control" id="description"> {{ old('description') }}</textarea>
                     </div>
                 </div>
                 </form>

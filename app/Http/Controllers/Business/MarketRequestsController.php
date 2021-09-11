@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Business;
 
 use App\DataTables\Business\BusinessMarketRequestDatatable;
+use App\DataTables\Business\ListRequestProposalsDatatable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BusinessMarketRequest;
 use App\Models\MarketRequests;
@@ -52,12 +53,13 @@ class MarketRequestsController extends Controller
 
     }
 
-
-    public function show(MarketRequests $request)
+//    public function groupDetail(MarketRequests $request, ListRequestProposalsDatatable $datatable)
+//    {
+//        return $datatable->with('id', $request->id)->render('business.proposals.group_detail', compact('request'));
+//    }
+    public function show(MarketRequests $request, ListRequestProposalsDatatable $datatable)
     {
-        // TODO:: Add Request Proposal by clients here
-
-        return view('business.request.details', compact('request'));
+        return $datatable->with('id', $request->id)->render('business.request.details', compact('request'));
     }
 
 

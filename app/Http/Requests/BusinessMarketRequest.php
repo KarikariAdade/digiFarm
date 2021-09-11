@@ -29,7 +29,6 @@ class BusinessMarketRequest extends FormRequest
             'request_type' => 'required',
             'product_type' => 'required',
             'quantity' => 'required',
-            'amount' => 'required',
             'description' => 'nullable'
         ];
     }

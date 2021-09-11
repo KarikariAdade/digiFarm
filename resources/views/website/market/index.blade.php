@@ -84,7 +84,7 @@
 				<div class="popular-jobs-container shadow">
 					<div class="popular-jobs-box">
 						<span class="popular-jobs-status shadow">{{ $popular_request->getProposals()->count() }} Proposals</span>
-						<h4 class="flc-rate mt-3">Ghc {{ number_format($popular_request->amount, 2) }}</h4>
+{{--						<h4 class="flc-rate mt-3">Ghc {{ number_format($popular_request->amount, 2) }}</h4>--}}
 						<div class="popular-jobs-box">
 							@if(!empty($popular_request->getBusiness->business_logo))
 							<img class="img-fluid shadow" src="{{ asset($popular_request->getBusiness->business_logo) }}">

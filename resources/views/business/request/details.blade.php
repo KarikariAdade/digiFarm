@@ -20,7 +20,7 @@
                     <div class="col-md-6">
                         <div class="table-responsive">
                             <table class="table table-hover table-bordered">
-                                <tr><td style="width: 200px;"><b>AMOUNT</b></td><td class="f-bold">GHC {{ number_format($request->amount, 2) }}</td></tr>
+{{--                                <tr><td style="width: 200px;"><b>AMOUNT</b></td><td class="f-bold">GHC {{ number_format($request->amount, 2) }}</td></tr>--}}
                                 <tr><td style="width: 200px;"><b>DUE DATE</b></td><td class="f-bold">{{ date('l M d, Y', strtotime($request->due_date)) }}</td></tr>
                                 <tr><td style="width: 200px;"><b>STATUS</b></td><td class="f-bold">{!! $request->is_approved != false ? '<span class="badge badge-success shadow-success">Approved</span>' : '<span class="badge badge-warning shadow-warning">Pending</span>' !!}</td></tr>
                             </table>
@@ -46,13 +46,25 @@
                 </div>
             </div>
         </div>
-        <div class="card card-success">
-            <div class="text-center mt-3 mb-3">
-                <h3>Client Proposals</h3>
-            </div>
+    </section>
+    <section>
+        <div class="card">
             <div class="card-body">
-                <h1>Proposals go here</h1>
+                <div>
+                    <h3>Received Proposals</h3>
+                    <div style="float: right; margin-top: -40px;">
+                        <a href="{{ route('business.dashboard.proposal.index') }}" class="btn btn-warning"><span class="fa fa-bars"></span> List Proposals</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 table-responsive p-3">
+                        {!! $dataTable->table(['class' => 'table table-hover text-center table-striped']) !!}
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 @endsection
+@push('custom-js')
+    {!! $dataTable->scripts() !!}
+@endpush

@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="left-side-container">
                     <div class="freelance-image">
-                        @if(!empty($popular_request->getBusiness->business_logo))
+                        @if(!empty($request->getBusiness->business_logo))
                         <a href="">
                             <img src="{{ asset($request->getBusiness->business_logo) }}" class="img-responsive" alt="">
                         </a>
@@ -33,7 +33,7 @@
                         <li><span class="detail-info">Product Type</span>{{ ucwords(str_replace('_', ' ', $request->product_type))  }}</li>
                         <li><span class="detail-info">Request Type</span>{{ ucwords(str_replace('_', ' ', $request->request_type)) }}</li>
                         <li><span class="detail-info">Quantity</span>{{ $request->quantity }}</li>
-                        <li><span class="detail-info">Amount</span> {{ 'GHS '. number_format($request->amount, 2) }}</li>
+{{--                        <li><span class="detail-info">Amount</span> {{ 'GHS '. number_format($request->amount, 2) }}</li>--}}
                         <li><span class="detail-info">Due Date</span> {{ date('l M d, Y', strtotime($request->due_date)) }}</li>
                     </ul>
                 </div>

@@ -130,6 +130,7 @@ Route::prefix('business')->group(function(){
            Route::prefix('dashboard/clients')->group(function () {
                Route::get('/', [BusinessClientsController::class, 'index'])->name('business.dashboard.client.index');
                Route::get('{client}/details', [BusinessClientsController::class, 'details'])->name('business.dashboard.client.detail');
+               Route::post('{client}/review/add', [BusinessClientsController::class, 'addReview'])->name('business.dashboard.client.review.create');
            });
 
        });

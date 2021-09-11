@@ -69,4 +69,14 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(RequestProposal::class, 'user_id');
     }
 
+    public function getReviews()
+    {
+        return $this->hasMany(ClientReview::class, 'user_id');
+    }
+
+    public function avgRating()
+    {
+        return $this->getReviews()->avg('rating');
+    }
+
 }

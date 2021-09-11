@@ -2,7 +2,9 @@
 @push('custom-css')
     <link rel="stylesheet" href="{{ asset('assets/account/bundles/bootstrap-social/bootstrap-social.css') }}">
     <style>
-
+        .alert.alert-danger, .alert.alert-success{
+            color: #fff !important;
+        }
     </style>
 @endpush
 @section('content')
@@ -88,7 +90,9 @@
                                               Rating
                                           </span>
                             <span class="float-right f-bold">
-                                              Agona
+                                                @for($i = 1; $i < number_format($client->getUser->avgRating(), 1); $i++)
+                                    <i class="fas fa-star text-warning filled"></i>
+                                @endfor
                                           </span>
                         </p>
                         <p class="clearfix" style="font-size: 16px;">
@@ -96,7 +100,7 @@
                                               Reviews
                                           </span>
                             <span class="float-right f-bold">
-                                              Ghana
+{{ $client->getUser->getReviews->count() }}
                                           </span>
                         </p>
 
@@ -124,11 +128,10 @@
                     </div>
                     <div class="card-body">
                         <!-- Write Review Form -->
-                        <form method="POST" action="" class="review_form">
+                        <form method="POST" action="{{ route('business.dashboard.client.review.create', $client->getUser->id) }}" class="review_form">
                             @csrf
                             @method('POST')
-                            <div class="errorMsg">
-                            </div>
+                            @include('layouts.errors')
                             <div class="form-group">
                                 <label>Rating</label>
                                 <div class="star-rating">
@@ -156,7 +159,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Title of your review</label>
-                                <input class="form-control" type="text" name="title" placeholder="If you could say it in one sentence, what would you say?">
+                                <input class="form-control" type="text" name="title">
                             </div>
                             <div class="form-group">
                                 <label>Your review</label>

@@ -109,7 +109,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-12">
                 <div class="card card-success">
                     <div class="card-header">
                         <h4>Farms</h4>
@@ -118,6 +118,37 @@
                         <div class="col-md-12 table-responsive p-3">
                             {!! $dataTable->table(['class' => 'table table-hover table-striped']) !!}
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="row">
+            <div class="col-md-7">
+                <div class="card card-success">
+                    <div class="card-header">
+                        <h4>Reviews</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-unstyled list-unstyled-border list-unstyled-noborder">
+                            @foreach($client->getUser->paginateReview() as $review)
+                            <li class="media">
+                                <img alt="image" class="mr-3 rounded-circle" style="width:50px; height: 50px;" src="{{ asset($review->getBusiness->business_logo) }}">
+                                <div class="media-body">
+                                    <div class="media-title mb-1">
+                                        {{ $review->getBusiness->name }}
+                                        <div>
+                                            @for($i = 1; $i < number_format($review->rating, 1); $i++)
+                                                <i class="fas fa-star text-warning filled"></i>
+                                            @endfor
+                                        </div>
+                                    </div>
+                                    <div class="text-time">{{ $review->getDateDiff() }}</div>
+                                    <div class="media-description text-muted">{{ $review->message }}</div>
+                                </div>
+                            </li>
+                            @endforeach
+                        </ul>
+                        {{ $client->getUser->paginateReview()->links('vendor.pagination.bootstrap-4') }}
                     </div>
                 </div>
             </div>
@@ -173,7 +204,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 @endsection
 @push('custom-js')

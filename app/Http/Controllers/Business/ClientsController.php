@@ -47,7 +47,14 @@ class ClientsController extends Controller
 
         $data['user_id'] = $client->getUser->id;
 
-        ClientReview::query()->create($this->prepareRatingData($data));
+        $check_review = ClientReview::query()->where('user_id', $data['user_id'])
+            ->where('business_id', auth('business')->user()->id)->first();
+
+        if ($check_review){
+            $check_review->update($this->prepareRatingData($data));
+        }else{
+            ClientReview::query()->create($this->prepareRatingData($data));
+        }
 
         toast($client->getUser->name.' rated successfully', 'success');
 

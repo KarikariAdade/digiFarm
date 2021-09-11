@@ -74,6 +74,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(ClientReview::class, 'user_id');
     }
 
+    public function paginateReview()
+    {
+        return ClientReview::query()->where('user_id', $this->id)->orderBy('id', 'desc')->paginate(5);
+    }
+
     public function avgRating()
     {
         return $this->getReviews()->avg('rating');

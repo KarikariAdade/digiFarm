@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 <head>
 	<meta charset="utf-8">
 	<title></title>
@@ -9,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('assets/main/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/main/css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/main/css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/main/css/select2.min.css') }}">
     @stack('extra-css')
 </head>
 <body>
@@ -58,7 +58,7 @@
                 <div class="contact">
                     <img src="images/user_icon.png" alt="">
                     <div class="contact-info">
-                       <a href="{{ route('login') }}" class="btn btn-primary header-btn">Accounts</a>
+                       <a href="{{ route('login') }}" class="btn btn-primary header-btn">{{ auth()->user() ? 'Dashboard' : 'Accounts' }}</a>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -174,6 +174,7 @@
     <script src="{{ asset('assets/main/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/main/js/all.min.js') }}"></script>
     <script src="{{ asset('assets/main/js/scripts.js') }}"></script>
+    <script src="{{ asset('assets/main/js/select2.min.js') }}"></script>
     @include('sweetalert::alert')
 @stack('extra-js')
 </body>

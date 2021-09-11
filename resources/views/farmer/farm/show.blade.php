@@ -21,8 +21,7 @@
                         @if($farm->getCategory->is_crop != true)
                         <tr><td style="width: 200px;"><b>N0. OF ANIMALS</b></td><td class="f-bold">{{ $farm->animal_number }}</td></tr>
                         @else
-                        <tr><td style="width: 200px;"><b>NUMBER OF CROPS</b></td><td class="f-bold">{{ $farm->crop_number }}</td></tr>
-                        <tr><td style="width: 200px;"><b>LAND SIZE</b></td><td class="f-bold">{{ $farm->land_size }}</td></tr>
+                       <tr><td style="width: 200px;"><b>LAND SIZE</b></td><td class="f-bold">{{ $farm->land_size }}</td></tr>
                         @endif
                     </table>
                 </div>
@@ -44,6 +43,7 @@
             </div>
             </div>
     </section>
+    @if($farm->getImages->count() > 0)
     <section class="card card-success">
         <div class="card-body">
             <h4 class="text-dark text-center">Farm Images</h4>
@@ -61,6 +61,7 @@
             </div>
         </div>
     </section>
+    @endif
 @endsection
 
 

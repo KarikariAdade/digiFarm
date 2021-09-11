@@ -26,7 +26,9 @@ class ProposalRequest extends FormRequest
         return [
             'email' => 'required|email',
             'phone' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10|max:18',
-            'message' => 'required|min:20'
+            'measurement_unit' => 'required',
+            'price_quote' => 'required',
+            'quantity' => 'required',
         ];
     }
 }

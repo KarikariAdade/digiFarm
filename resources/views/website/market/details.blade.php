@@ -72,9 +72,24 @@
                         <label>Phone <span class="text-danger">*</span></label>
                         <input type="tel" class="form-control mt-2" name="phone" value="{{ auth()->user()->phone }}">
                     </div>
-                    <div class="form-group">
-                        <label>Message <span class="text-danger">*</span></label>
-                        <textarea class="form-control mt-2" rows="5" name="message"></textarea>
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label style="margin-bottom: 10px;">Measurement Unit <span class="text-danger">*</span></label>
+                            <select name="measurement_unit" class="form-control mt-2 select2">
+                                <option>{{ old('quantity_type') }}</option>
+                                <option>Kilograms (Kgs)</option>
+                                <option>Pounds (lbs)</option>
+                                <option>Tonnes</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label>Quantity Available <span class="text-danger">*</span></label>
+                            <input type="number" class="form-control mt-2" name="quantity" value="{{ old('quantity') }}">
+                        </div>
+                        <div class="col-md-7 mt-3 form-group">
+                            <label>Price Quote (GHS) <span class="text-danger">*</span></label>
+                            <input type="number" step="0.1" class="form-control mt-2" name="price_quote" value="{{ old('quote') }}">
+                        </div>
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn header-btn">Submit Proposal</button>

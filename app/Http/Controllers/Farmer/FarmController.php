@@ -56,12 +56,15 @@ class FarmController extends Controller
         DB::transaction(function () use ($request, $data) {
             $farm = Farm::query()->create($this->prepareData($data))->id;
 
-            foreach($request->file('farm_images') as $file){
-                FarmImage::query()->create([
-                    'farm_id' => $farm,
-                    'path' => $this->performFileUpload($file, $farm)
-                ]);
+            if ($request->file('farm_images')){
+                foreach($request->file('farm_images') as $file){
+                    FarmImage::query()->create([
+                        'farm_id' => $farm,
+                        'path' => $this->performFileUpload($file, $farm)
+                    ]);
+                }
             }
+
 
         });
 
@@ -130,7 +133,7 @@ class FarmController extends Controller
             'farm_category' => 'required',
             'farm_type' => 'required',
             'land_size' => 'nullable',
-            'crop_number' => 'nullable',
+//            'crop_number' => 'nullable',
             'animal_number' => 'nullable',
             'average_production' => 'required',
             'description' => 'nullable',
@@ -198,7 +201,7 @@ class FarmController extends Controller
             'farm_category_id' => $data['farm_category'],
             'farm_sub_category_id' => $data['farm_type'],
             'land_size' => $data['land_size'],
-            'crop_number' => $data['crop_number'],
+//            'crop_number' => $data['crop_number'],
             'animal_number' => $data['animal_number'],
             'average_production' => $data['average_production'],
             'address' => $data['farm_address'],

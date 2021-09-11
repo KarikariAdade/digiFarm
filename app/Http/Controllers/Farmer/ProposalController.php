@@ -41,7 +41,7 @@ class ProposalController extends Controller
 
        $business = Business::query()->where('id', $data['business_id'])->first();
 
-       DB::transaction(function () use ($data, $request) {
+       DB::transaction(function () use ($data) {
            RequestProposal::query()->create($this->prepareProposal($data));
        });
 
@@ -62,7 +62,9 @@ class ProposalController extends Controller
             'request_id' => $data['request_id'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'message' => $data['message']
+            'measurement_unit' => $data['measurement_unit'],
+            'quantity' => $data['quantity'],
+            'price_quote' => $data['price_quote']
         ];
     }
 

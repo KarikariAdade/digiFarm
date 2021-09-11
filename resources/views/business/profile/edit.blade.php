@@ -80,7 +80,7 @@
                             </select>
                         </div>
                         <div class="col-md-3">
-                            <label>Business Size</label>
+                            <label>Number of People</label>
                             <select class="form-control select2" name="business_size">
                                 <option></option>
                                 @foreach($business_sizes as $business_size)

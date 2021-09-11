@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Notifications\Notifiable;
+use willvincent\Rateable\Rateable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasFactory, Notifiable, VerifiesEmails;
+    use HasFactory, Notifiable, VerifiesEmails, Rateable;
 
     /**
      * The attributes that are mass assignable.

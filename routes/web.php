@@ -129,7 +129,7 @@ Route::prefix('business')->group(function(){
 
            Route::prefix('dashboard/clients')->group(function () {
                Route::get('/', [BusinessClientsController::class, 'index'])->name('business.dashboard.client.index');
-               Route::get('details/{client}', [BusinessClientsController::class, 'details'])->name('business.dashboard.client.detail');
+               Route::get('{client}/details', [BusinessClientsController::class, 'details'])->name('business.dashboard.client.detail');
            });
 
        });
@@ -189,6 +189,6 @@ Route::group(['middleware' => 'verified', 'prefix' => 'farmer'], function (){
 
     Route::prefix('clients')->group(function () {
         Route::get('/', [ClientController::class, 'index'])->name('farmer.dashboard.client.index');
-        Route::get('{client}/details', [ClientController::class, 'details'])->name('farmer.dashboard.client.detail');
+        Route::get('details/{client}', [ClientController::class, 'details'])->name('farmer.dashboard.client.detail');
     });
 });

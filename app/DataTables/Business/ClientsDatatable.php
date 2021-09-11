@@ -43,7 +43,7 @@ class ClientsDatatable extends DataTable
                 return Carbon::parse($query->created_at)->format('l M d, Y');
             })
             ->addColumn('action', function ($query) {
-                return '<a href='.route('business.dashboard.client.detail', $query->id).'" class="btn btn-primary btn-sm shadow-primary"><span class="fa fa-eye"></span></a>';
+                return '<a href='.route('business.dashboard.client.detail', $query->id).' class="btn btn-primary btn-sm shadow-primary"><span class="fa fa-eye"></span></a>';
             });
     }
 

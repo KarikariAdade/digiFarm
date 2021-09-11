@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Business;
 
 use App\DataTables\Business\ClientsDatatable;
+use App\DataTables\Business\ProposalFarmerFarmsDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\Clients;
 use Illuminate\Http\Request;
@@ -19,9 +20,8 @@ class ClientsController extends Controller
         return $datatable->render('business.clients.index');
     }
 
-    public function details(Clients $client)
+    public function details(Clients $client, ProposalFarmerFarmsDataTable $dataTable)
     {
-        return $client;
-        return view('business.clients.details');
+        return $dataTable->with('id', $client->id)->render('business.clients.details', compact('client'));
     }
 }

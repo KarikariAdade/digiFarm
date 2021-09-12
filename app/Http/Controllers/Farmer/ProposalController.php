@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Farmer;
 
+use App\DataTables\Farmer\ProposalsDatatable;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProposalRequest;
 use App\Models\Business;
@@ -18,9 +19,9 @@ class ProposalController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(ProposalsDatatable $datatable)
     {
-        return view('farmer.proposals.index');
+        return $datatable->render('farmer.proposals.index');
     }
 
 

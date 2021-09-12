@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Business;
 use App\Models\Clients;
 use App\Models\MarketRequests;
+use App\Models\RequestProposal;
 use Illuminate\Http\Request;
 
 class ClientController extends Controller
@@ -29,6 +30,8 @@ class ClientController extends Controller
 
     public function clientRequestDetails(MarketRequests $request)
     {
-        return view('farmer.clients.request_detail', compact('request'));
+        $check_request = RequestProposal::query()->where('request_id', $request->id)->where('user_id', auth()->user()->id)->first();
+
+        return view('farmer.clients.request_detail', compact('request','check_request'));
     }
 }

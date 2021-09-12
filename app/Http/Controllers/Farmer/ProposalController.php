@@ -42,8 +42,16 @@ class ProposalController extends Controller
 
        $business = Business::query()->where('id', $data['business_id'])->first();
 
-       DB::transaction(function () use ($data) {
-           RequestProposal::query()->create($this->prepareProposal($data));
+       DB::transaction(function () use ($data, $market_request) {
+
+           $check_request = RequestProposal::query()->where('request_id', $market_request->id)->where('user_id', auth()->user()->id)->first();
+
+           if ($check_request){
+               $check_request->update($this->prepareProposal($data));
+           }else{
+               RequestProposal::query()->create($this->prepareProposal($data));
+           }
+
        });
 
        $this->sendNotification($business, $this->prepareProposal($data));

@@ -183,7 +183,7 @@ Route::group(['middleware' => 'verified', 'prefix' => 'farmer'], function (){
 
     Route::prefix('proposals')->group(function () {
         Route::get('/', [ProposalController::class, 'index'])->name('farmer.dashboard.proposal.index');
-        Route::get('details', [ProposalController::class, 'show'])->name('farmer.dashboard.proposal.show');
+        Route::get('{proposal}/details', [ProposalController::class, 'show'])->name('farmer.dashboard.proposal.show');
     });
 
     #------------------------------------------------ FARMER PROPOSAL ENDS --------------------------------------------#

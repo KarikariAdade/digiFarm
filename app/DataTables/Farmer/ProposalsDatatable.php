@@ -3,6 +3,7 @@
 namespace App\DataTables\Farmer;
 
 use App\Models\RequestProposal;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Yajra\DataTables\DataTableAbstract;
 use Yajra\DataTables\Html\Button;
@@ -30,12 +31,28 @@ class ProposalsDatatable extends DataTable
                 return $query->getBusiness->email;
             })
             ->editColumn('company_phone', function ($query){
-                return $query->getBusiness->phone;
+                return $query->getBusiness->primary_phone;
             })
             ->editColumn('company_address', function ($query){
                 return $query->getBusiness->address;
             })
-            ->addColumn('action', 'farmer/proposalsdatatable.action');
+            ->editColumn('status', function ($query) {
+                if ($query->status === 'approved'){
+                    return '<span class="badge shadow badge-success">Approved</span>';
+                }
+                if ($query->status === 'declined'){
+                    return '<span class="badge shadow-warning badge-danger">Declined</span>';
+                }
+                return '<span class="badge shadow-info badge-info">Pending</span>';
+
+            })
+            ->editColumn('created_at',function ($query){
+                return Carbon::parse($query->created_at)->format('l M d, Y');
+            })
+            ->addColumn('action', function ($query){
+                return '<a href="'.route('farmer.dashboard.proposal.show', $query->id).'" title="Proposal Details" class="btn table-btn btn-icon btn-primary btn-sm shadow-primary p-0 mr-2"><i class="fa mt-2 fa-eye"></i></a>
+                        ';
+            })->rawColumns(['status', 'action']);
     }
 
     /**

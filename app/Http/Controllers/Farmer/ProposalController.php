@@ -25,9 +25,9 @@ class ProposalController extends Controller
     }
 
 
-    public function show()
+    public function show(RequestProposal $proposal)
     {
-        return view('farmer.proposals.details');
+        return view('farmer.proposals.details', compact('proposal'));
     }
 
 

@@ -136,7 +136,7 @@
                 <ul class="sidebar-menu">
                     <li class="menu-header">Main</li>
                     <li class="active">
-                        <a href="" class="nav-link"><i
+                        <a href="{{ route('home') }}" class="nav-link"><i
                                 data-feather="monitor"></i><span>Dashboard</span></a>
                     </li>
                     <li class="">
@@ -172,22 +172,6 @@
         </div>
         <!-- Main Content -->
         <div class="main-content">
-{{--            @if(!str_contains(url()->current(), 'profile') && auth()->user()->is_setup_complete != true)--}}
-                <div class="alert alert-success alert-has-icon card">
-                    <div class=""></div>
-                    <div class="alert-body">
-                        <div class="alert-title"><i class="far fa-lightbulb" style="font-size: 20px;"></i> Account Not
-                            Activated !!!
-                        </div>
-                        <p>
-                            Dear {{ auth()->user()->name }}, please complete your profile setup by uploading relevant
-                            business documents to activate your account.
-                            Click <a href="{{ route('business.dashboard.profile.edit') }}" class="font-weight-bolder"
-                                     style="font-size: 18px;">HERE</a> to get started.
-                        </p>
-                    </div>
-                </div>
-{{--            @endif--}}
             @yield('content')
         </div>
         <footer class="main-footer">

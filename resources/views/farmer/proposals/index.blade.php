@@ -5,9 +5,9 @@
             <div class="card-body">
                 <div>
                     <h3>Sent Proposals</h3>
-                    <div style="float: right; margin-top: -40px;">
-                        <a href="" class="btn btn-warning"><span class="fa fa-bars"></span> Group By Requests</a>
-                    </div>
+{{--                    <div style="float: right; margin-top: -40px;">--}}
+{{--                        <a href="" class="btn btn-warning"><span class="fa fa-bars"></span> Group By Requests</a>--}}
+{{--                    </div>--}}
                 </div>
                 <form class="row mt-4">
                     <div class="col-md-3 form-group">

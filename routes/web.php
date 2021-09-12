@@ -191,5 +191,6 @@ Route::group(['middleware' => 'verified', 'prefix' => 'farmer'], function (){
     Route::prefix('clients')->group(function () {
         Route::get('/', [ClientController::class, 'index'])->name('farmer.dashboard.client.index');
         Route::get('details/{client}', [ClientController::class, 'details'])->name('farmer.dashboard.client.detail');
+        Route::get('{request}/details', [ClientController::class, 'clientRequestDetails'])->name('farmer.dashboard.client.request.details');
     });
 });

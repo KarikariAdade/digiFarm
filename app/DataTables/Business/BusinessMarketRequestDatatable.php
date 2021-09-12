@@ -121,7 +121,7 @@ class BusinessMarketRequestDatatable extends DataTable
             Column::make('request_type'),
             Column::make('product_type'),
             Column::make('quantity'),
-            Column::make('amount'),
+//            Column::make('amount'),
             Column::make('due_date')->width(100),
             Column::make('is_approved')->title('Status'),
             Column::make('created_at')->title('Date Created'),

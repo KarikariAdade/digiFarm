@@ -18,54 +18,8 @@
                  <div class="f-bold">{{ auth()->user()->getBusinessType->name ?? null }}</div>
              </div>
          </div>
-         <div class="row mt-5 mb-5">
-             <div class="col-md-3 text-center">
-                 <div class="card l-bg-cyan">
-                     <div class="card-statistic-3">
-                         <div class="card-icon card-icon-large"><i class="fa fa-briefcase"></i></div>
-                         <div class="card-content">
-                             <h4 class="card-title">New Booking</h4>
-                             <span>1,258</span>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             <div class="col-md-3 text-center">
-                 <div class="card l-bg-cyan">
-                     <div class="card-statistic-3">
-                         <div class="card-icon card-icon-large"><i class="fa fa-briefcase"></i></div>
-                         <div class="card-content">
-                             <h4 class="card-title">New Booking</h4>
-                             <span>1,258</span>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             <div class="col-md-3 text-center">
-                 <div class="card l-bg-cyan">
-                     <div class="card-statistic-3">
-                         <div class="card-icon card-icon-large"><i class="fa fa-briefcase"></i></div>
-                         <div class="card-content">
-                             <h4 class="card-title">New Booking</h4>
-                             <span>1,258</span>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             <div class="col-md-3 text-center">
-                 <div class="card l-bg-cyan">
-                     <div class="card-statistic-3">
-                         <div class="card-icon card-icon-large"><i class="fa fa-briefcase"></i></div>
-                         <div class="card-content">
-                             <h4 class="card-title">New Booking</h4>
-                             <span>1,258</span>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-         </div>
-         <hr>
-         <div class="row">
+
+         <div class="row mt-4">
              <div class="col-md-6">
                  <div class="">
                      @if(!empty($socials->instagram))

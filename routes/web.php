@@ -34,9 +34,14 @@ Route::get('/', function () {
 })->name('website.home');
 
 Route::get('about', [MainWebsiteController::class, 'about'])->name('website.about');
-Route::get('farmers', [MainWebsiteController::class, 'farmers'])->name('website.farmers');
 Route::get('forum', [MainWebsiteController::class, 'forum'])->name('website.forum');
 
+
+Route::prefix('farmers')->group(function (){
+    Route::get('/', [MainWebsiteController::class, 'farmers'])->name('website.farmers');
+    Route::get('list', [MainWebsiteController::class, 'listFarmers'])->name('website.farmers.list');
+    Route::get('details/{farmer}/{hash}/{slug}', [MainWebsiteController::class, 'farmerDetails'])->name('website.farmers.detail');
+});
 
 #----------------------------------------------- WEBSITE MARKET PAGES -------------------------------------------------#
 Route::prefix('market')->group(function() {

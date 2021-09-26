@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use willvincent\Rateable\Rateable;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -26,7 +27,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-//        'password',
+        'password',
         'remember_token',
     ];
 
@@ -82,6 +83,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function avgRating()
     {
         return $this->getReviews()->avg('rating');
+    }
+
+    public function farmerDetailUrl()
+    {
+        return route('website.farmers.detail', [$this->id, Str::random(10), Str::slug($this->name)]);
     }
 
 }

@@ -25,23 +25,25 @@
 				<div class="facts-row">
 					<div class="fact-col">
 						<h3>Sign Up</h3>
-						<h2>12<span>K</span></h2>
+						<h2>1</h2>
 					</div>
 					<div class="fact-col">
 						<h3>Add Farm</h3>
-						<h2>15<span>K</span></h2>
-						<span>+</span>
+						<h2>2</h2>
 					</div>
 					<div class="fact-col">
 						<h3>Meet Buyers</h3>
-						<h2><small>$</small>15<span>M</span></h2>
+                        <h2>2</h2>
 					</div>
 					<div class="fact-col">
 						<h3>Do Business</h3>
-						<h2><small>$</small>15<span>M</span></h2>
+                        <h2>2</h2>
 					</div>
 					<div class="clearfix"></div>
 				</div>
 			</div>
 		</section>
+<div class="container farmer-intro">
+    <a href="{{ route('website.farmers.list') }}" title="" class="lnk-default">Meet Our Farmers<span class="next-btn"><i class="fa fa-arrow-right"></i></span></a>
+</div>
 @endsection

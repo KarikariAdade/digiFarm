@@ -32,24 +32,16 @@
                             <i data-feather="maximize"></i>
                         </a></li>
                     <li>
-                        <form class="form-inline mr-auto">
-                            <div class="search-element">
-                                <input class="form-control" type="search" placeholder="Search" aria-label="Search"
-                                       data-width="200">
-                                <button class="btn" type="submit">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </div>
-                        </form>
                     </li>
                 </ul>
             </div>
             <ul class="navbar-nav navbar-right">
-                <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
-                                                             class="nav-link nav-link-lg message-toggle"><i
-                            data-feather="mail"></i>
-                        <span class="badge headerBadge1">
-                        6 </span> </a>
+                <li class="dropdown dropdown-list-toggle">
+{{--                    <a href="#" data-toggle="dropdown" class="nav-link nav-link-lg message-toggle"><i--}}
+{{--                            data-feather="mail"></i>--}}
+{{--                        <span class="badge headerBadge1">--}}
+{{--                        6 </span> --}}
+{{--                    </a>--}}
                     <div class="dropdown-menu dropdown-list dropdown-menu-right pullDown">
                         <div class="dropdown-header">
                             Messages
@@ -74,10 +66,10 @@
                         </div>
                     </div>
                 </li>
-                <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
-                                                             class="nav-link notification-toggle nav-link-lg"><i
-                            data-feather="bell" class="bell"></i>
-                    </a>
+                <li class="dropdown dropdown-list-toggle">
+{{--                    <a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg"><i--}}
+{{--                            data-feather="bell" class="bell"></i>--}}
+{{--                    </a>--}}
                     <div class="dropdown-menu dropdown-list dropdown-menu-right pullDown">
                         <div class="dropdown-header">
                             Notifications

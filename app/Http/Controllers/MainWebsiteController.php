@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Business;
 use App\Models\BusinessType;
 use App\Models\MarketRequests;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class MainWebsiteController extends Controller
@@ -17,6 +18,18 @@ class MainWebsiteController extends Controller
     public function farmers()
     {
         return view('website.farmers.index');
+    }
+
+    public function listFarmers()
+    {
+        $farmers = User::query()->orderBy('id', 'desc')->get();
+
+        return view('website.farmers.farmers', compact('farmers'));
+    }
+
+    public function farmerDetails(User $farmer)
+    {
+        return view('website.farmers.details', compact('farmer'));
     }
 
 

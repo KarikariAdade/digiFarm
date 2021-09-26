@@ -7,7 +7,7 @@
                    <h3>Requests</h3>
                    <div style="float: right; margin-top: -40px;">
                        <a href="{{ route('business.dashboard.request.create') }}" class="btn btn-success"><span class="fa fa-plus-circle"></span> Make New Request</a>
-                       <a href="{{ route('business.dashboard.request.card.view') }}" class="btn btn-warning"><span class="fa fa-bars"></span> Switch View</a>
+                       <a href="{{ route('business.dashboard.request.card.view') }}" class="btn btn-success"><span class="fa fa-bars"></span> Switch View</a>
                    </div>
                </div>
                 <form class="row mt-4">

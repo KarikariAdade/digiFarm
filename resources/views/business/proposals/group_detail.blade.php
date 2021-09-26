@@ -51,7 +51,7 @@
                 <div>
                     <h3>Received Proposals</h3>
                     <div style="float: right; margin-top: -40px;">
-                        <a href="{{ route('business.dashboard.proposal.index') }}" class="btn btn-warning"><span class="fa fa-bars"></span> List Proposals</a>
+                        <a href="{{ route('business.dashboard.proposal.index') }}" class="btn btn-success"><span class="fa fa-bars"></span> List Proposals</a>
                     </div>
                 </div>
                 <div class="row">

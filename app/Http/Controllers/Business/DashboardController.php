@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Business;
 
 use App\Http\Controllers\Controller;
+use App\Models\Clients;
 use App\Models\RequestProposal;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,9 @@ class DashboardController extends Controller
 
         $proposals = RequestProposal::query()->where('business_id', $user->id)->orderBy('id', 'desc')->limit(5)->get();
 
-        return view('business.dashboard', compact('user', 'proposals'));
+        $clients = Clients::query()->where('business_id', $user->id)->orderBy('id', 'desc')->limit(5)->get();
+
+        return view('business.dashboard', compact('user', 'proposals', 'clients'));
     }
 
     public function notApproved()

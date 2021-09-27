@@ -37,7 +37,7 @@
                     @endif
                     <div class="col-md-6"></div>
                     <div class="col-md-6" style="text-align: right;">
-                        <a href="{{ route('business.dashboard.request.edit', $request->id) }}" class="btn mr-2 btn-warning shadow-warning text-white"><span class="fa fa-edit"></span> Update Request</a>
+                        <a href="{{ route('business.dashboard.request.edit', $request->id) }}" class="btn mr-2 btn-success shadow-success text-white"><span class="fa fa-edit"></span> Update Request</a>
                         @if($request->is_approved != true)
                         <a href="{{ route('business.dashboard.request.approve', $request->id) }}" class="btn mr-2 btn-success shadow-success text-white"><span class="fa fa-stamp"></span> Approve Request</a>
                         @endif
@@ -53,7 +53,7 @@
                 <div>
                     <h3>Received Proposals</h3>
                     <div style="float: right; margin-top: -40px;">
-                        <a href="{{ route('business.dashboard.proposal.index') }}" class="btn btn-warning"><span class="fa fa-bars"></span> List Proposals</a>
+                        <a href="{{ route('business.dashboard.proposal.index') }}" class="btn btn-success"><span class="fa fa-bars"></span> List Proposals</a>
                     </div>
                 </div>
                 <div class="row">

@@ -58,7 +58,7 @@
                 <div class="contact">
                     <img src="images/user_icon.png" alt="">
                     <div class="contact-info">
-                       <a href="{{ route('login') }}" class="btn btn-primary header-btn">{{ auth()->user() ? 'Dashboard' : 'Accounts' }}</a>
+                       <a href="{{ route('login') }}" class="btn btn-primary header-btn">{{ Illuminate\Support\Facades\Auth::check() || auth('business')->user() ? 'Dashboard' : 'Accounts' }}</a>
                     </div>
                 </div>
                 <div class="clearfix"></div>

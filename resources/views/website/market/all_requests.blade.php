@@ -14,7 +14,6 @@
                 <div class="popular-jobs-container shadow">
                     <div class="popular-jobs-box">
                         <span class="popular-jobs-status shadow">{{ $market->getProposals()->count() }} Proposals</span>
-                        <h4 class="flc-rate mt-3">Ghc {{ number_format($market->amount, 2) }}</h4>
                         <div class="popular-jobs-box">
                             @if(!empty($market->getBusiness->business_logo))
                                 <img class="img-fluid shadow" src="{{ asset($market->getBusiness->business_logo) }}">
@@ -28,7 +27,7 @@
                         </div>
                         <div class="popular-jobs-box-extra">
                             <ul>
-                                <li>{{ ucwords($market->product_type) }}</li>
+                                <li>{{ ucwords(str_replace('_', ' ', $market->product_type)) }}</li>
                                 <li>{{ ucwords(str_replace('_', ' ', $market->request_type)) }}</li>
                             </ul>
                             {{--                                <div>{!! $market->limit() !!}</div>--}}

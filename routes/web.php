@@ -47,6 +47,7 @@ Route::prefix('farmers')->group(function (){
 Route::prefix('market')->group(function() {
     Route::get('list', [MainWebsiteController::class, 'listMarket'])->name('website.market.list');
     Route::get('/', [MainWebsiteController::class, 'market'])->name('website.market');
+    Route::get('category/{category}', [MainWebsiteController::class, 'marketCategory'])->name('website.market.category');
     Route::get('details/{request}/{hash}/{slug}', [MainWebsiteController::class, 'marketDetail'])->name('website.market.details');
 
     #------------------------------------------- SUBMIT PROPOSAL ------------------------------------------------------#

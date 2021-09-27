@@ -68,10 +68,21 @@ class MainWebsiteController extends Controller
         return view('website.market.details', compact('request'));
     }
 
+    public function marketCategory(BusinessType $category)
+    {
+
+        $markets = MarketRequests::query()->whereHas('getBusiness', function($query) use ($category) {
+            $query->where('type_id', $category->id);
+        })->where('is_approved', false)->paginate(15);
+
+        return view('website.market.category', compact('markets', 'category'));
+    }
+
     public function forum()
     {
         return view('website.forum.index');
     }
+
 
 
 

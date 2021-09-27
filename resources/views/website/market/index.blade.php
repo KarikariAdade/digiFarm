@@ -63,7 +63,7 @@
 						{{--                        <i class="icon-briefcase abs-icon" aria-hidden="true"></i>--}}
 					{{--                    </div>--}}
 					<div class="category-detail category-desc-text">
-						<h4><a href="">{{ $business->name }}</a></h4>
+						<h4><a href="{{ route('website.market.category', $business->id) }}">{{ $business->name }}</a></h4>
 						<p>{{ $business->getBusiness->count() }}</p>
 					</div>
 				</div>
@@ -115,13 +115,13 @@
 	</div>
 </section>
 @endif
-<div class="forum-section">
-    <div class="container">
-        <div class="text-center pt-5 pb-5">
-            <h2>Farm Related Questions Answered!</h2>
-            <p>Real people are using momo to quickly and effectively run their online business. With our full suite of marketing, sales, and creation.</p>
-            <a href="" class="btn btn-primary header-btn">Visit Our Forum</a>
-        </div>
-    </div>
-</div>
+{{--<div class="forum-section">--}}
+{{--    <div class="container">--}}
+{{--        <div class="text-center pt-5 pb-5">--}}
+{{--            <h2>Farm Related Questions Answered!</h2>--}}
+{{--            <p>Real people are using momo to quickly and effectively run their online business. With our full suite of marketing, sales, and creation.</p>--}}
+{{--            <a href="" class="btn btn-primary header-btn">Visit Our Forum</a>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
 @endsection

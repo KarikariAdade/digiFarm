@@ -33,11 +33,11 @@
 					</div>
 					<div class="fact-col">
 						<h3>Meet Buyers</h3>
-                        <h2>2</h2>
+                        <h2>3</h2>
 					</div>
 					<div class="fact-col">
 						<h3>Do Business</h3>
-                        <h2>2</h2>
+                        <h2>4</h2>
 					</div>
 					<div class="clearfix"></div>
 				</div>

@@ -112,6 +112,16 @@
             <div class="col-md-12">
                 <div class="card card-success">
                     <div class="card-header">
+                        <h4>Statistics</h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="chart"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-success">
+                    <div class="card-header">
                         <h4>Farms</h4>
                     </div>
                     <div class="card-body">
@@ -209,4 +219,270 @@
 @endsection
 @push('custom-js')
     {!! $dataTable->scripts() !!}
+    <script src="{{ asset('assets/account/bundles/apexcharts/apexcharts.min.js') }}"></script>
+    <script>
+        var options = {
+            series: [{
+                data: [{
+                    "date": "2014-01-01",
+                    "value": 20000000
+                },
+                    {
+                        "date": "2014-01-02",
+                        "value": 10379978
+                    },
+                    {
+                        "date": "2014-01-03",
+                        "value": 30493749
+                    },
+                    {
+                        "date": "2014-01-04",
+                        "value": 10785250
+                    },
+                    {
+                        "date": "2014-01-05",
+                        "value": 33901904
+                    },
+                    {
+                        "date": "2014-01-06",
+                        "value": 11576838
+                    },
+                    {
+                        "date": "2014-01-07",
+                        "value": 14413854
+                    },
+                    {
+                        "date": "2014-01-08",
+                        "value": 15177211
+                    },
+                    {
+                        "date": "2014-01-09",
+                        "value": 16622100
+                    },
+                    {
+                        "date": "2014-01-10",
+                        "value": 17381072
+                    },
+                    {
+                        "date": "2014-01-11",
+                        "value": 18802310
+                    },
+                    {
+                        "date": "2014-01-12",
+                        "value": 15531790
+                    },
+                    {
+                        "date": "2014-01-13",
+                        "value": 15748881
+                    },
+                    {
+                        "date": "2014-01-14",
+                        "value": 18706437
+                    },
+                    {
+                        "date": "2014-01-15",
+                        "value": 19752685
+                    },
+                    {
+                        "date": "2014-01-16",
+                        "value": 21016418
+                    },
+                    {
+                        "date": "2014-01-17",
+                        "value": 25622924
+                    },
+                    {
+                        "date": "2014-01-18",
+                        "value": 25337480
+                    },]
+            }],
+            chart: {
+                height: 350,
+                type: 'line',
+                id: 'areachart-2'
+            },
+            annotations: {
+                yaxis: [{
+                    y: 8200,
+                    borderColor: '#00E396',
+                    label: {
+                        borderColor: '#00E396',
+                        style: {
+                            color: '#fff',
+                            background: '#00E396',
+                        },
+                        text: 'Support',
+                    }
+                }, {
+                    y: 8600,
+                    y2: 9000,
+                    borderColor: '#000',
+                    fillColor: '#FEB019',
+                    opacity: 0.2,
+                    label: {
+                        borderColor: '#333',
+                        style: {
+                            fontSize: '10px',
+                            color: '#333',
+                            background: '#FEB019',
+                        },
+                        text: 'Y-axis range',
+                    }
+                }],
+                xaxis: [{
+                    x: new Date('23 Nov 2017').getTime(),
+                    strokeDashArray: 0,
+                    borderColor: '#775DD0',
+                    label: {
+                        borderColor: '#775DD0',
+                        style: {
+                            color: '#fff',
+                            background: '#775DD0',
+                        },
+                        text: 'Anno Test',
+                    }
+                }, {
+                    x: new Date('26 Nov 2017').getTime(),
+                    x2: new Date('28 Nov 2017').getTime(),
+                    fillColor: '#B3F7CA',
+                    opacity: 0.4,
+                    label: {
+                        borderColor: '#B3F7CA',
+                        style: {
+                            fontSize: '10px',
+                            color: '#fff',
+                            background: '#00E396',
+                        },
+                        offsetY: -10,
+                        text: 'X-axis range',
+                    }
+                }],
+                points: [{
+                    x: new Date('01 Dec 2017').getTime(),
+                    y: 8607.55,
+                    marker: {
+                        size: 8,
+                        fillColor: '#fff',
+                        strokeColor: 'red',
+                        radius: 2,
+                        cssClass: 'apexcharts-custom-class'
+                    },
+                    label: {
+                        borderColor: '#FF4560',
+                        offsetY: 0,
+                        style: {
+                            color: '#fff',
+                            background: '#FF4560',
+                        },
+
+                        text: 'Point Annotation',
+                    }
+                }, {
+                    x: new Date('08 Dec 2017').getTime(),
+                    y: 9340.85,
+                    marker: {
+                        size: 0
+                    },
+                    image: {
+                        path: '../../assets/images/ico-instagram.png'
+                    }
+                }]
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'straight'
+            },
+            grid: {
+                padding: {
+                    right: 30,
+                    left: 20
+                }
+            },
+            title: {
+                text: 'Line with Annotations',
+                align: 'left'
+            },
+            labels: [{
+                "date": "2014-01-01",
+                "value": 20000000
+            },
+                {
+                    "date": "2014-01-02",
+                    "value": 10379978
+                },
+                {
+                    "date": "2014-01-03",
+                    "value": 30493749
+                },
+                {
+                    "date": "2014-01-04",
+                    "value": 10785250
+                },
+                {
+                    "date": "2014-01-05",
+                    "value": 33901904
+                },
+                {
+                    "date": "2014-01-06",
+                    "value": 11576838
+                },
+                {
+                    "date": "2014-01-07",
+                    "value": 14413854
+                },
+                {
+                    "date": "2014-01-08",
+                    "value": 15177211
+                },
+                {
+                    "date": "2014-01-09",
+                    "value": 16622100
+                },
+                {
+                    "date": "2014-01-10",
+                    "value": 17381072
+                },
+                {
+                    "date": "2014-01-11",
+                    "value": 18802310
+                },
+                {
+                    "date": "2014-01-12",
+                    "value": 15531790
+                },
+                {
+                    "date": "2014-01-13",
+                    "value": 15748881
+                },
+                {
+                    "date": "2014-01-14",
+                    "value": 18706437
+                },
+                {
+                    "date": "2014-01-15",
+                    "value": 19752685
+                },
+                {
+                    "date": "2014-01-16",
+                    "value": 21016418
+                },
+                {
+                    "date": "2014-01-17",
+                    "value": 25622924
+                },
+                {
+                    "date": "2014-01-18",
+                    "value": 25337480
+                },],
+            xaxis: {
+                type: 'datetime',
+            },
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+
+    </script>
 @endpush

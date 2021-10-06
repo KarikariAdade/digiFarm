@@ -7,8 +7,10 @@ use App\DataTables\Business\ProposalFarmerFarmsDataTable;
 use App\Http\Controllers\Controller;
 use App\Models\ClientReview;
 use App\Models\Clients;
+use App\Models\RequestProposal;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ClientsController extends Controller
@@ -25,7 +27,23 @@ class ClientsController extends Controller
 
     public function details(Clients $client, ProposalFarmerFarmsDataTable $dataTable)
     {
-        return $dataTable->with('id', $client->id)->render('business.clients.details', compact('client'));
+        $statistics = RequestProposal::query()->select(
+            DB::raw('sum(price_quote) as sums'),
+            DB::raw("DATE_FORMAT(created_at,'%M %Y') as months"),
+            DB::raw("DATE_FORMAT(created_at,'%m') as monthKey")
+            )->groupBy('months', 'monthKey')
+            ->orderBy('created_at', 'ASC')
+            ->get();
+
+//        return $statistics;
+
+//        foreach ($statistics as $statistic) {
+//            return $statistic['sums'].' '.$statistic['monthKey'];
+//        }
+//
+//        return $statistics;
+
+        return $dataTable->with('id', $client->id)->render('business.clients.details', compact('client', 'statistics'));
     }
 
 

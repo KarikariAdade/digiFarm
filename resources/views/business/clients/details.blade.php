@@ -223,9 +223,7 @@
     <script>
         var options = {
             series: [{
-                name: [@foreach($statistics as $statistic)
-                "{{ $statistic['months'] }}",
-                @endforeach],
+                name: 'Amount in GHS',
                 data: [
                     @foreach($statistics as $statistic)
                     {{ $statistic['sums'] }},
@@ -248,7 +246,7 @@
                 curve: 'straight'
             },
             title: {
-                text: 'Price Quote Statistics',
+                text: 'Price Quote Statistics (Monthly Average)',
                 align: 'left'
             },
             grid: {

@@ -60,7 +60,7 @@
 
                         <input hidden type="text" id="latitude" name="latitude">
                         <input hidden type="text" id="longitude" name="longitude">
-                        <div class="container" id="map" style="height: 300px; width: 95%; border: 1px solid red;"></div>
+                        <div class="container" id="map" style="height: 300px; width: 95%;"></div>
 
 
                         <div class="form-group col-md-12 mt-4">

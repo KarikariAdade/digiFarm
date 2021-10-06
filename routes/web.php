@@ -66,7 +66,6 @@ Auth::routes(['verify' => true]);
 
 
 
-
 Route::prefix('business/auth')->group(function (){
     Route::get('register', [RegisterController::class, 'index'])->name('business.auth.register');
     Route::post('registerBusiness', [RegisterController::class, 'registerBusiness'])->name('business.auth.register.business');

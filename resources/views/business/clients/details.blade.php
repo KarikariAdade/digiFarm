@@ -112,6 +112,16 @@
             <div class="col-md-12">
                 <div class="card card-success">
                     <div class="card-header">
+                        <h4>Statistics</h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="chart"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="card card-success">
+                    <div class="card-header">
                         <h4>Farms</h4>
                     </div>
                     <div class="card-body">
@@ -209,4 +219,52 @@
 @endsection
 @push('custom-js')
     {!! $dataTable->scripts() !!}
+    <script src="{{ asset('assets/account/bundles/apexcharts/apexcharts.min.js') }}"></script>
+    <script>
+        var options = {
+            series: [{
+                name: [@foreach($statistics as $statistic)
+                "{{ $statistic['months'] }}",
+                @endforeach],
+                data: [
+                    @foreach($statistics as $statistic)
+                    {{ $statistic['sums'] }},
+                    @endforeach
+                ]
+                // data: [10.00, 41, 35, 51, 49, 62, 69, 91, 10]
+            },
+            ],
+            chart: {
+                height: 350,
+                type: 'line',
+                zoom: {
+                    enabled: false
+                }
+            },
+            dataLabels: {
+                enabled: true
+            },
+            stroke: {
+                curve: 'straight'
+            },
+            title: {
+                text: 'Price Quote Statistics',
+                align: 'left'
+            },
+            grid: {
+                row: {
+                    colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                    opacity: 0.5
+                },
+            },
+            xaxis: {
+                categories: [@foreach($statistics as $statistic)
+                    "{{ $statistic['months'] }}",
+                    @endforeach],
+            }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    </script>
 @endpush

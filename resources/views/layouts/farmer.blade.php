@@ -131,7 +131,7 @@
                     </a>
                     @endif
                     <p class="sidebar-brand-name">{{ auth()->user()->name }} <br>
-                        <small>{{ auth()->user()->name }}</small>
+                        <small>Farmer</small>
                     </p>
                 </div>
                 <ul class="sidebar-menu">

@@ -27,7 +27,7 @@
                         <li><a href="{{ route('website.farmers') }}" title="">Our Farmers</a></li>
                         <li><a href="{{ route('website.market') }}" title="">Market</a></li>
 {{--                        <li><a href="{{ route('website.forum') }}" title="">Forum</a></li>--}}
-                        <li><a href="">Companies</a></li>
+{{--                        <li><a href="">Companies</a></li>--}}
 {{--                        </li>--}}
                         {{-- <li><a href="#" title="">Pages</a>
                             <ul>
